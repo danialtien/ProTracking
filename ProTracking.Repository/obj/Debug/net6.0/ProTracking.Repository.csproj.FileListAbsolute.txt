@@ -1,0 +1,17 @@
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\obj\Debug\net6.0\ProTracking.Repository.csproj.AssemblyReference.cache
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\obj\Debug\net6.0\ProTracking.Repository.GeneratedMSBuildEditorConfig.editorconfig
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\obj\Debug\net6.0\ProTracking.Repository.AssemblyInfoInputs.cache
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\obj\Debug\net6.0\ProTracking.Repository.AssemblyInfo.cs
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\obj\Debug\net6.0\ProTracking.Repository.csproj.CoreCompileInputs.cache
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\bin\Debug\net6.0\ProTracking.Repository.deps.json
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\bin\Debug\net6.0\ProTracking.Repository.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\bin\Debug\net6.0\ProTracking.Repository.pdb
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\bin\Debug\net6.0\ProTracking.Domain.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\bin\Debug\net6.0\ProTracking.Infrastructures.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\bin\Debug\net6.0\ProTracking.Infrastructures.pdb
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\bin\Debug\net6.0\ProTracking.Domain.pdb
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\obj\Debug\net6.0\ProTracking.Repository.csproj.CopyComplete
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\obj\Debug\net6.0\ProTracking.Repository.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\obj\Debug\net6.0\refint\ProTracking.Repository.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\obj\Debug\net6.0\ProTracking.Repository.pdb
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Repository\obj\Debug\net6.0\ref\ProTracking.Repository.dll

@@ -13,3 +13,18 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\refint\ProTracking.Infrastructures.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ProTracking.Infrastructures.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ref\ProTracking.Infrastructures.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\bin\Debug\net6.0\ProTracking.Infrastructures.deps.json
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\bin\Debug\net6.0\ProTracking.Infrastructures.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\bin\Debug\net6.0\ProTracking.Infrastructures.pdb
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\bin\Debug\net6.0\ProTracking.Domain.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\bin\Debug\net6.0\ProTracking.Domain.pdb
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ProTracking.Infrastructures.csproj.AssemblyReference.cache
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ProTracking.Infrastructures.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ProTracking.Infrastructures.AssemblyInfoInputs.cache
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ProTracking.Infrastructures.AssemblyInfo.cs
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ProTracking.Infrastructures.csproj.CoreCompileInputs.cache
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ProTracking.Infrastructures.csproj.CopyComplete
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ProTracking.Infrastructures.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\refint\ProTracking.Infrastructures.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ProTracking.Infrastructures.pdb
+D:\Visual Studio Projects\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ref\ProTracking.Infrastructures.dll

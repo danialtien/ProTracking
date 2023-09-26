@@ -13,3 +13,18 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Application\obj\Debug\net6.0\Pro
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Application\obj\Debug\net6.0\refint\ProTracking.Application.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Application\obj\Debug\net6.0\ProTracking.Application.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Application\obj\Debug\net6.0\ref\ProTracking.Application.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\bin\Debug\net6.0\ProTracking.Application.deps.json
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\bin\Debug\net6.0\ProTracking.Application.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\bin\Debug\net6.0\ProTracking.Application.pdb
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\bin\Debug\net6.0\ProTracking.Domain.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\bin\Debug\net6.0\ProTracking.Domain.pdb
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\obj\Debug\net6.0\ProTracking.Application.csproj.AssemblyReference.cache
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\obj\Debug\net6.0\ProTracking.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\obj\Debug\net6.0\ProTracking.Application.AssemblyInfoInputs.cache
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\obj\Debug\net6.0\ProTracking.Application.AssemblyInfo.cs
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\obj\Debug\net6.0\ProTracking.Application.csproj.CoreCompileInputs.cache
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\obj\Debug\net6.0\ProTracking.Application.csproj.CopyComplete
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\obj\Debug\net6.0\ProTracking.Application.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\obj\Debug\net6.0\refint\ProTracking.Application.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\obj\Debug\net6.0\ProTracking.Application.pdb
+D:\Visual Studio Projects\ProTracking\ProTracking.Application\obj\Debug\net6.0\ref\ProTracking.Application.dll

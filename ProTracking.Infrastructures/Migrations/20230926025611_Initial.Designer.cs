@@ -11,14 +11,9 @@ using ProTracking.Infrastructures.Data;
 
 namespace ProTracking.Infrastructures.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-<<<<<<<< HEAD:ProTracking.Infrastructures/Migrations/20230923142148_InitialCreate.Designer.cs
-    [Migration("20230923142148_InitialCreate")]
-    partial class InitialCreate
-========
+
     [Migration("20230926025611_Initial")]
     partial class Initial
->>>>>>>> main:ProTracking.Infrastructures/Migrations/20230926025611_Initial.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

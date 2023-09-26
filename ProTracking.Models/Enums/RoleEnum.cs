@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ProTracking.Domain.Enums
 {
-    public enum AccountTypeEnum
+    public enum RoleEnum
     {
-        Free,
-        Standard,
-        Primium,
-        Enterprise,
+        [EnumMember(Value = "Customer")]
+        Customer,
+        [EnumMember(Value = "Admin")]
+        Admin,
     }
 }

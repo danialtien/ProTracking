@@ -13,3 +13,5 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\refint\ProTracking.Infrastructures.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ProTracking.Infrastructures.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Infrastructures\obj\Debug\net6.0\ref\ProTracking.Infrastructures.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Infrastructures\bin\Debug\net6.0\ProTracking.Application.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Infrastructures\bin\Debug\net6.0\ProTracking.Application.pdb

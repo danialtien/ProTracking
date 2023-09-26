@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProTracking.Models\ProTracking.Domain.csproj" />
+    <ProjectReference Include="..\ProTracking.Application\ProTracking.Application.csproj" />
   </ItemGroup>
 
 </Project>

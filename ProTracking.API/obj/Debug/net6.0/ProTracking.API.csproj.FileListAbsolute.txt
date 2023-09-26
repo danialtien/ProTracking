@@ -51,8 +51,6 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\wi
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Domain.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Infrastructures.dll
-E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Repository.dll
-E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Repository.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Domain.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Infrastructures.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\obj\Debug\net6.0\staticwebassets\msbuild.ProTracking.API.Microsoft.AspNetCore.StaticWebAssets.props
@@ -72,3 +70,6 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\obj\Debug\net6.0\ref\ProTrac
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Humanizer.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.MvcApplicationPartsAssemblyInfo.cs
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\AutoMapper.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Application.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Application.pdb

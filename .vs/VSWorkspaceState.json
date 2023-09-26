@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ProTracking.API",
+    "\\ProTracking.API\\Controllers",
+    "\\ProTracking.API\\Services",
+    "\\ProTracking.API\\Services\\IServices",
+    "\\ProTracking.Application",
+    "\\ProTracking.Models",
+    "\\ProTracking.Models\\Entities",
+    "\\ProTracking.Repository",
+    "\\ProTracking.Repository\\IRepository"
+  ],
+  "SelectedNode": "\\ProTracking.API\\Services\\IServices\\ICustomerService.cs",
+  "PreviewInSolutionExplorer": false
+}

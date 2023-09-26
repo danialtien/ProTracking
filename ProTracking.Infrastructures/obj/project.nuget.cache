@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "UiMqsGu3AV9S/mlScB9ybOFATElrprxpN8+9vg2yi6S1yWMl9s09otzFoYfVhcRAtoP488vu5eCCADOpT91htQ==",
+  "dgSpecHash": "dUzCiG6QtpzLbdOV+U9AfVTBgG4cNwaOk2YQ+gc4ImvBspLPiAvMPDei3qy8aeDLyrnJWLhpa5VDJ9jhsNdj/g==",
   "success": true,
   "projectFilePath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\tient\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\tient\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\tient\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\tient\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\tient\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\tient\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.19\\microsoft.entityframeworkcore.6.0.19.nupkg.sha512",

@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "ueOrP4y3fBnO9VBrgUzPlAsCJnNmXuEZvfzTVTv8EKZfNscuLVz16un4VzIQo6A3A8g946LIHBwJX0gXkatqww==",
+  "dgSpecHash": "McA+KXEhg8p1O6aK0iHc0zTizdiLSOSeBl39AQMjR+dQlyX2OGzOaapGxnRnxeTyMDrxq2AuicW87cnQGqdkPg==",
   "success": true,
   "projectFilePath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.API\\ProTracking.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\tient\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\tient\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\tient\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\tient\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\tient\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\tient\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\tient\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.21\\microsoft.entityframeworkcore.6.0.21.nupkg.sha512",

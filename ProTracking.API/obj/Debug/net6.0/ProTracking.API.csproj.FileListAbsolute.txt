@@ -51,8 +51,6 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\wi
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Domain.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Infrastructures.dll
-E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Repository.dll
-E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Repository.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Domain.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Infrastructures.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\obj\Debug\net6.0\staticwebassets\msbuild.ProTracking.API.Microsoft.AspNetCore.StaticWebAssets.props
@@ -72,77 +70,6 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\obj\Debug\net6.0\ref\ProTrac
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Humanizer.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.MvcApplicationPartsAssemblyInfo.cs
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\appsettings.Development.json
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\appsettings.json
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.API.exe
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.API.deps.json
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.API.runtimeconfig.json
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.API.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.API.pdb
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Humanizer.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Identity.Client.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.OpenApi.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\System.Drawing.Common.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\System.Runtime.Caching.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\System.Security.Permissions.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\System.Windows.Extensions.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Domain.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Infrastructures.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Repository.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Repository.pdb
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Domain.pdb
-D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Infrastructures.pdb
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.csproj.AssemblyReference.cache
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.GeneratedMSBuildEditorConfig.editorconfig
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.AssemblyInfoInputs.cache
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.AssemblyInfo.cs
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.csproj.CoreCompileInputs.cache
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.MvcApplicationPartsAssemblyInfo.cs
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.MvcApplicationPartsAssemblyInfo.cache
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\staticwebassets\msbuild.ProTracking.API.Microsoft.AspNetCore.StaticWebAssets.props
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\staticwebassets\msbuild.build.ProTracking.API.props
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.ProTracking.API.props
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.ProTracking.API.props
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\staticwebassets.pack.json
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\staticwebassets.build.json
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\staticwebassets.development.json
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\scopedcss\bundle\ProTracking.API.styles.css
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.csproj.CopyComplete
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\refint\ProTracking.API.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.pdb
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.genruntimeconfig.cache
-D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ref\ProTracking.API.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\AutoMapper.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Application.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.Application.pdb

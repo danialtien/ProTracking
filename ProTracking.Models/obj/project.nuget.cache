@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Wo1SH0Sve87CzOfHNLCZ5BMli/Dl5bzX3w0wzQIQdA4pM+xhvwGcATGov6ICJLhU5/Tf2ZcehnbvPt/IgEQajA==",
+  "dgSpecHash": "e6wlvole8vSs5DuTdXxAu3nl2ssKCO63CPNiNGlReOhJGJ1VTxPpfSXR1Tus4OioL/EkDspMNiW29Qx+xyMhsw==",
   "success": true,
   "projectFilePath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\legen\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\legen\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\legen\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\legen\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\legen\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\legen\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\legen\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.19\\microsoft.entityframeworkcore.6.0.19.nupkg.sha512",

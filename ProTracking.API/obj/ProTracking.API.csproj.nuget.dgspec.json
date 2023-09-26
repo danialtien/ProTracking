@@ -33,8 +33,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Repository\\ProTracking.Repository.csproj": {
-                "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Repository\\ProTracking.Repository.csproj"
+              "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj": {
+                "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj"
               }
             }
           }
@@ -87,6 +87,70 @@
         }
       }
     },
+    "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj",
+        "projectName": "ProTracking.Application",
+        "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj",
+        "packagesPath": "C:\\Users\\legen\\.nuget\\packages\\",
+        "outputPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\legen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj": {
+                "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -116,8 +180,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj": {
-                "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj"
+              "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj": {
+                "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj"
               }
             }
           }
@@ -192,6 +256,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.0.19, )"
@@ -215,70 +283,6 @@
               "version": "[6.0.0, )"
             }
           },
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48",
-            "net481"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Repository\\ProTracking.Repository.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Repository\\ProTracking.Repository.csproj",
-        "projectName": "ProTracking.Repository",
-        "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Repository\\ProTracking.Repository.csproj",
-        "packagesPath": "C:\\Users\\legen\\.nuget\\packages\\",
-        "outputPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Repository\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "D:\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\legen\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net6.0"
-        ],
-        "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
-            "projectReferences": {
-              "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj": {
-                "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
           "imports": [
             "net461",
             "net462",

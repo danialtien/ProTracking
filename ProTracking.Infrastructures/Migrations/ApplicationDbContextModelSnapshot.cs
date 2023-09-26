@@ -17,7 +17,7 @@ namespace ProTracking.Infrastructures.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.19")
+                .HasAnnotation("ProductVersion", "6.0.21")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -39,12 +39,46 @@ namespace ProTracking.Infrastructures.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("Title")
-                        .HasColumnType("int");
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("AccountTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Free account",
+                            Index = 0,
+                            Price = 0.0,
+                            Title = "Free"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Standard account",
+                            Index = 1,
+                            Price = 20.0,
+                            Title = "Standard"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Premium account",
+                            Index = 2,
+                            Price = 30.0,
+                            Title = "Premium"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Enterprise account",
+                            Index = 3,
+                            Price = 40.0,
+                            Title = "Enterprise"
+                        });
                 });
 
             modelBuilder.Entity("ProTracking.Domain.Entities.ChildTask", b =>
@@ -183,6 +217,48 @@ namespace ProTracking.Infrastructures.Migrations
                     b.HasIndex("AccountTypeId");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccountTypeId = 1,
+                            Birthday = new DateTime(2023, 9, 26, 9, 56, 10, 877, DateTimeKind.Local).AddTicks(3175),
+                            Email = "khoa@gmail.com",
+                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Hoang",
+                            GoogleEmail = "khoa@gmail.com",
+                            LastLoginAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastName = "Khoa",
+                            OAuthExpiry = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Password = "1234",
+                            Phone = "08888888",
+                            RegisteredAt = new DateTime(2023, 9, 26, 0, 0, 0, 0, DateTimeKind.Local),
+                            Role = 1,
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = "Active",
+                            Username = "khoa"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccountTypeId = 1,
+                            Birthday = new DateTime(2023, 9, 26, 9, 56, 10, 877, DateTimeKind.Local).AddTicks(3191),
+                            Email = "hai@gmail.com",
+                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Hoang",
+                            GoogleEmail = "hai@gmail.com",
+                            LastLoginAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LastName = "Hai",
+                            OAuthExpiry = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Password = "1234",
+                            Phone = "08888888",
+                            RegisteredAt = new DateTime(2023, 9, 26, 0, 0, 0, 0, DateTimeKind.Local),
+                            Role = 1,
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = "Active",
+                            Username = "khoa"
+                        });
                 });
 
             modelBuilder.Entity("ProTracking.Domain.Entities.Label", b =>

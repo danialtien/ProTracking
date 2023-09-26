@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ProTracking.Repository\ProTracking.Repository.csproj" />
+    <ProjectReference Include="..\ProTracking.Infrastructures\ProTracking.Infrastructures.csproj" />
   </ItemGroup>
 
 </Project>

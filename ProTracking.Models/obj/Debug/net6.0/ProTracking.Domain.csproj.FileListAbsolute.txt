@@ -12,17 +12,3 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Models\obj\Debug\net6.0\refint\P
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Models\obj\Debug\net6.0\ProTracking.Domain.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Models\obj\Debug\net6.0\ProTracking.Domain.genruntimeconfig.cache
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.Models\obj\Debug\net6.0\ref\ProTracking.Domain.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\bin\Debug\net6.0\ProTracking.Domain.deps.json
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\bin\Debug\net6.0\ProTracking.Domain.runtimeconfig.json
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\bin\Debug\net6.0\ProTracking.Domain.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\bin\Debug\net6.0\ProTracking.Domain.pdb
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\obj\Debug\net6.0\ProTracking.Domain.csproj.AssemblyReference.cache
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\obj\Debug\net6.0\ProTracking.Domain.GeneratedMSBuildEditorConfig.editorconfig
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\obj\Debug\net6.0\ProTracking.Domain.AssemblyInfoInputs.cache
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\obj\Debug\net6.0\ProTracking.Domain.AssemblyInfo.cs
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\obj\Debug\net6.0\ProTracking.Domain.csproj.CoreCompileInputs.cache
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\obj\Debug\net6.0\ProTracking.Domain.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\obj\Debug\net6.0\refint\ProTracking.Domain.dll
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\obj\Debug\net6.0\ProTracking.Domain.pdb
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\obj\Debug\net6.0\ProTracking.Domain.genruntimeconfig.cache
-D:\Visual Studio Projects\ProTracking\ProTracking.Models\obj\Debug\net6.0\ref\ProTracking.Domain.dll

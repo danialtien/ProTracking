@@ -5,7 +5,7 @@ namespace ProTracking.API.Services.IServices
 {
     public interface ICustomerService
     {
-        Task<IEnumerable<CustomerRegisterDTO>> GetAllAsync();
+        IEnumerable<CustomerRegisterDTO> GetAll();
 
 
     }

@@ -1,4 +1,5 @@
-﻿using ProTracking.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ProTracking.Domain.Entities;
 using ProTracking.Infrastructures.Data;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,9 @@ namespace ProTracking.Infrastructures.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Customer>> GetAll(Expression<Func<Customer, bool>>? filter = null, string? includeProperties = null)
+        public async Task<IEnumerable<Customer>> GetAll(Expression<Func<Customer, bool>>? filter = null, string? includeProperties = null)
         {
-            throw new NotImplementedException();
+            return await db.Customers.ToListAsync();
         }
 
         public Task<Customer> GetByIdAsync(Expression<Func<Customer, bool>> filter, string? includeProperties = null, bool tracked = false)

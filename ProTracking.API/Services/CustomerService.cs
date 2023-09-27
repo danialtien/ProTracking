@@ -16,13 +16,13 @@ namespace ProTracking.API.Services
             this.repo = customerRepo;
             this.mapper = mapper;
         }
-        public async Task<IEnumerable<CustomerRegisterDTO>> GetAllAsync()
+        public IEnumerable<CustomerRegisterDTO> GetAll()
         {
             IEnumerable<CustomerRegisterDTO> _response = new List<CustomerRegisterDTO>();
-            var _data = await this.repo.GetAll();
+            var _data =  this.repo.GetAll();
             if(_data != null )
             {
-                _response = this.mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerRegisterDTO>>(_data);
+                _response = this.mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerRegisterDTO>>((IEnumerable<Customer>)_data);
             }
             return _response;
         }

@@ -21,7 +21,7 @@ namespace ProTracking.API.Controllers
         [HttpGet]
         public Task<IEnumerable<CustomerRegisterDTO>> GetAll()
         {
-            return service.GetAllAsync();
+            return (Task<IEnumerable<CustomerRegisterDTO>>)service.GetAll();
         }
 
 

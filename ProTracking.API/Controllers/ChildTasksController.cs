@@ -4,9 +4,8 @@
 
 namespace ProTracking.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class ChildTasksController : ControllerBase
+    public class ChildTasksController : BaseController
     {
         // GET: api/<ChildTasksController>
         [HttpGet]

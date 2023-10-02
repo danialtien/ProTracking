@@ -19,39 +19,57 @@ namespace ProTracking.Infrastructures.Repository
             this.db = db;
         }
 
-        public Task<bool> AddAsync(Customer entity)
+        public async Task<bool> AddAsync(Customer entity)
         {
-            throw new NotImplementedException();
+            await db.Customers.AddAsync(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public async Task<IEnumerable<Customer>> GetAll(Expression<Func<Customer, bool>>? filter = null, string? includeProperties = null)
+        public async Task<IEnumerable<Customer>> GetAllAsync(Expression<Func<Customer, bool>>? filter = null, string[]? includeProperties = null)
         {
+            if (includeProperties != null && filter != null)
+            {
+                return await includeProperties!.Aggregate(db.Customers.AsQueryable(),
+                    (entity, property) => entity.Include(property))
+                    .Where(filter!)
+                    .ToListAsync();
+            }
             return await db.Customers.ToListAsync();
         }
 
-        public Task<Customer> GetByIdAsync(Expression<Func<Customer, bool>> filter, string? includeProperties = null, bool tracked = false)
+        public async Task<Customer?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await db.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return result;
         }
 
-        public bool SoftRemove(Customer entity)
+        public async Task<bool> SoftRemoveAsync(Customer entity)
         {
-            throw new NotImplementedException();
+            entity.Status = "Inactive";
+            db.Customers.Update(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public bool SoftRemoveByID(int entityId)
+        public async Task<bool> SoftRemoveByIDAsync(int entityId)
         {
-            throw new NotImplementedException();
+            Customer? result = await db.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == entityId);
+            if (result != null)
+            {
+                await SoftRemoveAsync(result);
+            }
+            return false;
         }
 
-        public bool Update(Customer entity)
+        public async Task<bool> UpdateAsync(Customer entity)
         {
-            throw new NotImplementedException();
+            db.Customers.Update(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public bool UpdateRange(List<Customer> entities)
+        public async Task<bool> UpdateRangeAsync(List<Customer> entities)
         {
-            throw new NotImplementedException();
+            db.Customers.UpdateRange(entities);
+            return await db.SaveChangesAsync() > 0;
         }
     }
 }

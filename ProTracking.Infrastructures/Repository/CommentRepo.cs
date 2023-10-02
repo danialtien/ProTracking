@@ -23,32 +23,32 @@ namespace ProTracking.Infrastructures.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Comment>> GetAll(Expression<Func<Comment, bool>>? filter = null, string? includeProperties = null)
+        public Task<IEnumerable<Comment>> GetAllAsync(Expression<Func<Comment, bool>>? filter = null, string[]? includeProperties = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Comment> GetByIdAsync(Expression<Func<Comment, bool>> filter, string? includeProperties = null, bool tracked = false)
+        public Task<Comment> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool SoftRemove(Comment entity)
+        public Task<bool> SoftRemoveAsync(Comment entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool SoftRemoveByID(int entityId)
+        public Task<bool> SoftRemoveByIDAsync(int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Comment entity)
+        public Task<bool> UpdateAsync(Comment entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateRange(List<Comment> entities)
+        public Task<bool> UpdateRangeAsync(List<Comment> entities)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
-﻿using ProTracking.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ProTracking.Domain.Entities;
 using ProTracking.Infrastructures.Data;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace ProTracking.Infrastructures.Repository
 {
-    public class AccountTypeRepo : IAccountTypeRepo
+    public class AccountTypeRepo :IAccountTypeRepo
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext _dbContext;
 
         public AccountTypeRepo(ApplicationDbContext db)
         {
-            this.db = db;
+            this._dbContext = db;
         }
 
         public Task<bool> AddAsync(AccountType entity)
@@ -23,32 +24,32 @@ namespace ProTracking.Infrastructures.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<AccountType>> GetAll(Expression<Func<AccountType, bool>>? filter = null, string? includeProperties = null)
+        public Task<IEnumerable<AccountType>> GetAllAsync(Expression<Func<AccountType, bool>>? filter = null, string[]? includeProperties = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<AccountType> GetByIdAsync(Expression<Func<AccountType, bool>> filter, string? includeProperties = null, bool tracked = false)
+        public async Task<AccountType> GetByIdAsync(int id)
+        {
+            return await _dbContext.AccountTypes.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public Task<bool> SoftRemoveAsync(AccountType entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool SoftRemove(AccountType entity)
+        public Task<bool> SoftRemoveByIDAsync(int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public bool SoftRemoveByID(int entityId)
+        public Task<bool> UpdateAsync(AccountType entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(AccountType entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateRange(List<AccountType> entities)
+        public Task<bool> UpdateRangeAsync(List<AccountType> entities)
         {
             throw new NotImplementedException();
         }

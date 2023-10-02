@@ -28,12 +28,13 @@ namespace ProTracking.Domain.Entities
         public string? GoogleId { get; set; }
         public string? GoogleEmail { get; set; }
         public string? OAuthToken { get; set; }
-        public DateTime OAuthExpiry{ get; set; }
-        public int? AccountTypeId{ get; set; }
-        public DateTime StartDate{ get; set; }
-        public DateTime EndDate{ get; set; }
+        public DateTime OAuthExpiry { get; set; }
+        public int AccountTypeId { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
+        [NotMapped]
         [ForeignKey(nameof(AccountTypeId))]
-        public AccountType AccountType { get; set; }
+        public AccountType? AccountType { get; set; }
     }
 }

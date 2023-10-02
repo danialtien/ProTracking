@@ -2331,31 +2331,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\legen\\.nuget\\packages\\": {},
-    "D:\\Microsoft\\VisualStudio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\tient\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD:ProTracking.Application/obj/project.assets.json
       "projectUniqueName": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj",
       "projectName": "ProTracking.Application",
       "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj",
       "packagesPath": "C:\\Users\\tient\\.nuget\\packages\\",
       "outputPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\obj\\",
-=======
-      "projectUniqueName": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Repository\\ProTracking.Repository.csproj",
-      "projectName": "ProTracking.Repository",
-      "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Repository\\ProTracking.Repository.csproj",
-      "packagesPath": "C:\\Users\\legen\\.nuget\\packages\\",
-      "outputPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Repository\\obj\\",
->>>>>>> KhangGrey:ProTracking.Repository/obj/project.assets.json
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\legen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tient\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2364,20 +2356,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-<<<<<<< HEAD:ProTracking.Application/obj/project.assets.json
             "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj": {
               "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj"
-=======
-            "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj": {
-              "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj"
->>>>>>> KhangGrey:ProTracking.Repository/obj/project.assets.json
             }
           }
         }
@@ -2402,12 +2388,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.21, 6.0.21]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.21, 6.0.21]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.21, 6.0.21]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.307\\RuntimeIdentifierGraph.json"
       }
     }
   }

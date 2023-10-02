@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProTracking.Infrastructures.Repository
 {
-    public interface ITodoRepo : IRepository<Todo>
+    public interface ITodoRepo : IGenericRepository<Todo>
     {
     }
 }

@@ -11,7 +11,7 @@ using ProTracking.Infrastructures.Data;
 
 namespace ProTracking.Infrastructures.Migrations
 {
-
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20230926025611_Initial")]
     partial class Initial
     {

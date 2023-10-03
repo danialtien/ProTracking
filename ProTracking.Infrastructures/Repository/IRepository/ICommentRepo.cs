@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProTracking.Infrastructures.Repository
 {
-    public interface ICommentRepo : IRepository<Comment>
+    public interface ICommentRepo : IGenericRepository<Comment>
     {
     }
 }

@@ -23,32 +23,32 @@ namespace ProTracking.Infrastructures.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Payment>> GetAll(Expression<Func<Payment, bool>>? filter = null, string? includeProperties = null)
+        public Task<IEnumerable<Payment>> GetAllAsync(Expression<Func<Payment, bool>>? filter = null, string[]? includeProperties = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Payment> GetByIdAsync(Expression<Func<Payment, bool>> filter, string? includeProperties = null, bool tracked = false)
+        public Task<Payment> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool SoftRemove(Payment entity)
+        public Task<bool> SoftRemoveAsync(Payment entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool SoftRemoveByID(int entityId)
+        public Task<bool> SoftRemoveByIDAsync(int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Payment entity)
+        public Task<bool> UpdateAsync(Payment entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateRange(List<Payment> entities)
+        public Task<bool> UpdateRangeAsync(List<Payment> entities)
         {
             throw new NotImplementedException();
         }

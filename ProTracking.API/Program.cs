@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using ProTracking.API.Services;
 using ProTracking.API.Services.IServices;
 using ProTracking.Infrastructures.Data;
@@ -13,7 +14,32 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+// Them CORS cho tat ca moi nguoi deu xai duoc apis
+builder.Services.AddCors(options
+        => options.AddDefaultPolicy(policy
+            => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.EnableAnnotations();
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "ProTraking",
+        Description = "Build application for manage projects",
+        /*Contact = new OpenApiContact
+        {
+            Name = "danialtien",
+            Email = "tiendoit20@gmail.com",
+            Url = new Uri("https://www.facebook.com/nguyendinhtien123/")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "danialtien License",
+        },
+        Version = "v1"*/
+    });
+}).AddSwaggerGen();
 
 /*---Start ---Apply Dependency Injection*/
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(

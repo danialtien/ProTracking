@@ -11,11 +11,11 @@ namespace ProTracking.Infrastructures.Repository
 {
     public class ChildTaskRepo : IChildTaskRepo
     {
-        private ApplicationDbContext db;
+        private ApplicationDbContext _dbContext;
 
         public ChildTaskRepo(ApplicationDbContext db)
         {
-            this.db = db;
+            this._dbContext = db;
         }
 
         public Task<bool> AddAsync(ChildTask entity)
@@ -23,32 +23,32 @@ namespace ProTracking.Infrastructures.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<ChildTask>> GetAll(Expression<Func<ChildTask, bool>>? filter = null, string? includeProperties = null)
+        public Task<IEnumerable<ChildTask>> GetAllAsync(Expression<Func<ChildTask, bool>>? filter = null, string[]? includeProperties = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ChildTask> GetByIdAsync(Expression<Func<ChildTask, bool>> filter, string? includeProperties = null, bool tracked = false)
+        public Task<ChildTask> GetByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool SoftRemove(ChildTask entity)
+        public Task<bool> SoftRemoveAsync(ChildTask entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool SoftRemoveByID(int entityId)
+        public Task<bool> SoftRemoveByIDAsync(int entityId)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(ChildTask entity)
+        public Task<bool> UpdateAsync(ChildTask entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateRange(List<ChildTask> entities)
+        public Task<bool> UpdateRangeAsync(List<ChildTask> entities)
         {
             throw new NotImplementedException();
         }

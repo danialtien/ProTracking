@@ -8,17 +8,18 @@ namespace ProTracking.Infrastructures.Repository
 {
     public interface IUnitOfWork
     {
-        IAccountTypeRepo AccountType { get; }
-        IChildTaskRepo ChildTask { get; }
-        ICommentRepo Comment { get; }
-        ICustomerRepo Customer { get; }
-        ILabelRepo Label { get; }
-        IPaymentRepo Payment { get; }
-        IProjectParticipantRepo ProjectParticipant { get; }
-        IProjectRepo Project { get; }
-        ITodoRepo Todo { get; }
-        ITransactionHistoryRepo TransactionHistory { get; }
+        IAccountTypeRepo AccountTypeRepo { get; }
+        IChildTaskRepo ChildTaskRepo { get; }
+        ICommentRepo CommentRepo { get; }
+        ICustomerRepo CustomerRepo { get; }
+        ILabelRepo LabelRepo { get; }
+        IPaymentRepo PaymentRepo { get; }
+        IProjectParticipantRepo ProjectParticipantRepo { get; }
+        IProjectRepo ProjectRepo { get; }
+        ITodoRepo TodoRepo { get; }
+        ITransactionHistoryRepo TransactionHistoryRepo { get; }
 
-        void Save();
+        public int Save();
+        public Task<int> SaveChangeAsync();
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProTracking.Infrastructures.Repository
 {
-    public interface IProjectParticipantRepo : IRepository<ProjectParticipant>
+    public interface IProjectParticipantRepo : IGenericRepository<ProjectParticipant>
     {
     }
 }

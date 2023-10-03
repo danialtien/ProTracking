@@ -4,9 +4,8 @@
 
 namespace ProTracking.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class ProjectParticipantsController : ControllerBase
+    public class ProjectParticipantsController : BaseController
     {
         // GET: api/<ProjectParticipantsController>
         [HttpGet]

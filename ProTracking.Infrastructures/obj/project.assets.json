@@ -2349,23 +2349,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\legen\\.nuget\\packages\\": {},
-    "D:\\Microsoft\\VisualStudio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\tient\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj",
+      "projectUniqueName": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj",
       "projectName": "ProTracking.Infrastructures",
-      "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj",
-      "packagesPath": "C:\\Users\\legen\\.nuget\\packages\\",
-      "outputPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\obj\\",
+      "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj",
+      "packagesPath": "C:\\Users\\tient\\.nuget\\packages\\",
+      "outputPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\legen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\tient\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2374,20 +2374,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-<<<<<<< HEAD
             "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj": {
               "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj"
-=======
-            "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj": {
-              "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj"
->>>>>>> KhangGrey
             }
           }
         }
@@ -2412,13 +2406,35 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.21, 6.0.21]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.21, 6.0.21]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.21, 6.0.21]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.307\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

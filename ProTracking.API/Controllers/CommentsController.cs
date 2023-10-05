@@ -1,43 +1,93 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProTracking.API.Services;
+using ProTracking.API.Services.IServices;
+using ProTracking.Application.ViewModels;
+using ProTracking.Domain.Entities;
+using Swashbuckle.AspNetCore.Annotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ProTracking.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class CommentsController : ControllerBase
+    public class CommentsController : BaseController
     {
-        // GET: api/<CommentsController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly ICommentService service;
+
+        public CommentsController(ICommentService _service)
         {
-            return new string[] { "value1", "value2" };
+            this.service = _service;
         }
+
+
+        [HttpGet]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Return all comments")]
+        public async Task<IEnumerable<Comment>> GetAll()
+        {
+            return await service.GetAll(null, null);
+        }
+
+
 
         // GET api/<CommentsController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Get comment by Id")]
+        public async Task<Comment> Get(int id)
         {
-            return "value";
+            return await service.GetById(id);
         }
 
         // POST api/<CommentsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Create a new comment")]
+        public async Task<IActionResult> Post(Comment entity)
         {
+            var result = await service.AddAsync(entity);
+            return result ? Ok() : BadRequest();
         }
 
         // PUT api/<CommentsController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Update exist comment")]
+        public async Task<IActionResult> Update(int id, Comment entity)
         {
+            var exist = Exist(id);
+            if (!exist) return NotFound();
+            var result = await service.UpdateAsync(entity);
+            return result ? Ok() : BadRequest();
         }
 
         // DELETE api/<CommentsController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Set comment status inactive")]
+        public async Task<IActionResult> Delete(int id)
         {
+            var exist = Exist(id);
+            if (!exist) return NotFound();
+            var result = await service.SoftRemoveByID(id);
+            return result ? Ok() : BadRequest();
+        }
+
+        private bool Exist(int id)
+        {
+            var comment = service.GetById(id);
+            if (comment == null) return false;
+            return true;
         }
     }
 }

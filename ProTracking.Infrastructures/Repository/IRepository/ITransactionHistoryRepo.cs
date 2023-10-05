@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProTracking.Infrastructures.Repository
 {
-    public interface ITransactionHistoryRepo : IRepository<TransactionHistory>
+    public interface ITransactionHistoryRepo : IGenericRepository<TransactionHistory>
     {
     }
 }

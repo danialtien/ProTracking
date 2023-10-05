@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProTracking.Infrastructures.Repository
 {
-    public interface ILabelRepo : IRepository<Label>
+    public interface ILabelRepo : IGenericRepository<Label>
     {
     }
 }

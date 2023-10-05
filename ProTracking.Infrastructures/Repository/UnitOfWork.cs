@@ -11,47 +11,71 @@ namespace ProTracking.Infrastructures.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private ApplicationDbContext _dbContext;
-        
+        private readonly ApplicationDbContext _dbContext;
+
+        public readonly IAccountTypeRepo _accountTypeRepo;
+
+        public readonly IChildTaskRepo _childTaskRepo ;
+
+        public readonly ICommentRepo _commentRepo ;
+
+        public readonly ICustomerRepo _customerRepo ;
+
+        public readonly ILabelRepo _labelRepo ;
+
+        public readonly IPaymentRepo _paymentRepo ;
+
+        public readonly IProjectParticipantRepo _projectParticipantRepo ;
+
+        public readonly IProjectRepo _projectRepo ;
+
+        public readonly ITodoRepo _todoRepo ;
+
+        public readonly ITransactionHistoryRepo _transactionHistoryRepo ;
+
+        public IAccountTypeRepo AccountTypeRepo => _accountTypeRepo;
+
+        public IChildTaskRepo ChildTaskRepo => _childTaskRepo;
+
+        public ICommentRepo CommentRepo => _commentRepo;
+
+        public ICustomerRepo CustomerRepo => _customerRepo;
+
+        public ILabelRepo LabelRepo => _labelRepo;
+
+        public IPaymentRepo PaymentRepo => _paymentRepo;
+
+        public IProjectParticipantRepo ProjectParticipantRepo => _projectParticipantRepo;
+
+        public IProjectRepo ProjectRepo => _projectRepo;
+
+        public ITodoRepo TodoRepo => _todoRepo;
+
+        public ITransactionHistoryRepo TransactionHistoryRepo => _transactionHistoryRepo;
 
         public UnitOfWork(ApplicationDbContext db)
         {
             this._dbContext = db;
-            AccountType = new AccountTypeRepo(db);
-            ChildTask = new ChildTaskRepo(db);
-            Project = new ProjectRepo(db);
-            Comment = new CommentRepo(db);
-            Customer = new CustomerRepo(db);
-            Label = new LabelRepo(db);
-            Payment = new PaymentRepo(db);
-            ProjectParticipant = new ProjectParticipantRepo(db);
-            Todo = new TodoRepo(db);
-            TransactionHistory = new TransactionHistoryRepo(db);
+            _accountTypeRepo = new AccountTypeRepo(db);
+            _childTaskRepo = new ChildTaskRepo(db);
+            _projectRepo = new ProjectRepo(db);
+            _commentRepo = new CommentRepo(db);
+            _customerRepo = new CustomerRepo(db);
+            _labelRepo = new LabelRepo(db);
+            _paymentRepo = new PaymentRepo(db);
+            _projectParticipantRepo = new ProjectParticipantRepo(db);
+            _todoRepo = new TodoRepo(db);
+            _transactionHistoryRepo = new TransactionHistoryRepo(db);
         }
 
-        public IAccountTypeRepo AccountType { get; private set; }
-
-        public IChildTaskRepo ChildTask { get; private set; }
-
-        public IProjectRepo Project { get; private set; }
-        public ICommentRepo Comment { get; private set; }
-
-        public ICustomerRepo Customer { get; private set; }
-
-        public ILabelRepo Label { get; private set; }
-
-        public IPaymentRepo Payment { get; private set; }
-
-        public IProjectParticipantRepo ProjectParticipant { get; private set; }
-
-        public ITodoRepo Todo { get; private set; }
-
-        public ITransactionHistoryRepo TransactionHistory { get; private set; }
-
-
-        public void Save()
+        public int Save()
         {
-            _dbContext.SaveChanges();
+            return _dbContext.SaveChanges();
+        }
+
+        public async Task<int> SaveChangeAsync()
+        {
+            return await _dbContext.SaveChangesAsync();
         }
     }
 }

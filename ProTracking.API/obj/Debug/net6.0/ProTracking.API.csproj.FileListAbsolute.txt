@@ -23,6 +23,7 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.I
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.OpenApi.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -73,4 +74,3 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\obj\Debug\net6.0\refint\ProT
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.pdb
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.genruntimeconfig.cache
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\obj\Debug\net6.0\ref\ProTracking.API.dll
-E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll

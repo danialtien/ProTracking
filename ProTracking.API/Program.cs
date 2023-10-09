@@ -31,8 +31,8 @@ builder.Services.AddAuthentication(options =>
     .AddCookie()
     .AddGoogle(options =>
     {
-        options.ClientId = "1041646882132-oovtog19kqplc38fal8rtu17eortfh8g.apps.googleusercontent.com";
-        options.ClientSecret = "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";
+        options.ClientId = "";
+        options.ClientSecret = "";
         options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
     });
 

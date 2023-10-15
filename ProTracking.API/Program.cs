@@ -10,6 +10,9 @@ using ProTracking.Domain.Entities.DTOs;
 using ProTracking.Infrastructures.Data;
 using ProTracking.Infrastructures.Mappers;
 using ProTracking.Infrastructures.Repository;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +34,19 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(options
         => options.AddDefaultPolicy(policy
             => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme; // Use the Google authentication scheme
+})
+    .AddCookie()
+    .AddGoogle(options =>
+    {
+        options.ClientId = "blank";
+        options.ClientSecret = "blank";
+        options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+    });
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -93,6 +109,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

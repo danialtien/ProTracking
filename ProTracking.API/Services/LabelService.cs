@@ -44,7 +44,6 @@ namespace ProTracking.API.Services
             Label obj = _mapper.Map<Label>(entity);
             bool result = await _unitOfWork.LabelRepo.SoftRemoveAsync(obj);
             return result;
-
         }
 
         public async Task<bool> SoftRemoveByID(int entityId)

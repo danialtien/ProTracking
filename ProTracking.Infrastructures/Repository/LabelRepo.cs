@@ -1,4 +1,5 @@
-﻿using ProTracking.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ProTracking.Domain.Entities;
 using ProTracking.Infrastructures.Data;
 using System;
 using System.Collections.Generic;
@@ -18,39 +19,61 @@ namespace ProTracking.Infrastructures.Repository
             this.db = db;
         }
 
-        public Task<bool> AddAsync(Label entity)
+        public async Task<bool> AddAsync(Label entity)
         {
-            throw new NotImplementedException();
+            await db.Labels.AddAsync(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<IEnumerable<Label>> GetAllAsync(Expression<Func<Label, bool>>? filter = null, string[]? includeProperties = null)
+        public async Task<IEnumerable<Label>> GetAllAsync(Expression<Func<Label, bool>>? filter = null, string[]? includeProperties = null)
         {
-            throw new NotImplementedException();
+            if (includeProperties != null && filter != null)
+            {
+                return await includeProperties!.Aggregate(db.Labels.AsQueryable(),
+                    (entity, property) => entity.Include(property))
+                    .Where(filter!)
+                    .ToListAsync();
+            }
+            return await db.Labels.ToListAsync();
         }
 
-        public Task<Label> GetByIdAsync(int id)
+        public Label GetById(int id)
         {
-            throw new NotImplementedException();
+            return db.Labels.FirstOrDefault(c => c.Id == id);
         }
 
-        public Task<bool> SoftRemoveAsync(Label entity)
+        public async Task<Label?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await db.Labels.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return result;
         }
 
-        public Task<bool> SoftRemoveByIDAsync(int entityId)
+        public async Task<bool> SoftRemoveAsync(Label entity)
         {
-            throw new NotImplementedException();
+            db.Labels.Remove(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> UpdateAsync(Label entity)
+        public async Task<bool> SoftRemoveByIDAsync(int entityId)
         {
-            throw new NotImplementedException();
+            Label? result = await db.Labels.AsNoTracking().FirstOrDefaultAsync(x => x.Id == entityId);
+            if (result != null)
+            {
+                await SoftRemoveAsync(result);
+            }
+            return false;
         }
 
-        public Task<bool> UpdateRangeAsync(List<Label> entities)
+        public async Task<bool> UpdateAsync(Label entity)
         {
-            throw new NotImplementedException();
+            db.Labels.Update(entity);
+            return await db.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> UpdateRangeAsync(List<Label> entities)
+        {
+            db.Labels.UpdateRange(entities);
+            return await db.SaveChangesAsync() > 0;
         }
     }
 }

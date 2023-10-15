@@ -72,6 +72,87 @@ namespace ProTracking.Infrastructures.Data
                     Username = "khoa"
                 }
                 );
+
+            modelBuilder.Entity<Project>().HasData(
+                new Project
+                {
+                    Id = 1,
+                    Title = "ProTracking EXE201",
+                    CreatedBy = 1,
+                    Description = "A startup project helping user to manage projects",
+                    Status = "Active",
+                    SubTitle = "ProTracking make your work easier"
+                });
+
+            modelBuilder.Entity<Label>().HasData(
+                new Label
+                {
+                    Id = 1,
+                    ProjectId = 1,
+                    Title = "Frontend"
+                },
+                new Label
+                {
+                    Id = 2,
+                    ProjectId = 1,
+                    Title = "Backend"
+                },
+                new Label
+                {
+                    Id = 3,
+                    ProjectId = 1,
+                    Title = "AI"
+                },
+                new Label
+                {
+                    Id = 4,
+                    ProjectId = 1,
+                    Title = "Marketing"
+                });
+
+            modelBuilder.Entity<Todo>().HasData(
+                new Todo
+                {
+                    Id = 1,
+                    ProjectId = 1,
+                    LabelId = 1,
+                    Title = "Design UI/UX for application",
+                    Status = StringConstUtil.IN_PROGRESS,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddDays(7),
+                    Assignee = 1,
+                    CreatedBy = 1,
+                    Priority = PriorityEnum.Highest,
+                    IconPriority = ""
+                },
+                new Todo
+                {
+                    Id = 2,
+                    ProjectId = 1,
+                    LabelId = 2,
+                    Title = "Builtd API for application",
+                    Status = StringConstUtil.TODO,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddDays(7),
+                    Assignee = 1,
+                    CreatedBy = 1,
+                    Priority = PriorityEnum.Highest,
+                    IconPriority = ""
+                },
+                new Todo
+                {
+                    Id = 3,
+                    ProjectId = 1,
+                    LabelId = 3,
+                    Title = "Integrated Chatbox to application",
+                    Status = StringConstUtil.IN_PROGRESS,
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddDays(7),
+                    Assignee = 1,
+                    CreatedBy = 1,
+                    Priority = PriorityEnum.Highest,
+                    IconPriority = ""
+                });
         }
 
     }

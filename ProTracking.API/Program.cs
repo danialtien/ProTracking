@@ -1,8 +1,12 @@
 using AutoMapper;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 using ProTracking.API.Services;
 using ProTracking.API.Services.IServices;
+using ProTracking.Domain.Entities.DTOs;
 using ProTracking.Infrastructures.Data;
 using ProTracking.Infrastructures.Mappers;
 using ProTracking.Infrastructures.Repository;
@@ -10,8 +14,16 @@ using ProTracking.Infrastructures.Repository;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+ODataConventionModelBuilder oDataBuilder = new ODataConventionModelBuilder();
+/*oDataBuilder.EntitySet<TodoDTO>("Todos");
+oDataBuilder.EntitySet<ProjectDTO>("Projects");*/
+builder.Services.AddControllers().AddOData(option => option.Select()
+    .Filter()
+    .Count()
+    .OrderBy()
+    .Expand()
+    .AddRouteComponents("", oDataBuilder.GetEdmModel()));
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -48,14 +60,24 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Services
 builder.Services.AddTransient<ICustomerService, CustomerService>();
-
+builder.Services.AddTransient<IProjectService, ProjectService>();
+builder.Services.AddTransient<ITodoService, TodoService>();
+builder.Services.AddTransient<IProjectParticipantService, ProjectParticipantService>();
+builder.Services.AddTransient<IChildTaskService, ChildTaskService>();
+builder.Services.AddTransient<ILabelService, LabelService>();
 
 // Repository
 builder.Services.AddTransient<ICustomerRepo, CustomerRepo>();
-
+builder.Services.AddTransient<IProjectRepo, ProjectRepo>();
+builder.Services.AddTransient<ITodoRepo, TodoRepo>();
+builder.Services.AddTransient<IProjectParticipantRepo, ProjectParticipantRepo>();
+builder.Services.AddTransient<IChildTaskRepo, ChildTaskRepo>();
+builder.Services.AddTransient<ILabelRepo, LabelRepo>();
 
 // Mapper
-var autoMapper = new MapperConfiguration(item => item.AddProfile(new AutoMapperProfile()));
+builder.Services.AddAutoMapper(typeof(Program));
+var serviceProvider = builder.Services.BuildServiceProvider();
+var autoMapper = new MapperConfiguration(item => item.AddProfile(new AutoMapperProfile(serviceProvider.GetRequiredService<IUnitOfWork>())));
 IMapper mapper = autoMapper.CreateMapper();
 builder.Services.AddSingleton(mapper);
 

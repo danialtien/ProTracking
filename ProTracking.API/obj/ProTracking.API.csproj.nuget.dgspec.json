@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Visual Studio Projects\\ProTracking\\ProTracking.API\\ProTracking.API.csproj": {}
+    "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.API\\ProTracking.API.csproj": {}
   },
   "projects": {
-    "D:\\Visual Studio Projects\\ProTracking\\ProTracking.API\\ProTracking.API.csproj": {
+    "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.API\\ProTracking.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.API\\ProTracking.API.csproj",
+        "projectUniqueName": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.API\\ProTracking.API.csproj",
         "projectName": "ProTracking.API",
-        "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.API\\ProTracking.API.csproj",
-        "packagesPath": "C:\\Users\\legen\\.nuget\\packages\\",
-        "outputPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.API\\obj\\",
+        "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.API\\ProTracking.API.csproj",
+        "packagesPath": "C:\\Users\\tient\\.nuget\\packages\\",
+        "outputPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\legen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tient\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,15 +26,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj": {
-                "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj"
+              "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj": {
+                "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj"
               }
             }
           }
@@ -52,6 +51,10 @@
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
               "version": "[6.0.22, )"
+            },
+            "Microsoft.AspNetCore.OData": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -91,24 +94,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj": {
+    "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj",
+        "projectUniqueName": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj",
         "projectName": "ProTracking.Application",
-        "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj",
-        "packagesPath": "C:\\Users\\legen\\.nuget\\packages\\",
-        "outputPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\obj\\",
+        "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj",
+        "packagesPath": "C:\\Users\\tient\\.nuget\\packages\\",
+        "outputPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\legen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tient\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -117,15 +120,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj": {
-                "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj"
+              "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj": {
+                "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj"
               }
             }
           }
@@ -155,24 +157,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj": {
+    "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj",
+        "projectUniqueName": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj",
         "projectName": "ProTracking.Infrastructures",
-        "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj",
-        "packagesPath": "C:\\Users\\legen\\.nuget\\packages\\",
-        "outputPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\obj\\",
+        "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj",
+        "packagesPath": "C:\\Users\\tient\\.nuget\\packages\\",
+        "outputPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Infrastructures\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\legen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tient\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -181,15 +183,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj": {
-                "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj"
+              "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj": {
+                "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Application\\ProTracking.Application.csproj"
               }
             }
           }
@@ -203,6 +204,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -219,24 +226,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj": {
+    "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj",
+        "projectUniqueName": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj",
         "projectName": "ProTracking.Domain",
-        "projectPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj",
-        "packagesPath": "C:\\Users\\legen\\.nuget\\packages\\",
-        "outputPath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Models\\obj\\",
+        "projectPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Models\\ProTracking.Domain.csproj",
+        "packagesPath": "C:\\Users\\tient\\.nuget\\packages\\",
+        "outputPath": "E:\\2023_Fall_Ky8\\EXE201\\ProTracking\\ProTracking.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Microsoft\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\legen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tient\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -245,7 +252,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -307,7 +313,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,4 +1,5 @@
 ﻿
+using AutoMapper;
 using ProTracking.Domain.Entities;
 using ProTracking.Infrastructures.Data;
 using System;
@@ -53,7 +54,7 @@ namespace ProTracking.Infrastructures.Repository
 
         public ITransactionHistoryRepo TransactionHistoryRepo => _transactionHistoryRepo;
 
-        public UnitOfWork(ApplicationDbContext db)
+        public UnitOfWork(ApplicationDbContext db, IMapper mapper)
         {
             this._dbContext = db;
             _accountTypeRepo = new AccountTypeRepo(db);
@@ -64,7 +65,7 @@ namespace ProTracking.Infrastructures.Repository
             _labelRepo = new LabelRepo(db);
             _paymentRepo = new PaymentRepo(db);
             _projectParticipantRepo = new ProjectParticipantRepo(db);
-            _todoRepo = new TodoRepo(db);
+            _todoRepo = new TodoRepo(db, mapper);
             _transactionHistoryRepo = new TransactionHistoryRepo(db);
         }
 

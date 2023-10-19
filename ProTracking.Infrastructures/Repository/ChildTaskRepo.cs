@@ -1,4 +1,5 @@
-﻿using ProTracking.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ProTracking.Domain.Entities;
 using ProTracking.Infrastructures.Data;
 using System;
 using System.Collections.Generic;
@@ -11,46 +12,63 @@ namespace ProTracking.Infrastructures.Repository
 {
     public class ChildTaskRepo : IChildTaskRepo
     {
-        private ApplicationDbContext _dbContext;
+        private ApplicationDbContext db;
 
         public ChildTaskRepo(ApplicationDbContext db)
         {
-            this._dbContext = db;
+            this.db = db;
         }
 
-        public Task<bool> AddAsync(ChildTask entity)
+        public async Task<bool> AddAsync(ChildTask entity)
         {
-            throw new NotImplementedException();
+            await db.ChildTasks.AddAsync(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<IEnumerable<ChildTask>> GetAllAsync(Expression<Func<ChildTask, bool>>? filter = null, string[]? includeProperties = null)
+        public async Task<IEnumerable<ChildTask>> GetAllAsync(Expression<Func<ChildTask, bool>>? filter = null, string[]? includeProperties = null)
         {
-            throw new NotImplementedException();
+            if (includeProperties != null && filter != null)
+            {
+                return await includeProperties!.Aggregate(db.ChildTasks.AsQueryable(),
+                    (entity, property) => entity.Include(property))
+                    .Where(filter!)
+                    .ToListAsync();
+            }
+            return await db.ChildTasks.ToListAsync();
         }
 
-        public Task<ChildTask> GetByIdAsync(int id)
+        public async Task<ChildTask?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await db.ChildTasks.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return result;
         }
 
-        public Task<bool> SoftRemoveAsync(ChildTask entity)
+        public async Task<bool> SoftRemoveAsync(ChildTask entity)
         {
-            throw new NotImplementedException();
+            db.ChildTasks.Remove(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> SoftRemoveByIDAsync(int entityId)
+        public async Task<bool> SoftRemoveByIDAsync(int entityId)
         {
-            throw new NotImplementedException();
+            ChildTask? result = await db.ChildTasks.AsNoTracking().FirstOrDefaultAsync(x => x.Id == entityId);
+            if (result != null)
+            {
+                await SoftRemoveAsync(result);
+            }
+            return false;
         }
 
-        public Task<bool> UpdateAsync(ChildTask entity)
+        public async Task<bool> UpdateAsync(ChildTask entity)
         {
-            throw new NotImplementedException();
+            db.ChildTasks.Update(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> UpdateRangeAsync(List<ChildTask> entities)
+        public async Task<bool> UpdateRangeAsync(List<ChildTask> entities)
         {
-            throw new NotImplementedException();
+            db.ChildTasks.UpdateRange(entities);
+            return await db.SaveChangesAsync() > 0;
         }
     }
 }

@@ -9,5 +9,6 @@ namespace ProTracking.Infrastructures.Repository
 {
     public interface IProjectRepo : IGenericRepository<Project>
     {
+        Project GetById(int id);
     }
 }

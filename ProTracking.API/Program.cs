@@ -1,17 +1,32 @@
 using AutoMapper;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 using ProTracking.API.Services;
 using ProTracking.API.Services.IServices;
+using ProTracking.Domain.Entities.DTOs;
 using ProTracking.Infrastructures.Data;
 using ProTracking.Infrastructures.Mappers;
 using ProTracking.Infrastructures.Repository;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+ODataConventionModelBuilder oDataBuilder = new ODataConventionModelBuilder();
+/*oDataBuilder.EntitySet<TodoDTO>("Todos");
+oDataBuilder.EntitySet<ProjectDTO>("Projects");*/
+builder.Services.AddControllers().AddOData(option => option.Select()
+    .Filter()
+    .Count()
+    .OrderBy()
+    .Expand()
+    .AddRouteComponents("", oDataBuilder.GetEdmModel()));
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
@@ -19,6 +34,19 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(options
         => options.AddDefaultPolicy(policy
             => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme; // Use the Google authentication scheme
+})
+    .AddCookie()
+    .AddGoogle(options =>
+    {
+        options.ClientId = "blank";
+        options.ClientSecret = "blank";
+        options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+    });
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -48,14 +76,24 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Services
 builder.Services.AddTransient<ICustomerService, CustomerService>();
-
+builder.Services.AddTransient<IProjectService, ProjectService>();
+builder.Services.AddTransient<ITodoService, TodoService>();
+builder.Services.AddTransient<IProjectParticipantService, ProjectParticipantService>();
+builder.Services.AddTransient<IChildTaskService, ChildTaskService>();
+builder.Services.AddTransient<ILabelService, LabelService>();
 
 // Repository
 builder.Services.AddTransient<ICustomerRepo, CustomerRepo>();
-
+builder.Services.AddTransient<IProjectRepo, ProjectRepo>();
+builder.Services.AddTransient<ITodoRepo, TodoRepo>();
+builder.Services.AddTransient<IProjectParticipantRepo, ProjectParticipantRepo>();
+builder.Services.AddTransient<IChildTaskRepo, ChildTaskRepo>();
+builder.Services.AddTransient<ILabelRepo, LabelRepo>();
 
 // Mapper
-var autoMapper = new MapperConfiguration(item => item.AddProfile(new AutoMapperProfile()));
+builder.Services.AddAutoMapper(typeof(Program));
+var serviceProvider = builder.Services.BuildServiceProvider();
+var autoMapper = new MapperConfiguration(item => item.AddProfile(new AutoMapperProfile(serviceProvider.GetRequiredService<IUnitOfWork>())));
 IMapper mapper = autoMapper.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
@@ -71,6 +109,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

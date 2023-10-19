@@ -151,3 +151,4 @@ D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\refint\Pr
 D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.pdb
 D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.genruntimeconfig.cache
 D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ref\ProTracking.API.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

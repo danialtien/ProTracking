@@ -28,12 +28,16 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme; // Use the Google authentication scheme
 })
-    .AddCookie()
+    .AddCookie(options =>
+    {
+        options.LoginPath = "";
+    })
     .AddGoogle(options =>
     {
-        options.ClientId = "blank";
-        options.ClientSecret = "blank";
+        options.ClientId = builder.Configuration["Google:ClientId"];
+        options.ClientSecret = builder.Configuration["Google:ClientSecret"];
         options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+        options.CallbackPath = "/signin-google"; 
     });
 
 builder.Services.AddSwaggerGen(c =>

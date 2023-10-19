@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "MtVG4ES4pk0nybhTHocJIzOfJmrFwHXWdG0NO6jkug87/FP794TgK2uidr8m25J4kL9dkVlS05FoB+p627ywAA==",
+  "dgSpecHash": "exxgVwSkY8dylijQqJgvvHbQnAoM1GRCBZezNyNhO2WUwy0JvXMTH4SobNKYqZvjQs59y8C8i+8MlI2LNwLuew==",
   "success": true,
   "projectFilePath": "D:\\Visual Studio Projects\\ProTracking\\ProTracking.Infrastructures\\ProTracking.Infrastructures.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\legen\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\legen\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\legen\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\legen\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\legen\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",

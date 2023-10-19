@@ -82,8 +82,10 @@ D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracki
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.API.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\ProTracking.API.pdb
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\AutoMapper.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Humanizer.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.AspNetCore.OData.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -98,7 +100,11 @@ D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.OData.Core.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.OData.Edm.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.OData.ModelBuilder.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Spatial.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
 D:\Visual Studio Projects\ProTracking\ProTracking.API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll

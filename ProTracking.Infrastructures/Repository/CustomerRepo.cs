@@ -37,6 +37,11 @@ namespace ProTracking.Infrastructures.Repository
             return await db.Customers.ToListAsync();
         }
 
+        public Customer GetById(int id)
+        {
+            return db.Customers.FirstOrDefault(c => c.Id == id);
+        }
+
         public async Task<Customer?> GetByIdAsync(int id)
         {
             var result = await db.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);

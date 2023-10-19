@@ -9,5 +9,6 @@ namespace ProTracking.Infrastructures.Repository
 {
     public interface ICustomerRepo : IGenericRepository<Customer>
     {
+        Customer GetById(int id);
     }
 }

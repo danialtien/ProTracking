@@ -1,4 +1,5 @@
-﻿using ProTracking.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ProTracking.Domain.Entities;
 using ProTracking.Infrastructures.Data;
 using System;
 using System.Collections.Generic;
@@ -18,39 +19,56 @@ namespace ProTracking.Infrastructures.Repository
             this.db = db;
         }
 
-        public Task<bool> AddAsync(ProjectParticipant entity)
+        public async Task<bool> AddAsync(ProjectParticipant entity)
         {
-            throw new NotImplementedException();
+            await db.ProjectParticipants.AddAsync(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<IEnumerable<ProjectParticipant>> GetAllAsync(Expression<Func<ProjectParticipant, bool>>? filter = null, string[]? includeProperties = null)
+        public async Task<IEnumerable<ProjectParticipant>> GetAllAsync(Expression<Func<ProjectParticipant, bool>>? filter = null, string[]? includeProperties = null)
         {
-            throw new NotImplementedException();
+            if (includeProperties != null && filter != null)
+            {
+                return await includeProperties!.Aggregate(db.ProjectParticipants.AsQueryable(),
+                    (entity, property) => entity.Include(property))
+                    .Where(filter!)
+                    .ToListAsync();
+            }
+            return await db.ProjectParticipants.ToListAsync();
         }
 
-        public Task<ProjectParticipant> GetByIdAsync(int id)
+        public async Task<ProjectParticipant> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await db.ProjectParticipants.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return result;
         }
 
-        public Task<bool> SoftRemoveAsync(ProjectParticipant entity)
+        public async Task<bool> SoftRemoveAsync(ProjectParticipant entity)
         {
-            throw new NotImplementedException();
+            db.ProjectParticipants.Remove(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> SoftRemoveByIDAsync(int entityId)
+        public async Task<bool> SoftRemoveByIDAsync(int entityId)
         {
-            throw new NotImplementedException();
+            ProjectParticipant? result = await db.ProjectParticipants.AsNoTracking().FirstOrDefaultAsync(x => x.Id == entityId);
+            if (result != null)
+            {
+                await SoftRemoveAsync(result);
+            }
+            return false;
         }
 
-        public Task<bool> UpdateAsync(ProjectParticipant entity)
+        public async Task<bool> UpdateAsync(ProjectParticipant entity)
         {
-            throw new NotImplementedException();
+            db.ProjectParticipants.Update(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> UpdateRangeAsync(List<ProjectParticipant> entities)
+        public async Task<bool> UpdateRangeAsync(List<ProjectParticipant> entities)
         {
-            throw new NotImplementedException();
+            db.ProjectParticipants.UpdateRange(entities);
+            return await db.SaveChangesAsync() > 0;
         }
     }
 }

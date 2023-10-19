@@ -1,11 +1,6 @@
 ﻿using ProTracking.Domain.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProTracking.Domain.Entities
 {
@@ -20,7 +15,7 @@ namespace ProTracking.Domain.Entities
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public PriorityEnum? Priority { get; set; }
-
+        [NotMapped]
         [ForeignKey(nameof(TodoId))]
         public Todo Todo { get; set; }
     }

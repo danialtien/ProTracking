@@ -37,46 +37,5 @@ namespace ProTracking.API.Services
             Payment? payment = await _unitOfWork.PaymentRepo.GetByIdAsync(id);
             return payment;
         }
-
-        //public Task<IEnumerable<Payment>> GetFilterAsync(PaymentFilteringModel entity)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public async Task<bool> SoftRemove(Payment entity)
-        {
-            if (entity == null) return false;
-            bool result = await _unitOfWork.PaymentRepo.SoftRemoveAsync(entity);
-            return result;
-        }
-
-        public async Task<bool> SoftRemoveByID(int entityId)
-        {
-            Payment? payment = await GetById(entityId);
-            if (payment != null)
-            {
-                await SoftRemove(payment);
-            }
-            return false;
-        }
-
-        public async Task<bool> UpdateAsync(Payment entity)
-        {
-            if (entity != null)
-            {
-                bool result = await _unitOfWork.PaymentRepo.UpdateAsync(entity);
-                return result;
-            }
-            return false;
-        }
-
-        public async Task<bool> UpdateRange(List<Payment> entities)
-        {
-            if (entities != null)
-            {
-                return await _unitOfWork.PaymentRepo.UpdateRangeAsync(entities);
-            }
-            return false;
-        }
     }
 }

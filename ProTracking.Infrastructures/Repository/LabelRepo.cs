@@ -37,7 +37,7 @@ namespace ProTracking.Infrastructures.Repository
             return await db.Labels.ToListAsync();
         }
 
-        public Label GetById(int id)
+        public Label GetById(int? id)
         {
             return db.Labels.FirstOrDefault(c => c.Id == id);
         }

@@ -14,7 +14,6 @@ namespace ProTracking.Domain.Entities
 
         public Comment? ReplyTo { get; set; }
 
-        [NotMapped]
         [ForeignKey(nameof(TodoId))]
         public Todo Todo { get; set; }
     }

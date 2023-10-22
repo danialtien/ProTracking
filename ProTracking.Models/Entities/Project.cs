@@ -11,6 +11,7 @@ namespace ProTracking.Domain.Entities
         public string? SubTitle { get; set; }
         public string? Description { get; set; }
         public string? Status { get; set; }
+        [Required]
         public int CreatedBy { get; set; }
 
         [NotMapped]

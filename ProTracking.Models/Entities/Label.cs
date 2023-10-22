@@ -10,7 +10,6 @@ namespace ProTracking.Domain.Entities
         public int ProjectId { get; set; }
         public string? Title { get; set; }
 
-        [NotMapped]
         [ForeignKey(nameof(ProjectId))]
         public Project Project { get; set; }
     }

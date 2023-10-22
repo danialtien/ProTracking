@@ -12,8 +12,8 @@ using ProTracking.Infrastructures.Data;
 namespace ProTracking.Infrastructures.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231014184533_UpdateAllEntitiesNotMapFK")]
-    partial class UpdateAllEntitiesNotMapFK
+    [Migration("20231022060110_UpdateSeedData")]
+    partial class UpdateSeedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -111,6 +111,8 @@ namespace ProTracking.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TodoId");
+
                     b.ToTable("ChildTasks");
                 });
 
@@ -140,6 +142,8 @@ namespace ProTracking.Infrastructures.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ReplyToId");
+
+                    b.HasIndex("TodoId");
 
                     b.ToTable("Comments");
                 });
@@ -220,7 +224,7 @@ namespace ProTracking.Infrastructures.Migrations
                         {
                             Id = 1,
                             AccountTypeId = 1,
-                            Birthday = new DateTime(2023, 10, 15, 1, 45, 32, 736, DateTimeKind.Local).AddTicks(4694),
+                            Birthday = new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6474),
                             Email = "khoa@gmail.com",
                             EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Hoang",
@@ -230,7 +234,7 @@ namespace ProTracking.Infrastructures.Migrations
                             OAuthExpiry = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Password = "1234",
                             Phone = "08888888",
-                            RegisteredAt = new DateTime(2023, 10, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            RegisteredAt = new DateTime(2023, 10, 22, 0, 0, 0, 0, DateTimeKind.Local),
                             Role = 1,
                             StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "Active",
@@ -240,7 +244,7 @@ namespace ProTracking.Infrastructures.Migrations
                         {
                             Id = 2,
                             AccountTypeId = 1,
-                            Birthday = new DateTime(2023, 10, 15, 1, 45, 32, 736, DateTimeKind.Local).AddTicks(4711),
+                            Birthday = new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6486),
                             Email = "hai@gmail.com",
                             EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Hoang",
@@ -250,7 +254,7 @@ namespace ProTracking.Infrastructures.Migrations
                             OAuthExpiry = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Password = "1234",
                             Phone = "08888888",
-                            RegisteredAt = new DateTime(2023, 10, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            RegisteredAt = new DateTime(2023, 10, 22, 0, 0, 0, 0, DateTimeKind.Local),
                             Role = 1,
                             StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Status = "Active",
@@ -273,6 +277,8 @@ namespace ProTracking.Infrastructures.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("Labels");
 
@@ -326,6 +332,24 @@ namespace ProTracking.Infrastructures.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Payments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessKey = "Free",
+                            PrivateKey = "Free",
+                            QRCode = "Free",
+                            Title = "Free"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccessKey = "AceessKey",
+                            PrivateKey = "Privatekey",
+                            QRCode = "dfsdalfdfa",
+                            Title = "ZaloPay"
+                        });
                 });
 
             modelBuilder.Entity("ProTracking.Domain.Entities.Project", b =>
@@ -386,7 +410,20 @@ namespace ProTracking.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("ProjectId");
+
                     b.ToTable("ProjectParticipants");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CustomerId = 1,
+                            IsLeader = true,
+                            ProjectId = 1
+                        });
                 });
 
             modelBuilder.Entity("ProTracking.Domain.Entities.Todo", b =>
@@ -397,7 +434,7 @@ namespace ProTracking.Infrastructures.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Assignee")
+                    b.Property<int?>("Assignee")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatedBy")
@@ -432,6 +469,12 @@ namespace ProTracking.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("LabelId");
+
+                    b.HasIndex("ProjectId");
+
                     b.ToTable("Todos");
 
                     b.HasData(
@@ -440,13 +483,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 1,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 10, 22, 1, 45, 32, 736, DateTimeKind.Local).AddTicks(4760),
+                            EndDate = new DateTime(2023, 10, 29, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6544),
                             IconPriority = "",
                             LabelId = 1,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 15, 1, 45, 32, 736, DateTimeKind.Local).AddTicks(4759),
+                            StartDate = new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6543),
                             Status = "In Progress",
                             Title = "Design UI/UX for application"
                         },
@@ -455,13 +498,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 2,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 10, 22, 1, 45, 32, 736, DateTimeKind.Local).AddTicks(4768),
+                            EndDate = new DateTime(2023, 10, 29, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6549),
                             IconPriority = "",
                             LabelId = 2,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 15, 1, 45, 32, 736, DateTimeKind.Local).AddTicks(4768),
+                            StartDate = new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6549),
                             Status = "Todo",
                             Title = "Builtd API for application"
                         },
@@ -470,13 +513,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 3,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 10, 22, 1, 45, 32, 736, DateTimeKind.Local).AddTicks(4770),
+                            EndDate = new DateTime(2023, 10, 29, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6551),
                             IconPriority = "",
                             LabelId = 3,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 15, 1, 45, 32, 736, DateTimeKind.Local).AddTicks(4769),
+                            StartDate = new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6551),
                             Status = "In Progress",
                             Title = "Integrated Chatbox to application"
                         });
@@ -513,7 +556,36 @@ namespace ProTracking.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccountTypeId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("PaymentId");
+
                     b.ToTable("TransactionHistory");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccountTypeId = 1,
+                            Amount = 0.0,
+                            CustomerId = 1,
+                            PaymentDate = new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(9910),
+                            PaymentId = 1,
+                            StartDate = new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(9913)
+                        });
+                });
+
+            modelBuilder.Entity("ProTracking.Domain.Entities.ChildTask", b =>
+                {
+                    b.HasOne("ProTracking.Domain.Entities.Todo", "Todo")
+                        .WithMany()
+                        .HasForeignKey("TodoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Todo");
                 });
 
             modelBuilder.Entity("ProTracking.Domain.Entities.Comment", b =>
@@ -522,7 +594,15 @@ namespace ProTracking.Infrastructures.Migrations
                         .WithMany()
                         .HasForeignKey("ReplyToId");
 
+                    b.HasOne("ProTracking.Domain.Entities.Todo", "Todo")
+                        .WithMany()
+                        .HasForeignKey("TodoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("ReplyTo");
+
+                    b.Navigation("Todo");
                 });
 
             modelBuilder.Entity("ProTracking.Domain.Entities.Customer", b =>
@@ -534,6 +614,93 @@ namespace ProTracking.Infrastructures.Migrations
                         .IsRequired();
 
                     b.Navigation("AccountType");
+                });
+
+            modelBuilder.Entity("ProTracking.Domain.Entities.Label", b =>
+                {
+                    b.HasOne("ProTracking.Domain.Entities.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("ProTracking.Domain.Entities.ProjectParticipant", b =>
+                {
+                    b.HasOne("ProTracking.Domain.Entities.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProTracking.Domain.Entities.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("ProTracking.Domain.Entities.Todo", b =>
+                {
+                    b.HasOne("ProTracking.Domain.Entities.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProTracking.Domain.Entities.Label", "Label")
+                        .WithMany()
+                        .HasForeignKey("LabelId");
+
+                    b.HasOne("ProTracking.Domain.Entities.Project", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Label");
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("ProTracking.Domain.Entities.TransactionHistory", b =>
+                {
+                    b.HasOne("ProTracking.Domain.Entities.AccountType", "AccountType")
+                        .WithMany()
+                        .HasForeignKey("AccountTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProTracking.Domain.Entities.Customer", "Customer")
+                        .WithMany("TransactionHistories")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ProTracking.Domain.Entities.Payment", "Payment")
+                        .WithMany()
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AccountType");
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Payment");
+                });
+
+            modelBuilder.Entity("ProTracking.Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("TransactionHistories");
                 });
 #pragma warning restore 612, 618
         }

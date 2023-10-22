@@ -11,7 +11,9 @@ namespace ProTracking.Domain.Entities.DTOs
     public class ProjectParticipantDTO
     {
         public int Id { get; set; }
+        [Required]
         public int ProjectId { get; set; }
+        [Required]
         public int CustomerId { get; set; }
         public bool IsLeader { get; set; }
     }

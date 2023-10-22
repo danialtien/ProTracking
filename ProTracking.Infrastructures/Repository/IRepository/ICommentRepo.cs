@@ -9,5 +9,6 @@ namespace ProTracking.Infrastructures.Repository
 {
     public interface ICommentRepo : IGenericRepository<Comment>
     {
+        IEnumerable<Comment> GetAllByTodoId(int todoId);
     }
 }

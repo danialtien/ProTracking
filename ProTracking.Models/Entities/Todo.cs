@@ -19,20 +19,20 @@ namespace ProTracking.Domain.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int ReportTo { get; set; }
-        public int Assignee { get; set; }
+        public int? Assignee { get; set; }
         public int CreatedBy { get; set; }
         public PriorityEnum Priority { get; set; }
         public string? IconPriority { get; set; }
 
-        [NotMapped]
+
         [ForeignKey(nameof(ProjectId))]
         public Project Project { get; set; }
 
-        [NotMapped]
+
         [ForeignKey(nameof(LabelId))]
         public Label? Label { get; set; }
 
-        [NotMapped]
+
         [ForeignKey(nameof(CreatedBy))]
         public Customer Customer { get; set; }
     }

@@ -1,4 +1,6 @@
-﻿using ProTracking.Domain.Entities;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using ProTracking.Domain.Entities;
 using ProTracking.Infrastructures.Data;
 using System;
 using System.Collections.Generic;
@@ -12,45 +14,91 @@ namespace ProTracking.Infrastructures.Repository
     public class CommentRepo : ICommentRepo
     {
         private ApplicationDbContext db;
-
         public CommentRepo(ApplicationDbContext db)
         {
             this.db = db;
         }
 
-        public Task<bool> AddAsync(Comment entity)
+        public async Task<bool> AddAsync(Comment entity)
         {
-            throw new NotImplementedException();
+            Comment Comment = entity;
+            /*Comment.Project = await db.Projects.FirstOrDefaultAsync(c => c.Id == Comment.ProjectId);
+            Comment.Label = await db.Labels.FirstOrDefaultAsync(c => c.Id == Comment.LabelId);
+            Comment.Customer = await db.Customers.FirstOrDefaultAsync(c => c.Id == Comment.CreatedBy);*/
+            await db.Comments.AddAsync(Comment);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<IEnumerable<Comment>> GetAllAsync(Expression<Func<Comment, bool>>? filter = null, string[]? includeProperties = null)
+        public async Task<IEnumerable<Comment>> GetAllAsync(Expression<Func<Comment, bool>>? filter = null, string[]? includeProperties = null)
         {
-            throw new NotImplementedException();
+            if (includeProperties != null && filter != null)
+            {
+                return await includeProperties!
+                    .Aggregate(db.Comments.AsQueryable(),
+                    (entity, property) => entity.Include(property))
+                    .Where(filter!)
+                    .ToListAsync();
+            }
+            return await db.Comments.ToListAsync();
         }
 
-        public Task<Comment> GetByIdAsync(int id)
+        public IEnumerable<Comment> GetAllByTodoId(int todoId)
         {
-            throw new NotImplementedException();
+            return db.Comments.Where(t => t.TodoId == todoId).ToList();
         }
 
-        public Task<bool> SoftRemoveAsync(Comment entity)
+        public async Task<Comment?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var result = await db.Comments.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return result;
         }
 
-        public Task<bool> SoftRemoveByIDAsync(int entityId)
+        public async Task<bool> SoftRemoveAsync(Comment entity)
         {
-            throw new NotImplementedException();
+            db.Comments.Remove(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> UpdateAsync(Comment entity)
+        public async Task<bool> SoftRemoveByIDAsync(int entityId)
         {
-            throw new NotImplementedException();
+            Comment? result = await db.Comments.AsNoTracking().FirstOrDefaultAsync(x => x.Id == entityId);
+            if (result != null)
+            {
+                await SoftRemoveAsync(result);
+            }
+            return false;
         }
 
-        public Task<bool> UpdateRangeAsync(List<Comment> entities)
+        public async Task<bool> UpdateAsync(Comment entity)
         {
-            throw new NotImplementedException();
+            db.Comments.Update(entity);
+            return await db.SaveChangesAsync() > 0;
+        }
+
+        public async Task<bool> UpdateRangeAsync(List<Comment> entities)
+        {
+            db.Comments.UpdateRange(entities);
+            return await db.SaveChangesAsync() > 0;
+        }
+
+
+        private async Task<Comment> UpdateTodoForComment(Comment entity)
+        {
+            if (entity != null)
+            {
+                if (entity.Todo != null)
+                {
+                    if (entity.TodoId != entity.Todo.Id)
+                    {
+                        entity.Todo = await db.Todos.FirstAsync(c => c.Id == entity.TodoId);
+                    }
+                }
+                else
+                {
+                    entity.Todo = await db.Todos.FirstAsync(c => c.Id == entity.TodoId);
+                }
+            }
+            return entity;
         }
     }
 }

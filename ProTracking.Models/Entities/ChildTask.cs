@@ -15,7 +15,6 @@ namespace ProTracking.Domain.Entities
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public PriorityEnum? Priority { get; set; }
-        [NotMapped]
         [ForeignKey(nameof(TodoId))]
         public Todo Todo { get; set; }
     }

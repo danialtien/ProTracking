@@ -3,7 +3,9 @@ using ProTracking.Domain.Entities;
 using ProTracking.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -37,6 +39,11 @@ namespace ProTracking.Infrastructures.Data
                  new AccountType { Id = 2, Title = AccountTypeEnum.Standard, Description = "Standard account", Index = 1, Price = 20 },
                  new AccountType { Id = 3, Title = AccountTypeEnum.Premium, Description = "Premium account", Index = 2, Price = 30 },
                  new AccountType { Id = 4, Title = AccountTypeEnum.Enterprise, Description = "Enterprise account", Index = 3, Price = 40 });
+
+            modelBuilder.Entity<Payment>().HasData(
+                 new Payment { Id = 1, Title = "Free", AccessKey = "Free", PrivateKey = "Free", QRCode = "Free" },
+                 new Payment { Id = 2, Title = "ZaloPay", AccessKey = "AceessKey", PrivateKey = "Privatekey", QRCode = "dfsdalfdfa" }
+                 );
 
             modelBuilder.Entity<Customer>().HasData(
                 new Customer
@@ -73,16 +80,52 @@ namespace ProTracking.Infrastructures.Data
                 }
                 );
 
+
             modelBuilder.Entity<Project>().HasData(
-                new Project
+                    new Project
+                    {
+                        Id = 1,
+                        Title = "ProTracking EXE201",
+                        CreatedBy = 1,
+                        Description = "A startup project helping user to manage projects",
+                        Status = "Active",
+                        SubTitle = "ProTracking make your work easier"
+                    });
+
+            modelBuilder.Entity<ProjectParticipant>().HasData(
+                new ProjectParticipant
                 {
                     Id = 1,
-                    Title = "ProTracking EXE201",
-                    CreatedBy = 1,
-                    Description = "A startup project helping user to manage projects",
-                    Status = "Active",
-                    SubTitle = "ProTracking make your work easier"
+                    CustomerId = 1,
+                    ProjectId = 1,
+                    IsLeader = true,
+                    /*Customer = new()
+                    {
+                        Id = 1,
+                        FirstName = "Hoang",
+                        LastName = "Khoa",
+                        Email = "khoa@gmail.com",
+                        AccountTypeId = 1,
+                        Birthday = DateTime.Now,
+                        GoogleEmail = "khoa@gmail.com",
+                        Password = "1234",
+                        Phone = "08888888",
+                        RegisteredAt = DateTime.Today,
+                        Role = RoleEnum.Admin,
+                        Status = "Active",
+                        Username = "khoa"
+                    },
+                    Project = new()
+                    {
+                        Id = 1,
+                        Title = "ProTracking EXE201",
+                        CreatedBy = 1,
+                        Description = "A startup project helping user to manage projects",
+                        Status = "Active",
+                        SubTitle = "ProTracking make your work easier"
+                    }*/
                 });
+
 
             modelBuilder.Entity<Label>().HasData(
                 new Label
@@ -153,6 +196,26 @@ namespace ProTracking.Infrastructures.Data
                     Priority = PriorityEnum.Highest,
                     IconPriority = ""
                 });
+
+            modelBuilder.Entity<TransactionHistory>()
+                .HasOne(th => th.Customer)
+                .WithMany(c => c.TransactionHistories)
+                .HasForeignKey(th => th.CustomerId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<TransactionHistory>().HasData(
+                new TransactionHistory
+                {
+                    Id = 1,
+                    CustomerId = 1,
+                    AccountTypeId = 1,
+                    PaymentId = 1,
+                    PaymentDate = DateTime.Now,
+                    StartDate = DateTime.Now,
+                    Amount = 0,
+                });
+
         }
 
     }

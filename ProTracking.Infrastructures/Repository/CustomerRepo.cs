@@ -37,7 +37,7 @@ namespace ProTracking.Infrastructures.Repository
             return await db.Customers.ToListAsync();
         }
 
-        public Customer GetById(int id)
+        public Customer GetById(int? id)
         {
             return db.Customers.FirstOrDefault(c => c.Id == id);
         }
@@ -54,6 +54,12 @@ namespace ProTracking.Infrastructures.Repository
             db.Customers.Update(entity);
             return await db.SaveChangesAsync() > 0;
         }
+
+        public Customer? GetLast()
+        {
+            return db.Customers.LastOrDefault();
+        }
+
 
         public async Task<bool> SoftRemoveByIDAsync(int entityId)
         {

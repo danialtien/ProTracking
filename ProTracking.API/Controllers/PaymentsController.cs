@@ -55,33 +55,33 @@ namespace ProTracking.API.Controllers
             return result ? Ok() : BadRequest();
         }
 
-        // PUT api/<PaymentsController>/5
-        [HttpPut("{id}")]
-        [Produces("application/json")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(Summary = "Update exist payment")]
-        public async Task<IActionResult> Update(int id, Payment entity)
-        {
-            var exist = Exist(id);
-            if (!exist) return NotFound();
-            var result = await service.UpdateAsync(entity);
-            return result ? Ok() : BadRequest();
-        }
+        //// PUT api/<PaymentsController>/5
+        //[HttpPut("{id}")]
+        //[Produces("application/json")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[SwaggerOperation(Summary = "Update exist payment")]
+        //public async Task<IActionResult> Update(int id, Payment entity)
+        //{
+        //    var exist = Exist(id);
+        //    if (!exist) return NotFound();
+        //    var result = await service.UpdateAsync(entity);
+        //    return result ? Ok() : BadRequest();
+        //}
 
-        // DELETE api/<PaymentsController>/5
-        [HttpDelete("{id}")]
-        [Produces("application/json")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(Summary = "Set payment status inactive")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var exist = Exist(id);
-            if (!exist) return NotFound();
-            var result = await service.SoftRemoveByID(id);
-            return result ? Ok() : BadRequest();
-        }
+        //// DELETE api/<PaymentsController>/5
+        //[HttpDelete("{id}")]
+        //[Produces("application/json")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[SwaggerOperation(Summary = "Set payment status inactive")]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    var exist = Exist(id);
+        //    if (!exist) return NotFound();
+        //    var result = await service.SoftRemoveByID(id);
+        //    return result ? Ok() : BadRequest();
+        //}
 
         private bool Exist(int id)
         {

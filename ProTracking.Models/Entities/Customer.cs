@@ -28,8 +28,10 @@ namespace ProTracking.Domain.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        [NotMapped]
         [ForeignKey(nameof(AccountTypeId))]
         public AccountType? AccountType { get; set; }
+
+        [NotMapped]
+        public ICollection<TransactionHistory> TransactionHistories { get; set; }
     }
 }

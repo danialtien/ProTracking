@@ -9,6 +9,6 @@ namespace ProTracking.Infrastructures.Repository
 {
     public interface ILabelRepo : IGenericRepository<Label>
     {
-        Label GetById(int id);
+        Label GetById(int? id);
     }
 }

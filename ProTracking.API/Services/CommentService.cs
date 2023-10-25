@@ -3,6 +3,7 @@ using ProTracking.API.Services.IServices;
 using ProTracking.Application.ViewModels;
 using ProTracking.Application.ViewModels.FilterModel;
 using ProTracking.Domain.Entities;
+using ProTracking.Domain.Entities.DTOs;
 using ProTracking.Infrastructures.Repository;
 using System.Linq.Expressions;
 
@@ -11,70 +12,71 @@ namespace ProTracking.API.Services
     public class CommentService : ICommentService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper mapper;
+        private readonly IMapper _mapper;
 
         public CommentService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            this.mapper = mapper;
+            this._mapper = mapper;
         }
-
-        public async Task<bool> AddAsync(Comment entity)
+        public async Task<bool> AddAsync(CommentDTO entity)
         {
-            if (entity == null) return false;
-            bool result = await _unitOfWork.CommentRepo.AddAsync(entity);
+            // if(!_validation.CreateObjectIsValid(entity)) return false;
+            Comment Comment = _mapper.Map<Comment>(entity);
+            bool result = await _unitOfWork.CommentRepo.AddAsync(Comment);
             return result;
         }
 
         public async Task<IEnumerable<Comment>> GetAll(Expression<Func<Comment, bool>>? filter = null, string[]? includeProperties = null)
         {
-            var _data = await _unitOfWork.CommentRepo.GetAllAsync(filter, includeProperties);
+            var _data = (await _unitOfWork.CommentRepo.GetAllAsync(filter, includeProperties)).Select(Comment => _mapper.Map<Comment>(Comment));
             return _data;
         }
 
-        public async Task<Comment> GetById(int id)
+        public async Task<CommentDTO> GetById(int id)
         {
-            Comment? comment = await _unitOfWork.CommentRepo.GetByIdAsync(id);
-            return comment;
+            if (id == 0) return null;
+            Comment? obj = await _unitOfWork.CommentRepo.GetByIdAsync(id);
+            CommentDTO CommentDTO = _mapper.Map<CommentDTO>(obj);
+            return CommentDTO;
         }
 
-        //public Task<IEnumerable<Comment>> GetFilterAsync(CommentFilteringModel entity)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public async Task<bool> SoftRemove(Comment entity)
+        public async Task<bool> SoftRemove(CommentDTO entity)
         {
             if (entity == null) return false;
-            bool result = await _unitOfWork.CommentRepo.SoftRemoveAsync(entity);
+            Comment Comment = _mapper.Map<Comment>(entity);
+            bool result = await _unitOfWork.CommentRepo.SoftRemoveAsync(Comment);
             return result;
+
         }
 
         public async Task<bool> SoftRemoveByID(int entityId)
         {
-            Comment? comment = await GetById(entityId);
-            if (comment != null)
+            CommentDTO? obj = await GetById(entityId);
+            if (obj != null)
             {
-                await SoftRemove(comment);
+                await SoftRemove(obj);
             }
             return false;
         }
 
-        public async Task<bool> UpdateAsync(Comment entity)
+        public async Task<bool> UpdateAsync(CommentDTO entity)
         {
             if (entity != null)
             {
-                bool result = await _unitOfWork.CommentRepo.UpdateAsync(entity);
+                Comment Comment = _mapper.Map<Comment>(entity);
+                bool result = await _unitOfWork.CommentRepo.UpdateAsync(Comment);
                 return result;
             }
             return false;
         }
 
-        public async Task<bool> UpdateRange(List<Comment> entities)
+        public async Task<bool> UpdateRange(List<CommentDTO> entities)
         {
             if (entities != null)
             {
-                return await _unitOfWork.CommentRepo.UpdateRangeAsync(entities);
+                List<Comment> Comment = _mapper.Map<List<Comment>>(entities);
+                return await _unitOfWork.CommentRepo.UpdateRangeAsync(Comment);
             }
             return false;
         }

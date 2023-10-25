@@ -10,10 +10,9 @@ namespace ProTracking.Domain.Entities
         public int ProjectId { get; set; }
         public int CustomerId { get; set; }
         public bool IsLeader { get; set; }
-        [NotMapped]
+
         [ForeignKey(nameof(ProjectId))]
         public Project Project { get; set; }
-        [NotMapped]
         [ForeignKey(nameof(CustomerId))]
         public Customer Customer { get; set; }
     }

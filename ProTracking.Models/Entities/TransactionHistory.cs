@@ -16,12 +16,14 @@ namespace ProTracking.Domain.Entities
 
         public double Amount { get; set; }
 
-        [NotMapped]
+
         [ForeignKey(nameof(CustomerId))]
         public Customer Customer { get; set; }
 
-        [NotMapped]
         [ForeignKey(nameof(PaymentId))]
         public Payment Payment { get; set; }
+
+        [ForeignKey(nameof(AccountTypeId))]
+        public AccountType AccountType { get; set; }
     }
 }

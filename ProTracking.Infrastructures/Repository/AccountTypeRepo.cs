@@ -12,46 +12,67 @@ namespace ProTracking.Infrastructures.Repository
 {
     public class AccountTypeRepo :IAccountTypeRepo
     {
-        private readonly ApplicationDbContext _dbContext;
-
+        private ApplicationDbContext db;
         public AccountTypeRepo(ApplicationDbContext db)
         {
-            this._dbContext = db;
+            this.db = db;
         }
 
-        public Task<bool> AddAsync(AccountType entity)
+        public async Task<bool> AddAsync(AccountType entity)
         {
-            throw new NotImplementedException();
+            AccountType AccountType = entity;
+            /*AccountType.Project = await db.Projects.FirstOrDefaultAsync(c => c.Id == AccountType.ProjectId);
+            AccountType.Label = await db.Labels.FirstOrDefaultAsync(c => c.Id == AccountType.LabelId);
+            AccountType.Customer = await db.Customers.FirstOrDefaultAsync(c => c.Id == AccountType.CreatedBy);*/
+            await db.AccountTypes.AddAsync(AccountType);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<IEnumerable<AccountType>> GetAllAsync(Expression<Func<AccountType, bool>>? filter = null, string[]? includeProperties = null)
+        public async Task<IEnumerable<AccountType>> GetAllAsync(Expression<Func<AccountType, bool>>? filter = null, string[]? includeProperties = null)
         {
-            throw new NotImplementedException();
+            if (includeProperties != null && filter != null)
+            {
+                return await includeProperties!
+                    .Aggregate(db.AccountTypes.AsQueryable(),
+                    (entity, property) => entity.Include(property))
+                    .Where(filter!)
+                    .ToListAsync();
+            }
+            return await db.AccountTypes.ToListAsync();
         }
 
-        public async Task<AccountType> GetByIdAsync(int id)
+        public async Task<AccountType?> GetByIdAsync(int id)
         {
-            return await _dbContext.AccountTypes.FirstOrDefaultAsync(x => x.Id == id);
+            var result = await db.AccountTypes.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return result;
         }
 
-        public Task<bool> SoftRemoveAsync(AccountType entity)
+        public async Task<bool> SoftRemoveAsync(AccountType entity)
         {
-            throw new NotImplementedException();
+            db.AccountTypes.Remove(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> SoftRemoveByIDAsync(int entityId)
+        public async Task<bool> SoftRemoveByIDAsync(int entityId)
         {
-            throw new NotImplementedException();
+            AccountType? result = await db.AccountTypes.AsNoTracking().FirstOrDefaultAsync(x => x.Id == entityId);
+            if (result != null)
+            {
+                await SoftRemoveAsync(result);
+            }
+            return false;
         }
 
-        public Task<bool> UpdateAsync(AccountType entity)
+        public async Task<bool> UpdateAsync(AccountType entity)
         {
-            throw new NotImplementedException();
+            db.AccountTypes.Update(entity);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<bool> UpdateRangeAsync(List<AccountType> entities)
+        public async Task<bool> UpdateRangeAsync(List<AccountType> entities)
         {
-            throw new NotImplementedException();
+            db.AccountTypes.UpdateRange(entities);
+            return await db.SaveChangesAsync() > 0;
         }
     }
 }

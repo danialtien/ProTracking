@@ -21,6 +21,10 @@ namespace ProTracking.API.Services
         public async Task<bool> AddAsync(ProjectParticipantDTO entity)
         {
             if (entity == null) return false;
+            Customer customer = _unitOfWork.CustomerRepo.GetById(entity.CustomerId);
+            Project project = _unitOfWork.ProjectRepo.GetById(entity.ProjectId);
+            if(customer == null || project == null) return false;
+            entity.IsLeader = false;
             ProjectParticipant obj = _mapper.Map<ProjectParticipant>(entity);
             bool result = await _unitOfWork.ProjectParticipantRepo.AddAsync(obj);
             return result;

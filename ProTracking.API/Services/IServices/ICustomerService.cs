@@ -8,5 +8,7 @@ namespace ProTracking.API.Services.IServices
     public interface ICustomerService : IGenericService<Customer>
     {
         Task<IEnumerable<Customer>> GetFilterAsync(CustomerFilteringModel entity);
+        Task<Customer> GetCustomerByEmailAsync(string email);
+
     }
 }

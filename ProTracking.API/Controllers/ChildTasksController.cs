@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using ProTracking.API.Services.IServices;
 using ProTracking.Domain.Entities;
@@ -9,6 +10,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ProTracking.API.Controllers
 {
+    [Authorize]
     [ApiController]
     public class ChildTasksController : BaseController
     {

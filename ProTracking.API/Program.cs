@@ -13,6 +13,10 @@ using ProTracking.Infrastructures.Repository;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +46,7 @@ builder.Services.AddAuthentication(options =>
 })
     .AddCookie(options =>
     {
-        options.LoginPath = "";
+        options.LoginPath = "/login";
     })
     .AddGoogle(options =>
     {
@@ -51,7 +55,7 @@ builder.Services.AddAuthentication(options =>
         options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
         options.CallbackPath = "/signin-google"; 
     });
-
+    
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();

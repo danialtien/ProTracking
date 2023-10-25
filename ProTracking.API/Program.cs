@@ -13,6 +13,9 @@ using ProTracking.Infrastructures.Repository;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using ProTracking.Infrastructures.CustomValidation;
+using ProTracking.Domain.CustomValidation;
+using ProTracking.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +53,8 @@ builder.Services.AddAuthentication(options =>
     })
     .AddGoogle(options =>
     {
+        options.ClientId = "";
+        options.ClientSecret = "";
         options.ClientId = builder.Configuration["Google:ClientId"];
         options.ClientSecret = builder.Configuration["Google:ClientSecret"];
         options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
@@ -82,6 +87,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
     builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+
 // Services
 builder.Services.AddTransient<ICustomerService, CustomerService>();
 builder.Services.AddTransient<IProjectService, ProjectService>();
@@ -89,6 +95,11 @@ builder.Services.AddTransient<ITodoService, TodoService>();
 builder.Services.AddTransient<IProjectParticipantService, ProjectParticipantService>();
 builder.Services.AddTransient<IChildTaskService, ChildTaskService>();
 builder.Services.AddTransient<ILabelService, LabelService>();
+builder.Services.AddTransient<IAccountTypeService, AccountTypeService>();
+builder.Services.AddTransient<ICommentService, CommentService>();
+builder.Services.AddTransient<IPaymentService, PaymentService>();
+builder.Services.AddTransient<ITransactionService, TransactionService>();
+
 
 // Repository
 builder.Services.AddTransient<ICustomerRepo, CustomerRepo>();
@@ -97,6 +108,13 @@ builder.Services.AddTransient<ITodoRepo, TodoRepo>();
 builder.Services.AddTransient<IProjectParticipantRepo, ProjectParticipantRepo>();
 builder.Services.AddTransient<IChildTaskRepo, ChildTaskRepo>();
 builder.Services.AddTransient<ILabelRepo, LabelRepo>();
+builder.Services.AddTransient<IAccountTypeRepo, AccountTypeRepo>();
+builder.Services.AddTransient<ICommentRepo, CommentRepo>();
+builder.Services.AddTransient<IPaymentRepo, PaymentRepo>();
+builder.Services.AddTransient<ITransactionHistoryRepo, TransactionHistoryRepo>();
+
+
+
 
 // Mapper
 builder.Services.AddAutoMapper(typeof(Program));
@@ -109,10 +127,13 @@ builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProTracking");
+    });
 }
 
 app.UseHttpsRedirection();

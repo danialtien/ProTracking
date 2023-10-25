@@ -9,7 +9,10 @@ namespace ProTracking.Infrastructures.Repository
 {
     public interface ICustomerRepo : IGenericRepository<Customer>
     {
-        Customer GetById(int id);
+        Customer GetById(int? id);
+
+        Customer? GetLast();
+
         Task<Customer> GetCustomerByEmailAsync(string email);
     }
 }

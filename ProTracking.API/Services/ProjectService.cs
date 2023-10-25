@@ -20,8 +20,22 @@ namespace ProTracking.API.Services
         public async Task<bool> AddAsync(ProjectDTO entity)
         {
             if (entity == null) return false;
+            Customer customer = _unitOfWork.CustomerRepo.GetById(entity.CreatedBy);
+            if (customer == null) return false;
             Project obj = _mapper.Map<Project>(entity);
             bool result = await _unitOfWork.ProjectRepo.AddAsync(obj);
+            if (result)
+            {
+                ProjectParticipant participant = new()
+                {
+                    ProjectId = obj.Id,
+                    CustomerId = customer.Id,
+                    Project = obj,
+                    Customer = customer,
+                    IsLeader = true
+                };
+                await _unitOfWork.ProjectParticipantRepo.AddAsync(participant);
+            }
             return result;
         }
 
@@ -33,7 +47,7 @@ namespace ProTracking.API.Services
 
         public async Task<ProjectDTO> GetById(int id)
         {
-            if (id == 0) return null; 
+            if (id == 0) return null;
             Project obj = await _unitOfWork.ProjectRepo.GetByIdAsync(id);
             return _mapper.Map<ProjectDTO>(obj);
         }
@@ -61,6 +75,7 @@ namespace ProTracking.API.Services
         {
             if (entity != null)
             {
+                if (_unitOfWork.CustomerRepo.GetById(entity.CreatedBy) == null) return false;
                 Project obj = _mapper.Map<Project>(entity);
                 bool result = await _unitOfWork.ProjectRepo.UpdateAsync(obj);
                 return result;

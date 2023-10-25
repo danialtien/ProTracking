@@ -3,6 +3,7 @@ using ProTracking.API.Services;
 using ProTracking.API.Services.IServices;
 using ProTracking.Application.ViewModels;
 using ProTracking.Domain.Entities;
+using ProTracking.Domain.Entities.DTOs;
 using Swashbuckle.AspNetCore.Annotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -38,7 +39,7 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Get comment by Id")]
-        public async Task<Comment> Get(int id)
+        public async Task<CommentDTO> Get(int id)
         {
             return await service.GetById(id);
         }
@@ -49,7 +50,7 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Create a new comment")]
-        public async Task<IActionResult> Post(Comment entity)
+        public async Task<IActionResult> Post(CommentDTO entity)
         {
             var result = await service.AddAsync(entity);
             return result ? Ok() : BadRequest();
@@ -61,7 +62,7 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Update exist comment")]
-        public async Task<IActionResult> Update(int id, Comment entity)
+        public async Task<IActionResult> Update(int id, CommentDTO entity)
         {
             var exist = Exist(id);
             if (!exist) return NotFound();

@@ -3,6 +3,7 @@ using ProTracking.API.Services.IServices;
 using ProTracking.Application.ViewModels;
 using ProTracking.Application.ViewModels.FilterModel;
 using ProTracking.Domain.Entities;
+using ProTracking.Domain.Enums;
 using ProTracking.Infrastructures.Repository;
 using System.Linq.Expressions;
 
@@ -25,6 +26,21 @@ namespace ProTracking.API.Services
             if (entity.AccountTypeId > 4 && entity.AccountTypeId < 1) return false;
             entity.AccountType = await _unitOfWork.AccountTypeRepo.GetByIdAsync(entity.AccountTypeId);
             bool result = await _unitOfWork.CustomerRepo.AddAsync(entity);
+            Customer customer = _unitOfWork.CustomerRepo.GetLast();
+
+            if (result && customer != null)
+            {
+                await _unitOfWork.TransactionHistoryRepo.AddAsync(new TransactionHistory
+                {
+                    CustomerId = customer.Id,
+                    AccountTypeId = 1,
+                    PaymentId = 1,
+                    Content =  "Free",
+                    PaymentDate = DateTime.Now,
+                    StartDate = DateTime.Now,
+                    Amount = 0,
+                });
+            }
             return result;
         }
 

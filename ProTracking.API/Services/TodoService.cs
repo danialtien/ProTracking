@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ProTracking.API.Services.IServices;
+using ProTracking.Domain.CustomValidation;
 using ProTracking.Domain.Entities;
 using ProTracking.Domain.Entities.DTOs;
 using ProTracking.Infrastructures.Repository;
@@ -19,7 +20,7 @@ namespace ProTracking.API.Services
         }
         public async Task<bool> AddAsync(TodoDTO entity)
         {
-            if (entity == null) return false;
+           // if(!_validation.CreateObjectIsValid(entity)) return false;
             Todo todo = _mapper.Map<Todo>(entity);
             bool result = await _unitOfWork.TodoRepo.AddAsync(todo);
             return result;
@@ -33,6 +34,7 @@ namespace ProTracking.API.Services
 
         public async Task<TodoDTO> GetById(int id)
         {
+            if (id == 0) return null;
             Todo? obj = await _unitOfWork.TodoRepo.GetByIdAsync(id);
             TodoDTO todoDTO = _mapper.Map<TodoDTO>(obj);
             return todoDTO;
@@ -77,5 +79,6 @@ namespace ProTracking.API.Services
             }
             return false;
         }
+
     }
 }

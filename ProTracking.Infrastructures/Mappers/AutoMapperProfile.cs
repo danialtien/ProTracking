@@ -27,10 +27,22 @@ namespace ProTracking.Infrastructures.Mappers
                 .ReverseMap();
 
             CreateMap<ProjectParticipantDTO, ProjectParticipant>()
+                .ForMember(dest => dest.Project, opt => opt.MapFrom(src => _unitOfWork.ProjectRepo.GetById(src.ProjectId)))
+                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CustomerId)))
                 .ReverseMap();
 
             CreateMap<ChildTaskDTO, ChildTask>()
                 .ReverseMap();
+
+            CreateMap<CommentDTO, Comment>()
+                .ForMember(dest => dest.Todo, opt => opt.MapFrom(src => _unitOfWork.CommentRepo.GetAllByTodoId(src.Id)))
+                .ReverseMap();
+
+            CreateMap<TransactionHistoryDTO, TransactionHistory>()
+                 .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CustomerId)))
+                 .ForMember(dest => dest.AccountType, opt => opt.MapFrom(src => _unitOfWork.AccountTypeRepo.GetByIdAsync(src.AccountTypeId)))
+                 .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => _unitOfWork.PaymentRepo.GetByIdAsync(src.PaymentId)))
+                 .ReverseMap();
         }
     }
 }

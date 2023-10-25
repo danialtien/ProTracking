@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProTracking.Infrastructures.Repository
+namespace ProTracking.Infrastructures.CustomValidation
 {
-    public interface ILabelRepo : IGenericRepository<Label>
+    public interface IValidation<T> where T : class
     {
-        Label GetById(int? id);
+        public bool CreateObjectIsValid(T entity);
     }
 }

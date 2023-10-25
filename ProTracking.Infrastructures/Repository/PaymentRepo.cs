@@ -1,4 +1,5 @@
-﻿using ProTracking.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using ProTracking.Domain.Entities;
 using ProTracking.Infrastructures.Data;
 using System;
 using System.Collections.Generic;
@@ -18,39 +19,30 @@ namespace ProTracking.Infrastructures.Repository
             this.db = db;
         }
 
-        public Task<bool> AddAsync(Payment entity)
+        public async Task<bool> AddAsync(Payment entity)
         {
-            throw new NotImplementedException();
+            Payment Payment = entity;
+            await db.Payments.AddAsync(Payment);
+            return await db.SaveChangesAsync() > 0;
         }
 
-        public Task<IEnumerable<Payment>> GetAllAsync(Expression<Func<Payment, bool>>? filter = null, string[]? includeProperties = null)
+        public async Task<IEnumerable<Payment>> GetAllAsync(Expression<Func<Payment, bool>>? filter = null, string[]? includeProperties = null)
         {
-            throw new NotImplementedException();
+            if (includeProperties != null && filter != null)
+            {
+                return await includeProperties!
+                    .Aggregate(db.Payments.AsQueryable(),
+                    (entity, property) => entity.Include(property))
+                    .Where(filter!)
+                    .ToListAsync();
+            }
+            return await db.Payments.ToListAsync();
         }
 
-        public Task<Payment> GetByIdAsync(int id)
+        public async Task<Payment?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> SoftRemoveAsync(Payment entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> SoftRemoveByIDAsync(int entityId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateAsync(Payment entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateRangeAsync(List<Payment> entities)
-        {
-            throw new NotImplementedException();
+            var result = await db.Payments.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return result;
         }
     }
 }

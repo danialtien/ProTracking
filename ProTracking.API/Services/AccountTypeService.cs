@@ -38,10 +38,6 @@ namespace ProTracking.API.Services
             return accountType;
         }
 
-        //public Task<IEnumerable<AccountType>> GetFilterAsync(AccountTypeFilteringModel entity)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public async Task<bool> SoftRemove(AccountType entity)
         {

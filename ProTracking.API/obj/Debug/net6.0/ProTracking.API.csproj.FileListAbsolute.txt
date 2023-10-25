@@ -164,3 +164,11 @@ D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\refint\Pr
 D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.pdb
 D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ProTracking.API.genruntimeconfig.cache
 D:\Visual Studio Projects\ProTracking\ProTracking.API\obj\Debug\net6.0\ref\ProTracking.API.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.AspNetCore.OData.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.OData.Core.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.OData.Edm.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.OData.ModelBuilder.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Spatial.dll
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\appsettings.Production.json

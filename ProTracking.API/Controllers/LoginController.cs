@@ -30,6 +30,13 @@ namespace ProTracking.API.Controllers
             return token is null ? NotFound("Account does not exist") : Ok(token);
         }
 
+        /* public string Login(LoginDTO login)
+         {
+             if (login == null) return "Account does not exist";
+             string token = service.checkLogin(login);
+             return token is null ? "Account does not exist" : token;
+         }*/
+
         // POST api/<CustomersController>
         [HttpPost("Register")]
         [Produces("application/json")]
@@ -39,10 +46,11 @@ namespace ProTracking.API.Controllers
         public async Task<IActionResult> Post(RegisterDTO entity)
         {
             MessageHandler result = await service.RegisterAccount(entity);
-            if(result.StatusCode == 201)
+            if (result.StatusCode == 201)
             {
                 return Ok(result);
-            } else
+            }
+            else
             {
                 return BadRequest(result);
             }

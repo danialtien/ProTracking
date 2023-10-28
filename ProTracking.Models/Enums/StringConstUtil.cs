@@ -11,5 +11,8 @@ namespace ProTracking.Domain.Enums
         public const string TODO = "Todo";
         public const string IN_PROGRESS = "In Progress";
         public const string DONE = "Done";
+        public const string ACTIVE = "Active";
+        public const string INACTIVE = "Inactive";
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProTracking.API.Services;
 using ProTracking.API.Services.IServices;
 using ProTracking.Application.ViewModels;
@@ -25,6 +26,7 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Return all customers")]
+        [Authorize(Roles = "Admin")]
         public async Task<IEnumerable<Customer>> GetAll()
         {
             return await service.GetAll(null, null);
@@ -83,6 +85,18 @@ namespace ProTracking.API.Controllers
             return result ? Ok() : BadRequest();
         }
 
+
+
+/*        // GET api/<CustomersController>/5
+        [HttpGet("{email}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Get Customer by Email")]
+        public async Task<Customer> GetByEmail(string email)
+        {
+            return await service.GetByEmail(email);
+        }*/
         private bool Exist(int id)
         {
             var customer = service.GetById(id);

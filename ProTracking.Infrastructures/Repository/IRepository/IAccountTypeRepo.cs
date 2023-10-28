@@ -9,5 +9,7 @@ namespace ProTracking.Infrastructures.Repository
 {
     public interface IAccountTypeRepo : IGenericRepository<AccountType>
     {
+
+        AccountType GetById(int id);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProTracking.Domain.Entities;
+using ProTracking.Domain.Entities.DTOs;
 using ProTracking.Infrastructures.Data;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,11 @@ namespace ProTracking.Infrastructures.Repository
         public Customer GetById(int? id)
         {
             return db.Customers.FirstOrDefault(c => c.Id == id);
+        }
+
+        public Customer? GetUserLogin(LoginDTO login)
+        {
+            return db.Customers.FirstOrDefault(c => c.Email == login.Email && c.Password == login.Password);
         }
 
         public async Task<Customer?> GetByIdAsync(int id)

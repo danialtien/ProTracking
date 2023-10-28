@@ -46,6 +46,11 @@ namespace ProTracking.Infrastructures.Repository
             return db.TransactionHistory.Where(t => t.CustomerId == customerId).ToList();
         }
 
+        public TransactionHistory GetByCustomerIdAndActive(int CustomerId, bool isActive)
+        {
+            return db.TransactionHistory.Where(t => t.CustomerId == CustomerId && isActive).FirstOrDefault();
+        }
+
         public async Task<TransactionHistory?> GetByIdAsync(int id)
         {
             var result = await db.TransactionHistory.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);

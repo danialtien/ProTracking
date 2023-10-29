@@ -11,5 +11,6 @@ namespace ProTracking.API.Services.IServices
         string checkLogin(LoginDTO login);
         Task<MessageHandler> RegisterAccount(RegisterDTO registerDTO);
         Task<IEnumerable<Customer>> GetFilterAsync(CustomerFilteringModel entity);
+        Customer GetCustomerByEmailandPassword(LoginDTO login);
     }
 }

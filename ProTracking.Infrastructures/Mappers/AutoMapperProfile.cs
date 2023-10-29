@@ -48,9 +48,9 @@ namespace ProTracking.Infrastructures.Mappers
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.Id).Email))
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.Id).Username))
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.Id).Role))
-                .ForMember(dest => dest.AccountType, opt => opt.MapFrom(src => _unitOfWork.AccountTypeRepo.GetById(src.AccountTypeId).Title))
-                .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => _unitOfWork.TransactionHistoryRepo.GetByCustomerIdAndActive(src.Id, true).StartDate))
-                .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => _unitOfWork.TransactionHistoryRepo.GetByCustomerIdAndActive(src.Id, true).EndDate));
+                .ForMember(dest => dest.AccountType, opt => opt.MapFrom(src => _unitOfWork.AccountTypeRepo.GetById(src.AccountTypeId).Title));
+                //.ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => _unitOfWork.TransactionHistoryRepo.GetByCustomerIdAndActive(src.Id, true).StartDate))
+                //.ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => _unitOfWork.TransactionHistoryRepo.GetByCustomerIdAndActive(src.Id, true).EndDate));
         }
     }
 }

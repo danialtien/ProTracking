@@ -16,7 +16,7 @@ namespace ProTracking.Domain.Entities.DTOs
         public int PaymentId { get; set; }
         public string? Content { get; set; }
         public DateTime PaymentDate { get; set; }
-        public DateTime StartDate { get; set; }
         public double Amount { get; set; }
+        public bool IsBanking { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ProTracking.Domain.Entities;
+using ProTracking.Domain.Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace ProTracking.Infrastructures.Repository
 
         Customer? GetLast();
 
-        Task<Customer> GetCustomerByEmailAsync(string email);
+        Customer? GetUserLogin(LoginDTO login);
     }
 }

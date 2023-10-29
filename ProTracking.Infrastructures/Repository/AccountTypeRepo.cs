@@ -41,6 +41,11 @@ namespace ProTracking.Infrastructures.Repository
             return await db.AccountTypes.ToListAsync();
         }
 
+        public AccountType GetById(int id)
+        {
+            return db.AccountTypes.AsNoTracking().FirstOrDefault(x => x.Id == id);
+        }
+
         public async Task<AccountType?> GetByIdAsync(int id)
         {
             var result = await db.AccountTypes.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);

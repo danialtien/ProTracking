@@ -9,5 +9,7 @@ namespace ProTracking.Infrastructures.Repository
 {
     public interface ITransactionHistoryRepo : IGenericRepository<TransactionHistory>
     {
+
+        TransactionHistory GetByCustomerIdAndActive(int CustomerId, bool isActive);
     }
 }

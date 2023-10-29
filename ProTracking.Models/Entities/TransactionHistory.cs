@@ -13,6 +13,8 @@ namespace ProTracking.Domain.Entities
         public string? Content { get; set; }
         public DateTime PaymentDate { get; set; }
         public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public bool IsActive { get; set; }
 
         public double Amount { get; set; }
 

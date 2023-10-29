@@ -88,5 +88,11 @@ namespace ProTracking.Infrastructures.Repository
             db.Customers.UpdateRange(entities);
             return await db.SaveChangesAsync() > 0;
         }
+
+        public async Task<Customer> GetCustomerByEmailAsync(string email)
+        {
+            return await db.Customers.FirstOrDefaultAsync(c => c.Email == email);
+        }
+
     }
 }

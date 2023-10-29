@@ -57,9 +57,12 @@ builder.Services.AddAuthentication(options =>
     .AddCookie()
     .AddGoogle(options =>
     {
-        options.ClientId = "1041646882132-43u8nndcji8s4r5ong0q646lb13eq5fv.apps.googleusercontent.com";
-        options.ClientSecret = "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";
+        options.ClientId = "";
+        options.ClientSecret = "";
+        options.ClientId = builder.Configuration["Google:ClientId"];
+        options.ClientSecret = builder.Configuration["Google:ClientSecret"];
         options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+        options.CallbackPath = "/signin-google";
     });
 
 builder.Services.AddAuthentication(options =>

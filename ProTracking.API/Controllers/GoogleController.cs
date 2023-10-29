@@ -93,7 +93,8 @@ namespace ProTracking.API.Controllers
                 };
 
                 // Redirect to the CustomerController to create the new customer
-                return RedirectToAction("Post", "Customer", newCustomer);
+                var rresult = await customerService.AddAsync(newCustomer);
+                return rresult ? Ok() : BadRequest();
             }
 
             // Customer already exists; continue with the rest of your logic

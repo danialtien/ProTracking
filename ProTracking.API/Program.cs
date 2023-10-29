@@ -38,9 +38,16 @@ builder.Services.AddControllers().AddOData(option => option.Select()
 builder.Services.AddEndpointsApiExplorer();
 
 // Them CORS cho tat ca moi nguoi deu xai duoc apis
-builder.Services.AddCors(options
-        => options.AddDefaultPolicy(policy
-            => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:3000")
+               .AllowAnyOrigin()
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddAuthentication(options =>
 {
@@ -50,8 +57,8 @@ builder.Services.AddAuthentication(options =>
     .AddCookie()
     .AddGoogle(options =>
     {
-        options.ClientId = "";
-        options.ClientSecret = "";
+        options.ClientId = "1041646882132-43u8nndcji8s4r5ong0q646lb13eq5fv.apps.googleusercontent.com";
+        options.ClientSecret = "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";
         options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
     });
 
@@ -174,7 +181,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -1,6 +1,6 @@
 USE [ProTracking]
 GO
-/****** Object:  Table [dbo].[AccountTypes]    Script Date: 10/28/2023 8:38:03 AM ******/
+/****** Object:  Table [dbo].[AccountTypes]    Script Date: 10/29/2023 3:27:36 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -17,7 +17,7 @@ CREATE TABLE [dbo].[AccountTypes](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ChildTasks]    Script Date: 10/28/2023 8:38:03 AM ******/
+/****** Object:  Table [dbo].[ChildTasks]    Script Date: 10/29/2023 3:27:36 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -36,7 +36,7 @@ CREATE TABLE [dbo].[ChildTasks](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Comments]    Script Date: 10/28/2023 8:38:03 AM ******/
+/****** Object:  Table [dbo].[Comments]    Script Date: 10/29/2023 3:27:36 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -54,7 +54,7 @@ CREATE TABLE [dbo].[Comments](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Customers]    Script Date: 10/28/2023 8:38:03 AM ******/
+/****** Object:  Table [dbo].[Customers]    Script Date: 10/29/2023 3:27:36 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -84,7 +84,7 @@ CREATE TABLE [dbo].[Customers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Labels]    Script Date: 10/28/2023 8:38:03 AM ******/
+/****** Object:  Table [dbo].[Labels]    Script Date: 10/29/2023 3:27:36 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -99,7 +99,7 @@ CREATE TABLE [dbo].[Labels](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Payments]    Script Date: 10/28/2023 8:38:03 AM ******/
+/****** Object:  Table [dbo].[Payments]    Script Date: 10/29/2023 3:27:36 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -116,7 +116,7 @@ CREATE TABLE [dbo].[Payments](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ProjectParticipants]    Script Date: 10/28/2023 8:38:03 AM ******/
+/****** Object:  Table [dbo].[ProjectParticipants]    Script Date: 10/29/2023 3:27:36 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -132,7 +132,7 @@ CREATE TABLE [dbo].[ProjectParticipants](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Projects]    Script Date: 10/28/2023 8:38:03 AM ******/
+/****** Object:  Table [dbo].[Projects]    Script Date: 10/29/2023 3:27:36 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -150,7 +150,7 @@ CREATE TABLE [dbo].[Projects](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Todos]    Script Date: 10/28/2023 8:38:03 AM ******/
+/****** Object:  Table [dbo].[Todos]    Script Date: 10/29/2023 3:27:36 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -174,7 +174,7 @@ CREATE TABLE [dbo].[Todos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TransactionHistory]    Script Date: 10/28/2023 8:38:03 AM ******/
+/****** Object:  Table [dbo].[TransactionHistory]    Script Date: 10/29/2023 3:27:36 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -190,6 +190,7 @@ CREATE TABLE [dbo].[TransactionHistory](
 	[EndDate] [datetime2](7) NOT NULL,
 	[IsActive] [bit] NOT NULL,
 	[Amount] [float] NOT NULL,
+	[IsBanking] [bit] NOT NULL,
  CONSTRAINT [PK_TransactionHistory] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
@@ -210,9 +211,9 @@ SET IDENTITY_INSERT [dbo].[AccountTypes] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Customers] ON 
 GO
-INSERT [dbo].[Customers] ([Id], [Username], [FirstName], [LastName], [Email], [Password], [Phone], [Birthday], [Avatar], [RegisteredAt], [LastLoginAt], [Status], [Role], [GoogleId], [GoogleEmail], [AccountTypeId], [StartDate], [EndDate]) VALUES (1, N'khoa', N'Hoang', N'Khoa', N'khoa@gmail.com', N'1234', N'08888888', CAST(N'2023-10-28T08:31:32.9901460' AS DateTime2), NULL, CAST(N'2023-10-28T00:00:00.0000000' AS DateTime2), NULL, N'Active', 1, NULL, N'khoa@gmail.com', 1, NULL, NULL)
+INSERT [dbo].[Customers] ([Id], [Username], [FirstName], [LastName], [Email], [Password], [Phone], [Birthday], [Avatar], [RegisteredAt], [LastLoginAt], [Status], [Role], [GoogleId], [GoogleEmail], [AccountTypeId], [StartDate], [EndDate]) VALUES (1, N'khoa', N'Hoang', N'Khoa', N'khoa@gmail.com', N'1234', N'08888888', CAST(N'2023-10-29T12:17:11.5695323' AS DateTime2), NULL, CAST(N'2023-10-29T00:00:00.0000000' AS DateTime2), NULL, N'Active', 1, NULL, N'khoa@gmail.com', 1, NULL, NULL)
 GO
-INSERT [dbo].[Customers] ([Id], [Username], [FirstName], [LastName], [Email], [Password], [Phone], [Birthday], [Avatar], [RegisteredAt], [LastLoginAt], [Status], [Role], [GoogleId], [GoogleEmail], [AccountTypeId], [StartDate], [EndDate]) VALUES (2, N'khoa', N'Hoang', N'Hai', N'hai@gmail.com', N'1234', N'08888888', CAST(N'2023-10-28T08:31:32.9901475' AS DateTime2), NULL, CAST(N'2023-10-28T00:00:00.0000000' AS DateTime2), NULL, N'Active', 1, NULL, N'hai@gmail.com', 1, NULL, NULL)
+INSERT [dbo].[Customers] ([Id], [Username], [FirstName], [LastName], [Email], [Password], [Phone], [Birthday], [Avatar], [RegisteredAt], [LastLoginAt], [Status], [Role], [GoogleId], [GoogleEmail], [AccountTypeId], [StartDate], [EndDate]) VALUES (2, N'khoa', N'Hoang', N'Hai', N'hai@gmail.com', N'1234', N'08888888', CAST(N'2023-10-29T12:17:11.5695335' AS DateTime2), NULL, CAST(N'2023-10-29T00:00:00.0000000' AS DateTime2), NULL, N'Active', 1, NULL, N'hai@gmail.com', 1, NULL, NULL)
 GO
 INSERT [dbo].[Customers] ([Id], [Username], [FirstName], [LastName], [Email], [Password], [Phone], [Birthday], [Avatar], [RegisteredAt], [LastLoginAt], [Status], [Role], [GoogleId], [GoogleEmail], [AccountTypeId], [StartDate], [EndDate]) VALUES (3, N'customer', NULL, NULL, N'customer@gmail.com', N'P@ssw0rd', N'1234', NULL, NULL, CAST(N'2023-10-28T08:35:55.2129745' AS DateTime2), NULL, N'Active', 0, NULL, NULL, 1, CAST(N'2023-10-28T08:35:55.2129765' AS DateTime2), CAST(N'2024-01-28T08:35:55.2129766' AS DateTime2))
 GO
@@ -242,6 +243,10 @@ SET IDENTITY_INSERT [dbo].[ProjectParticipants] ON
 GO
 INSERT [dbo].[ProjectParticipants] ([Id], [ProjectId], [CustomerId], [IsLeader]) VALUES (1, 1, 1, 1)
 GO
+INSERT [dbo].[ProjectParticipants] ([Id], [ProjectId], [CustomerId], [IsLeader]) VALUES (2, 1, 3, 0)
+GO
+INSERT [dbo].[ProjectParticipants] ([Id], [ProjectId], [CustomerId], [IsLeader]) VALUES (3, 1, 2, 0)
+GO
 SET IDENTITY_INSERT [dbo].[ProjectParticipants] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Projects] ON 
@@ -252,19 +257,21 @@ SET IDENTITY_INSERT [dbo].[Projects] OFF
 GO
 SET IDENTITY_INSERT [dbo].[Todos] ON 
 GO
-INSERT [dbo].[Todos] ([Id], [ProjectId], [LabelId], [Title], [Status], [StartDate], [EndDate], [ReportTo], [Assignee], [CreatedBy], [Priority], [IconPriority]) VALUES (1, 1, 1, N'Design UI/UX for application', N'In Progress', CAST(N'2023-10-28T08:31:32.9901524' AS DateTime2), CAST(N'2023-11-04T08:31:32.9901524' AS DateTime2), 0, 1, 1, 5, N'')
+INSERT [dbo].[Todos] ([Id], [ProjectId], [LabelId], [Title], [Status], [StartDate], [EndDate], [ReportTo], [Assignee], [CreatedBy], [Priority], [IconPriority]) VALUES (1, 1, 1, N'Design UI/UX for application', N'In Progress', CAST(N'2023-10-29T12:17:11.5695382' AS DateTime2), CAST(N'2023-11-05T12:17:11.5695383' AS DateTime2), 0, 1, 1, 5, N'')
 GO
-INSERT [dbo].[Todos] ([Id], [ProjectId], [LabelId], [Title], [Status], [StartDate], [EndDate], [ReportTo], [Assignee], [CreatedBy], [Priority], [IconPriority]) VALUES (2, 1, 2, N'Builtd API for application', N'Todo', CAST(N'2023-10-28T08:31:32.9901529' AS DateTime2), CAST(N'2023-11-04T08:31:32.9901530' AS DateTime2), 0, 1, 1, 5, N'')
+INSERT [dbo].[Todos] ([Id], [ProjectId], [LabelId], [Title], [Status], [StartDate], [EndDate], [ReportTo], [Assignee], [CreatedBy], [Priority], [IconPriority]) VALUES (2, 1, 2, N'Builtd API for application', N'Todo', CAST(N'2023-10-29T12:17:11.5695387' AS DateTime2), CAST(N'2023-11-05T12:17:11.5695387' AS DateTime2), 0, 1, 1, 5, N'')
 GO
-INSERT [dbo].[Todos] ([Id], [ProjectId], [LabelId], [Title], [Status], [StartDate], [EndDate], [ReportTo], [Assignee], [CreatedBy], [Priority], [IconPriority]) VALUES (3, 1, 3, N'Integrated Chatbox to application', N'In Progress', CAST(N'2023-10-28T08:31:32.9901531' AS DateTime2), CAST(N'2023-11-04T08:31:32.9901531' AS DateTime2), 0, 1, 1, 5, N'')
+INSERT [dbo].[Todos] ([Id], [ProjectId], [LabelId], [Title], [Status], [StartDate], [EndDate], [ReportTo], [Assignee], [CreatedBy], [Priority], [IconPriority]) VALUES (3, 1, 3, N'Integrated Chatbox to application', N'In Progress', CAST(N'2023-10-29T12:17:11.5695388' AS DateTime2), CAST(N'2023-11-05T12:17:11.5695389' AS DateTime2), 0, 1, 1, 5, N'')
 GO
 SET IDENTITY_INSERT [dbo].[Todos] OFF
 GO
 SET IDENTITY_INSERT [dbo].[TransactionHistory] ON 
 GO
-INSERT [dbo].[TransactionHistory] ([Id], [CustomerId], [AccountTypeId], [PaymentId], [Content], [PaymentDate], [StartDate], [EndDate], [IsActive], [Amount]) VALUES (1, 1, 1, 1, NULL, CAST(N'2023-10-28T08:31:32.9904864' AS DateTime2), CAST(N'2023-10-28T08:31:32.9904867' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), 0, 0)
+INSERT [dbo].[TransactionHistory] ([Id], [CustomerId], [AccountTypeId], [PaymentId], [Content], [PaymentDate], [StartDate], [EndDate], [IsActive], [Amount], [IsBanking]) VALUES (1, 1, 1, 1, NULL, CAST(N'2023-10-29T12:17:11.5698290' AS DateTime2), CAST(N'2023-10-29T12:17:11.5698293' AS DateTime2), CAST(N'0001-01-01T00:00:00.0000000' AS DateTime2), 0, 0, 0)
 GO
 SET IDENTITY_INSERT [dbo].[TransactionHistory] OFF
+GO
+ALTER TABLE [dbo].[TransactionHistory] ADD  DEFAULT (CONVERT([bit],(0))) FOR [IsBanking]
 GO
 ALTER TABLE [dbo].[ChildTasks]  WITH CHECK ADD  CONSTRAINT [FK_ChildTasks_Todos_TodoId] FOREIGN KEY([TodoId])
 REFERENCES [dbo].[Todos] ([Id])

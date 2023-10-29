@@ -185,5 +185,11 @@ namespace ProTracking.API.Services
             }
             return false;
         }
+
+        public Customer GetCustomerByEmailandPassword(LoginDTO login)
+        {
+            Customer customer = _unitOfWork.CustomerRepo.GetUserLogin(login);
+            return customer;
+        }
     }
 }

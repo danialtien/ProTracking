@@ -20,7 +20,6 @@ namespace ProTracking.API.Controllers
             this.service = _service;
         }
 
-
         [HttpGet]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -30,8 +29,6 @@ namespace ProTracking.API.Controllers
         {
             return await service.GetAll(null, null);
         }
-
-
 
         // GET api/<CommentsController>/5
         [HttpGet("{id}")]

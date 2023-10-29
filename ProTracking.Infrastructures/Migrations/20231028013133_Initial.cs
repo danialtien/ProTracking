@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProTracking.Infrastructures.Migrations
 {
-    public partial class UpdateSeedData : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -70,19 +70,17 @@ namespace ProTracking.Infrastructures.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RegisteredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastLoginAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastLoginAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<int>(type: "int", nullable: true),
                     GoogleId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GoogleEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OAuthToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OAuthExpiry = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AccountTypeId = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -154,6 +152,8 @@ namespace ProTracking.Infrastructures.Migrations
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Amount = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
@@ -298,11 +298,11 @@ namespace ProTracking.Infrastructures.Migrations
 
             migrationBuilder.InsertData(
                 table: "Customers",
-                columns: new[] { "Id", "AccountTypeId", "Avatar", "Birthday", "Email", "EndDate", "FirstName", "GoogleEmail", "GoogleId", "LastLoginAt", "LastName", "OAuthExpiry", "OAuthToken", "Password", "Phone", "RegisteredAt", "Role", "StartDate", "Status", "Username" },
+                columns: new[] { "Id", "AccountTypeId", "Avatar", "Birthday", "Email", "EndDate", "FirstName", "GoogleEmail", "GoogleId", "LastLoginAt", "LastName", "Password", "Phone", "RegisteredAt", "Role", "StartDate", "Status", "Username" },
                 values: new object[,]
                 {
-                    { 1, 1, null, new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6474), "khoa@gmail.com", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hoang", "khoa@gmail.com", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Khoa", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "1234", "08888888", new DateTime(2023, 10, 22, 0, 0, 0, 0, DateTimeKind.Local), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Active", "khoa" },
-                    { 2, 1, null, new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6486), "hai@gmail.com", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hoang", "hai@gmail.com", null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hai", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "1234", "08888888", new DateTime(2023, 10, 22, 0, 0, 0, 0, DateTimeKind.Local), 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Active", "khoa" }
+                    { 1, 1, null, new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1460), "khoa@gmail.com", null, "Hoang", "khoa@gmail.com", null, null, "Khoa", "1234", "08888888", new DateTime(2023, 10, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, null, "Active", "khoa" },
+                    { 2, 1, null, new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1475), "hai@gmail.com", null, "Hoang", "hai@gmail.com", null, null, "Hai", "1234", "08888888", new DateTime(2023, 10, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, null, "Active", "khoa" }
                 });
 
             migrationBuilder.InsertData(
@@ -326,15 +326,15 @@ namespace ProTracking.Infrastructures.Migrations
                 columns: new[] { "Id", "Assignee", "CreatedBy", "EndDate", "IconPriority", "LabelId", "Priority", "ProjectId", "ReportTo", "StartDate", "Status", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, new DateTime(2023, 10, 29, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6544), "", 1, 5, 1, 0, new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6543), "In Progress", "Design UI/UX for application" },
-                    { 2, 1, 1, new DateTime(2023, 10, 29, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6549), "", 2, 5, 1, 0, new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6549), "Todo", "Builtd API for application" },
-                    { 3, 1, 1, new DateTime(2023, 10, 29, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6551), "", 3, 5, 1, 0, new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(6551), "In Progress", "Integrated Chatbox to application" }
+                    { 1, 1, 1, new DateTime(2023, 11, 4, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1524), "", 1, 5, 1, 0, new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1524), "In Progress", "Design UI/UX for application" },
+                    { 2, 1, 1, new DateTime(2023, 11, 4, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1530), "", 2, 5, 1, 0, new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1529), "Todo", "Builtd API for application" },
+                    { 3, 1, 1, new DateTime(2023, 11, 4, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1531), "", 3, 5, 1, 0, new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1531), "In Progress", "Integrated Chatbox to application" }
                 });
 
             migrationBuilder.InsertData(
                 table: "TransactionHistory",
-                columns: new[] { "Id", "AccountTypeId", "Amount", "Content", "CustomerId", "PaymentDate", "PaymentId", "StartDate" },
-                values: new object[] { 1, 1, 0.0, null, 1, new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(9910), 1, new DateTime(2023, 10, 22, 13, 1, 10, 230, DateTimeKind.Local).AddTicks(9913) });
+                columns: new[] { "Id", "AccountTypeId", "Amount", "Content", "CustomerId", "EndDate", "IsActive", "PaymentDate", "PaymentId", "StartDate" },
+                values: new object[] { 1, 1, 0.0, null, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(4864), 1, new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(4867) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ChildTasks_TodoId",

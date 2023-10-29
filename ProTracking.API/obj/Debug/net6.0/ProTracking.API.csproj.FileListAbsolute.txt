@@ -165,3 +165,4 @@ E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.O
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.OData.ModelBuilder.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.Spatial.dll
 E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\appsettings.Production.json
+E:\2023_Fall_Ky8\EXE201\ProTracking\ProTracking.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

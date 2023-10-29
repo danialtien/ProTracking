@@ -52,7 +52,10 @@ builder.Services.AddAuthentication(options =>
     {
         options.ClientId = "";
         options.ClientSecret = "";
+        options.ClientId = builder.Configuration["Google:ClientId"];
+        options.ClientSecret = builder.Configuration["Google:ClientSecret"];
         options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+        options.CallbackPath = "/signin-google";
     });
 
 builder.Services.AddAuthentication(options =>

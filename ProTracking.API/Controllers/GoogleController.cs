@@ -84,8 +84,6 @@ namespace ProTracking.API.Controllers
                     Role = RoleEnum.Customer, // Set the role based on your application logic
                     GoogleId = claims.FirstOrDefault(c => c.Type == "sub")?.Value,
                     GoogleEmail = claims.FirstOrDefault(c => c.Type == "email")?.Value,
-                    OAuthToken = null, // You may handle OAuth tokens differently
-                    OAuthExpiry = DateTime.Now, // Set the OAuth expiry, e.g., current time
                     AccountTypeId = 1, // Set the appropriate account type ID
                     StartDate = DateTime.Now, // Set to current time
                     EndDate = DateTime.Now.AddYears(1) // Set an appropriate end date

@@ -82,5 +82,12 @@ namespace ProTracking.API.Services
             }
             return false;
         }
+
+        public async Task<IEnumerable<ProjectParticipant>> GetParticipantsByCustomerId(int customerId)
+        {
+            // Implement the logic to retrieve project participants by customer ID
+            return await _unitOfWork.ProjectParticipantRepo
+                .GetAllAsync(pp => pp.Customer.Id == customerId);
+        }
     }
 }

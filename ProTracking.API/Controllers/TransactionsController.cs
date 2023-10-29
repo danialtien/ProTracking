@@ -4,7 +4,9 @@ using ProTracking.API.Services.IServices;
 using ProTracking.Application.ViewModels;
 using ProTracking.Domain.Entities;
 using ProTracking.Domain.Entities.DTOs;
+using ProTracking.Domain.Enums;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,8 +33,6 @@ namespace ProTracking.API.Controllers
             return await service.GetAll(null, null);
         }
 
-
-
         // GET api/<TransactionsController>/5
         [HttpGet("{id}")]
         [Produces("application/json")]
@@ -41,8 +41,28 @@ namespace ProTracking.API.Controllers
         [SwaggerOperation(Summary = "Get transaction history by Id")]
         public async Task<TransactionHistoryDTO> Get(int id)
         {
-            return await service.GetById(id);
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+
+            if (userRole == RoleEnum.Admin.ToString())
+            {
+                // Admins can access all transaction history
+                return await service.GetById(id);
+            }
+            else if (userRole == RoleEnum.Customer.ToString())
+            {
+                // Customers can only access their own transaction history
+                var transaction = await service.GetById(id);
+
+                if (transaction != null && transaction.CustomerId.ToString() == currentUserId)
+                {
+                    return transaction;
+                }
+            }
+
+            return null; // Return 404 for unauthorized access
         }
+
 
         // POST api/<TransactionsController>
         [HttpPost]

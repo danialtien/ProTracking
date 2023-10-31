@@ -10,6 +10,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace ProTracking.API.Controllers
 {
+    [Authorize]
     [ApiController]
     public class ChildTasksController : BaseController
     {

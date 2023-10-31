@@ -34,10 +34,6 @@ namespace ProTracking.API.Controllers
             return await service.GetAll(null, null);
         }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> khanggrey
         // GET api/<TransactionsController>/5
         [HttpGet("{id}")]
         [Produces("application/json")]

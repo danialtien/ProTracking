@@ -191,5 +191,10 @@ namespace ProTracking.API.Services
             Customer customer = _unitOfWork.CustomerRepo.GetUserLogin(login);
             return customer;
         }
+        public async Task<Customer> GetCustomerByEmailAsync(string email)
+        {
+            return await _unitOfWork.CustomerRepo.GetCustomerByEmailAsync(email);
+        }
+
     }
 }

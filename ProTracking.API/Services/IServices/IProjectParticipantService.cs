@@ -13,5 +13,6 @@ namespace ProTracking.API.Services.IServices
         Task<bool> SoftRemoveByID(int entityId);
         Task<bool> UpdateAsync(ProjectParticipantDTO entity);
         Task<bool> UpdateRange(List<ProjectParticipantDTO> entities);
+        Task<IEnumerable<ProjectParticipant>> GetParticipantsByCustomerId(int customerId);
     }
 }

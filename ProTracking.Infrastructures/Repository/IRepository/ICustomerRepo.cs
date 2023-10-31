@@ -15,5 +15,6 @@ namespace ProTracking.Infrastructures.Repository
         Customer? GetLast();
 
         Customer? GetUserLogin(LoginDTO login);
+        Task<Customer> GetCustomerByEmailAsync(string email);
     }
 }

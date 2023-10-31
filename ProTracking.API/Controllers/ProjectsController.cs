@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Query;
 using ProTracking.API.Services.IServices;
 using ProTracking.Domain.Entities;
@@ -20,7 +21,7 @@ namespace ProTracking.API.Controllers
             this.service = _service;
         }
 
-        // GET api/<ProjectsController>/all
+        // GET api/<ProjectsController>/all Customers
         [EnableQuery]
         [HttpGet]
         [Produces("application/json")]
@@ -30,6 +31,19 @@ namespace ProTracking.API.Controllers
         public async Task<IEnumerable<Project>> GetAllOData([Required] int createdBy)
         {
             return (await service.GetAll()).AsQueryable().Where(c => c.CreatedBy == createdBy);
+        }
+
+        // GET api/<ProjectsController>/all Admin
+        [HttpGet]
+        [EnableQuery]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Get All Project by OData - Done")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IEnumerable<Project>> GetAllODataForAdmin()
+        {
+            return (await service.GetAll()).AsQueryable();
         }
 
         // POST api/<ProjectsController>

@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 using ProTracking.API.Services;
 using ProTracking.API.Services.IServices;
 using ProTracking.Application.ViewModels;
 using ProTracking.Domain.Entities;
 using Swashbuckle.AspNetCore.Annotations;
+using System.ComponentModel.DataAnnotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,7 +28,6 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Return all customers")]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
             var result = (await service.GetAll()).AsQueryable();
@@ -59,6 +60,32 @@ namespace ProTracking.API.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var result = await service.GetById(id);
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                AccountTypeById = result,
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result != null ? Ok(content) : BadRequest(contentError);
+        }
+
+        [EnableQuery]
+        [HttpGet("{email}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Get Customer by email")]
+        public async Task<IActionResult> GetByEmailOData([Required][EmailAddress] string email)
+        {
+            var result = (await service.GetAll()).AsQueryable().Where(c => c.Email == email);
             var content = new
             {
                 statusCode = 200,

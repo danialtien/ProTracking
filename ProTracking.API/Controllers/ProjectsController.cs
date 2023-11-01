@@ -5,6 +5,7 @@ using ProTracking.API.Services.IServices;
 using ProTracking.Domain.Entities;
 using ProTracking.Domain.Entities.DTOs;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -21,16 +22,29 @@ namespace ProTracking.API.Controllers
             this.service = _service;
         }
 
-        // GET api/<ProjectsController>/all Customers
+        // GET api/<ProjectsController>/all
         [EnableQuery]
         [HttpGet]
+        //[Authorize(Roles = "Customer")]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Get All Project by OData - Done")]
-        public async Task<IEnumerable<Project>> GetAllOData([Required] int createdBy)
+        public async Task<IActionResult> GetAllOData([Required] int createdBy)
         {
-            return (await service.GetAll()).AsQueryable().Where(c => c.CreatedBy == createdBy);
+            var projects = (await service.GetAll()).AsQueryable().Where(c => c.CreatedBy == createdBy);
+
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                content = new
+                {
+                    listProjectByCreator = projects,
+                },
+                dateTime = DateTime.Now
+            };
+            return Ok(content);
         }
 
         // GET api/<ProjectsController>/all Admin
@@ -41,9 +55,21 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Get All Project by OData - Done")]
         [Authorize(Roles = "Admin")]
-        public async Task<IEnumerable<Project>> GetAllODataForAdmin()
+        public async Task<IActionResult> GetAllODataForAdmin()
         {
-            return (await service.GetAll()).AsQueryable();
+            var projects = (await service.GetAll()).AsQueryable();
+
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                content = new
+                {
+                    listProjectForAdmin = projects,
+                },
+                dateTime = DateTime.Now
+            };
+            return Ok(content);
         }
 
         // POST api/<ProjectsController>
@@ -55,7 +81,20 @@ namespace ProTracking.API.Controllers
         public async Task<IActionResult> Post(ProjectDTO entity)
         {
             var result = await service.AddAsync(entity);
-            return result ? Ok() : BadRequest();
+            var content = new
+            {
+                statusCode = 201,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thấy bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : BadRequest(contentError);
         }
 
         // PUT api/<ProjectsController>/5
@@ -69,7 +108,20 @@ namespace ProTracking.API.Controllers
             var exist = Exist(id);
             if (!exist) return NotFound();
             var result = await service.UpdateAsync(entity);
-            return result ? Ok() : BadRequest();
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : BadRequest(contentError);
         }
 
         // DELETE api/<ProjectsController>/5
@@ -83,7 +135,20 @@ namespace ProTracking.API.Controllers
             var exist = Exist(id);
             if (!exist) return NotFound();
             var result = await service.SoftRemoveByID(id);
-            return result ? Ok() : BadRequest();
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : BadRequest(contentError);
         }
 
         private bool Exist(int id)

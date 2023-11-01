@@ -25,9 +25,25 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Return all payments")]
-        public async Task<IEnumerable<Payment>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return await service.GetAll(null, null);
+            var result = (await service.GetAll()).AsQueryable();
+
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                listAllChildTask = result.ToList(),
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result.Count() > 0 ? Ok(content) : BadRequest(contentError);
         }
 
 
@@ -38,9 +54,24 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Get payment by Id")]
-        public async Task<Payment> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return await service.GetById(id);
+            var result = await service.GetById(id);
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                PaymentById = result,
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result != null ? Ok(content) : BadRequest(contentError);
         }
 
         // POST api/<PaymentsController>
@@ -52,7 +83,20 @@ namespace ProTracking.API.Controllers
         public async Task<IActionResult> Post(Payment entity)
         {
             var result = await service.AddAsync(entity);
-            return result ? Ok() : BadRequest();
+            var content = new
+            {
+                statusCode = 201,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : BadRequest(contentError);
         }
 
         //// PUT api/<PaymentsController>/5

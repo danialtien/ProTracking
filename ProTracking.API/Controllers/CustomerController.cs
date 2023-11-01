@@ -27,9 +27,25 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Return all customers")]
         [Authorize(Roles = "Admin")]
-        public async Task<IEnumerable<Customer>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return await service.GetAll(null, null);
+            var result = (await service.GetAll()).AsQueryable();
+
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                listAllChildTask = result.ToList(),
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result.Count() > 0 ? Ok(content) : BadRequest(contentError);
         }
 
 
@@ -40,9 +56,24 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Get Customer by Id")]
-        public async Task<Customer> Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return await service.GetById(id);
+            var result = await service.GetById(id);
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                AccountTypeById = result,
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result != null ? Ok(content) : BadRequest(contentError);
         }
 
         // POST api/<CustomersController>
@@ -54,7 +85,20 @@ namespace ProTracking.API.Controllers
         public async Task<IActionResult> Post(Customer entity)
         {
             var result = await service.AddAsync(entity);
-            return result ? Ok() : BadRequest();
+            var content = new
+            {
+                statusCode = 201,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : BadRequest(contentError);
         }
 
         // PUT api/<CustomersController>/5
@@ -68,7 +112,20 @@ namespace ProTracking.API.Controllers
             var exist = Exist(id);
             if(!exist) return NotFound();
             var result = await service.UpdateAsync(entity);
-            return result ? Ok() : BadRequest();
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : BadRequest(contentError);
         }
 
         // DELETE api/<CustomersController>/5
@@ -82,7 +139,20 @@ namespace ProTracking.API.Controllers
             var exist = Exist(id);
             if (!exist) return NotFound();
             var result = await service.SoftRemoveByID(id);
-            return result ? Ok() : BadRequest();
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : BadRequest(contentError);
         }
 
 

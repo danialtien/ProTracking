@@ -51,8 +51,8 @@ namespace ProTracking.API.Controllers
                     message = "Xử lý thành công!",
                     content = new
                     {
-                        customer,
-                        accessToken = token
+                        accessToken = token,
+                        customer
                     },
                     dateTime = DateTime.Now
                 };
@@ -99,7 +99,7 @@ namespace ProTracking.API.Controllers
             {
                 var content = new
                 {
-                    statusCode = 200,
+                    statusCode = 201,
                     message = "Xử lý thành công!",
                     dateTime = DateTime.Now
                 };

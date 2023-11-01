@@ -49,7 +49,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddAuthentication(options =>
+/*builder.Services.AddAuthentication(options =>
 {
     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme; // Use the Google authentication scheme
@@ -63,7 +63,7 @@ builder.Services.AddAuthentication(options =>
         options.ClientSecret = builder.Configuration["Google:ClientSecret"];
         options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
         options.CallbackPath = "/signin-google";
-    });
+    });*/
 
 builder.Services.AddAuthentication(options =>
 {

@@ -107,7 +107,7 @@ namespace ProTracking.API.Services
         public string GenerateTokenString(CustomerToken user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("Jwt:Key").Value));
-            var credential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            var credential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
             {

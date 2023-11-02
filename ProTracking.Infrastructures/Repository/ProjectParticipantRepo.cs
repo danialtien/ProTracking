@@ -37,6 +37,12 @@ namespace ProTracking.Infrastructures.Repository
             return await db.ProjectParticipants.ToListAsync();
         }
 
+        public async Task<ICollection<ProjectParticipant>> GetAllByProjectId(int projectId)
+        {
+            if (projectId == 0) return null;
+            return await db.ProjectParticipants.Where(p => p.ProjectId == projectId).ToListAsync();
+        }
+
         public async Task<ProjectParticipant> GetByIdAsync(int id)
         {
             var result = await db.ProjectParticipants.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);

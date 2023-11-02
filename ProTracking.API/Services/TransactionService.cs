@@ -71,6 +71,27 @@ namespace ProTracking.API.Services
             return false;
         }
 
+        public async Task<bool> UpdateForAdminOnlyAsync(TransactionHistoryDTO entity, bool isBanking)
+        {
+            if (entity != null)
+            {
+                TransactionHistory TransactionHistory = _mapper.Map<TransactionHistory>(entity);
+                if (isBanking)
+                {
+                    TransactionHistory.IsBanking = isBanking;
+                    TransactionHistory.PaymentDate = DateTime.UtcNow;
+                    TransactionHistory.IsActive = true;
+                    TransactionHistory.StartDate = DateTime.UtcNow;
+                    TransactionHistory.EndDate = DateTime.UtcNow.AddDays(30);
+                    Customer customer = await _unitOfWork.CustomerRepo.GetByIdAsync(entity.CustomerId);
+                    customer.AccountTypeId = entity.AccountTypeId;
+                    await _unitOfWork.TransactionHistoryRepo.UpdateAsync(TransactionHistory);
+                    await _unitOfWork.CustomerRepo.UpdateAsync(customer);
+                }
+            }
+            return await _unitOfWork.SaveChangeAsync() > 0;
+        }
+
         public async Task<bool> UpdateRange(List<TransactionHistoryDTO> entities)
         {
             if (entities != null)

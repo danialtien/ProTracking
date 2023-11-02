@@ -15,9 +15,8 @@ namespace ProTracking.Domain.Entities
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
-
         public double Amount { get; set; }
-
+        public bool IsBanking { get; set; }
 
         [ForeignKey(nameof(CustomerId))]
         public Customer Customer { get; set; }

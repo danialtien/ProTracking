@@ -107,7 +107,7 @@ namespace ProTracking.API.Services
         public string GenerateTokenString(CustomerToken user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("Jwt:Key").Value));
-            var credential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
+            var credential = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
             {
@@ -186,6 +186,11 @@ namespace ProTracking.API.Services
             return false;
         }
 
+        public Customer GetCustomerByEmailandPassword(LoginDTO login)
+        {
+            Customer customer = _unitOfWork.CustomerRepo.GetUserLogin(login);
+            return customer;
+        }
         public async Task<Customer> GetCustomerByEmailAsync(string email)
         {
             return await _unitOfWork.CustomerRepo.GetCustomerByEmailAsync(email);

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProTracking.API.Services;
 using ProTracking.API.Services.IServices;
 using ProTracking.Application.ViewModels;
@@ -105,6 +106,21 @@ namespace ProTracking.API.Controllers
             var exist = Exist(id);
             if (!exist) return NotFound();
             var result = await service.UpdateAsync(entity);
+            return result ? Ok() : BadRequest();
+        }
+
+
+        [HttpPut("{id}")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Update exist transaction history for Admin ")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateTransactionForAdminOnly(int id, TransactionHistoryDTO entity, bool isBanking)
+        {
+            var exist = Exist(id);
+            if (!exist) return NotFound();
+            var result = await service.UpdateForAdminOnlyAsync(entity, isBanking);
             return result ? Ok() : BadRequest();
         }
 

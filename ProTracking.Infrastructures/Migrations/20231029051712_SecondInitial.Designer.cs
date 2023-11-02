@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProTracking.Infrastructures.Data;
 
@@ -11,9 +12,10 @@ using ProTracking.Infrastructures.Data;
 namespace ProTracking.Infrastructures.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231029051712_SecondInitial")]
+    partial class SecondInitial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -216,7 +218,7 @@ namespace ProTracking.Infrastructures.Migrations
                         {
                             Id = 1,
                             AccountTypeId = 1,
-                            Birthday = new DateTime(2023, 10, 29, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9003),
+                            Birthday = new DateTime(2023, 10, 29, 12, 17, 11, 569, DateTimeKind.Local).AddTicks(5323),
                             Email = "khoa@gmail.com",
                             FirstName = "Hoang",
                             GoogleEmail = "khoa@gmail.com",
@@ -232,7 +234,7 @@ namespace ProTracking.Infrastructures.Migrations
                         {
                             Id = 2,
                             AccountTypeId = 1,
-                            Birthday = new DateTime(2023, 10, 29, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9023),
+                            Birthday = new DateTime(2023, 10, 29, 12, 17, 11, 569, DateTimeKind.Local).AddTicks(5335),
                             Email = "hai@gmail.com",
                             FirstName = "Hoang",
                             GoogleEmail = "hai@gmail.com",
@@ -467,13 +469,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 1,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 5, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9077),
+                            EndDate = new DateTime(2023, 11, 5, 12, 17, 11, 569, DateTimeKind.Local).AddTicks(5383),
                             IconPriority = "",
                             LabelId = 1,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 29, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9076),
+                            StartDate = new DateTime(2023, 10, 29, 12, 17, 11, 569, DateTimeKind.Local).AddTicks(5382),
                             Status = "In Progress",
                             Title = "Design UI/UX for application"
                         },
@@ -482,13 +484,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 2,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 5, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9086),
+                            EndDate = new DateTime(2023, 11, 5, 12, 17, 11, 569, DateTimeKind.Local).AddTicks(5387),
                             IconPriority = "",
                             LabelId = 2,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 29, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9085),
+                            StartDate = new DateTime(2023, 10, 29, 12, 17, 11, 569, DateTimeKind.Local).AddTicks(5387),
                             Status = "Todo",
                             Title = "Builtd API for application"
                         },
@@ -497,13 +499,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 3,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 5, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9088),
+                            EndDate = new DateTime(2023, 11, 5, 12, 17, 11, 569, DateTimeKind.Local).AddTicks(5389),
                             IconPriority = "",
                             LabelId = 3,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 29, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9087),
+                            StartDate = new DateTime(2023, 10, 29, 12, 17, 11, 569, DateTimeKind.Local).AddTicks(5388),
                             Status = "In Progress",
                             Title = "Integrated Chatbox to application"
                         });
@@ -566,9 +568,10 @@ namespace ProTracking.Infrastructures.Migrations
                             CustomerId = 1,
                             EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = false,
-                            PaymentDate = new DateTime(2023, 10, 29, 10, 31, 19, 528, DateTimeKind.Local).AddTicks(2005),
+                            IsBanking = false,
+                            PaymentDate = new DateTime(2023, 10, 29, 12, 17, 11, 569, DateTimeKind.Local).AddTicks(8290),
                             PaymentId = 1,
-                            StartDate = new DateTime(2023, 10, 29, 10, 31, 19, 528, DateTimeKind.Local).AddTicks(2008)
+                            StartDate = new DateTime(2023, 10, 29, 12, 17, 11, 569, DateTimeKind.Local).AddTicks(8293)
                         });
                 });
 

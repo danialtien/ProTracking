@@ -22,7 +22,7 @@ namespace ProTracking.Infrastructures.Repository
         public async Task<bool> AddAsync(ProjectParticipant entity)
         {
             await db.ProjectParticipants.AddAsync(entity);
-            return await db.SaveChangesAsync() > 0;
+            return (await db.SaveChangesAsync()) > 0;
         }
 
         public async Task<IEnumerable<ProjectParticipant>> GetAllAsync(Expression<Func<ProjectParticipant, bool>>? filter = null, string[]? includeProperties = null)

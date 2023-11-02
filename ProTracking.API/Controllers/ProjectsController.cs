@@ -85,9 +85,9 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Get project by Id")]
-        public async Task<IActionResult> GetProjectById([Required]int id)
+        public async Task<IActionResult> GetProjectByIdWithTodoAndParticipant([Required]int id)
         {
-            var project = await service.GetById(id);
+            var project = await service.GetProjectByIdWithTodoAndParticipant(id);
 
             var content = new
             {
@@ -190,7 +190,7 @@ namespace ProTracking.API.Controllers
 
         private bool Exist(int id)
         {
-            var obj = service.GetById(id);
+            var obj = service.GetProjectByIdWithTodoAndParticipant(id);
             if (obj == null) return false;
             return true;
         }

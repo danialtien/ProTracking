@@ -77,15 +77,14 @@ namespace ProTracking.API.Controllers
             return result != null ? Ok(content) : BadRequest(contentError);
         }
 
-        [EnableQuery]
-        [HttpGet("{email}")]
+        [HttpGet]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Get Customer by email")]
-        public async Task<IActionResult> GetByEmailOData([Required][EmailAddress] string email)
+        public IActionResult GetByEmail([Required] string email)
         {
-            var result = (await service.GetAll()).AsQueryable().Where(c => c.Email == email);
+            var result = service.GetCustomerByEmailAsync(email);
             var content = new
             {
                 statusCode = 200,
@@ -100,7 +99,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result != null ? Ok(content) : BadRequest(contentError);
+            return result.Result != null ? Ok(content) : BadRequest(contentError);
         }
 
         // POST api/<CustomersController>

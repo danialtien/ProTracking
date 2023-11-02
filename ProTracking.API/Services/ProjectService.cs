@@ -3,6 +3,7 @@ using ProTracking.API.Services.IServices;
 using ProTracking.Domain.Entities;
 using ProTracking.Domain.Entities.DTOs;
 using ProTracking.Infrastructures.Repository;
+using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 
 namespace ProTracking.API.Services
@@ -44,6 +45,26 @@ namespace ProTracking.API.Services
             var _data = await _unitOfWork.ProjectRepo.GetAllAsync(filter, includeProperties);
             return _data;
         }
+
+        public async Task<ICollection<ProjectDTO>> GetAllProjectCreatedBy(int id)
+        {
+            var listProject = await _unitOfWork.ProjectRepo.GetAllAsync(c => c.CreatedBy == id);
+            ICollection<ProjectDTO> result = null;
+            if (listProject == null)
+            {
+                return result;
+            }
+            ProjectDTO dto = null;
+            result = new Collection<ProjectDTO>();
+            foreach (var item in listProject)
+            {
+                dto = new ProjectDTO();
+                dto = _mapper.Map<ProjectDTO>(item);
+                result.Add(dto);
+            }
+            return result;
+        }
+
 
         public async Task<ProjectDTO> GetById(int id)
         {

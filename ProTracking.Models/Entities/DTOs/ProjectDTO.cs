@@ -16,5 +16,6 @@ namespace ProTracking.Domain.Entities.DTOs
         public string? Description { get; set; }
         public string? Status { get; set; }
         public int CreatedBy { get; set; }
+        public string? UserCreatedName { get; set; }
     }
 }

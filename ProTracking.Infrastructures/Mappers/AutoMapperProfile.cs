@@ -39,10 +39,18 @@ namespace ProTracking.Infrastructures.Mappers
                 .ReverseMap();
 
             CreateMap<TransactionHistoryDTO, TransactionHistory>()
-                 .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CustomerId)))
-                 .ForMember(dest => dest.AccountType, opt => opt.MapFrom(src => _unitOfWork.AccountTypeRepo.GetByIdAsync(src.AccountTypeId)))
-                 .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => _unitOfWork.PaymentRepo.GetByIdAsync(src.PaymentId)))
-                 .ReverseMap();
+                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CustomerId)))
+                .ForMember(dest => dest.Payment, opt => opt.Ignore())
+                .ForMember(dest => dest.AccountType, opt => opt.Ignore())
+                .AfterMap(async (src, dest, context) =>
+                {
+                    var accountType = await _unitOfWork.AccountTypeRepo.GetByIdAsync(src.AccountTypeId);
+                    dest.AccountType = accountType;
+
+                    var payment = await _unitOfWork.PaymentRepo.GetByIdAsync(src.PaymentId);
+                    dest.Payment = payment;
+                })
+                .ReverseMap();
 
             CreateMap<Customer, CustomerToken>()
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.Id).Email))

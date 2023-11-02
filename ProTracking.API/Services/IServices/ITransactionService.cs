@@ -16,5 +16,6 @@ namespace ProTracking.API.Services.IServices
         Task<bool> SoftRemoveByID(int entityId);
         Task<bool> UpdateAsync(TransactionHistoryDTO entity);
         Task<bool> UpdateRange(List<TransactionHistoryDTO> entities);
+        public string GeneratePictureUrl(TransactionHistoryDTO entity);
     }
 }

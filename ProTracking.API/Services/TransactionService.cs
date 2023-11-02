@@ -80,5 +80,17 @@ namespace ProTracking.API.Services
             }
             return false;
         }
+
+        public string GeneratePictureUrl(TransactionHistoryDTO entity)
+        {
+            // Replace the ID in the URL with the actual file ID from your Google Drive link
+            string fileID = "1jiHspsf70p00gZIe7tpedr-y1w1QHfqX";
+
+            // Construct the URL using the file ID
+            string pictureUrl = "https://drive.google.com/uc?id=" + fileID;
+
+            return pictureUrl;
+        }
+
     }
 }

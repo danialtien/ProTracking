@@ -77,10 +77,8 @@ namespace ProTracking.API.Controllers
 
             if (result)
             {
-                // Assuming you have a method to generate the picture URL based on the payment entity
                 string pictureUrl = service.GeneratePictureUrl(entity);
 
-                // You can also include the picture URL in the response JSON
                 var response = new
                 {
                     Payment = entity,

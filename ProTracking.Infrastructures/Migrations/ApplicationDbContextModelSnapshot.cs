@@ -216,14 +216,14 @@ namespace ProTracking.Infrastructures.Migrations
                         {
                             Id = 1,
                             AccountTypeId = 1,
-                            Birthday = new DateTime(2023, 10, 29, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9003),
+                            Birthday = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(983),
                             Email = "khoa@gmail.com",
                             FirstName = "Hoang",
                             GoogleEmail = "khoa@gmail.com",
                             LastName = "Khoa",
                             Password = "1234",
                             Phone = "08888888",
-                            RegisteredAt = new DateTime(2023, 10, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            RegisteredAt = new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             Role = 1,
                             Status = "Active",
                             Username = "khoa"
@@ -232,14 +232,14 @@ namespace ProTracking.Infrastructures.Migrations
                         {
                             Id = 2,
                             AccountTypeId = 1,
-                            Birthday = new DateTime(2023, 10, 29, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9023),
+                            Birthday = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1000),
                             Email = "hai@gmail.com",
                             FirstName = "Hoang",
                             GoogleEmail = "hai@gmail.com",
                             LastName = "Hai",
                             Password = "1234",
                             Phone = "08888888",
-                            RegisteredAt = new DateTime(2023, 10, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            RegisteredAt = new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             Role = 1,
                             Status = "Active",
                             Username = "khoa"
@@ -394,10 +394,6 @@ namespace ProTracking.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("ProjectId");
-
                     b.ToTable("ProjectParticipants");
 
                     b.HasData(
@@ -467,13 +463,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 1,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 5, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9077),
+                            EndDate = new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1106),
                             IconPriority = "",
                             LabelId = 1,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 29, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9076),
+                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1106),
                             Status = "In Progress",
                             Title = "Design UI/UX for application"
                         },
@@ -482,13 +478,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 2,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 5, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9086),
+                            EndDate = new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1113),
                             IconPriority = "",
                             LabelId = 2,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 29, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9085),
+                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1113),
                             Status = "Todo",
                             Title = "Builtd API for application"
                         },
@@ -497,13 +493,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 3,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 5, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9088),
+                            EndDate = new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1115),
                             IconPriority = "",
                             LabelId = 3,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 29, 10, 31, 19, 527, DateTimeKind.Local).AddTicks(9087),
+                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1115),
                             Status = "In Progress",
                             Title = "Integrated Chatbox to application"
                         });
@@ -566,9 +562,10 @@ namespace ProTracking.Infrastructures.Migrations
                             CustomerId = 1,
                             EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = false,
-                            PaymentDate = new DateTime(2023, 10, 29, 10, 31, 19, 528, DateTimeKind.Local).AddTicks(2005),
+                            IsBanking = false,
+                            PaymentDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(4308),
                             PaymentId = 1,
-                            StartDate = new DateTime(2023, 10, 29, 10, 31, 19, 528, DateTimeKind.Local).AddTicks(2008)
+                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(4311)
                         });
                 });
 
@@ -618,25 +615,6 @@ namespace ProTracking.Infrastructures.Migrations
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("ProTracking.Domain.Entities.ProjectParticipant", b =>
-                {
-                    b.HasOne("ProTracking.Domain.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProTracking.Domain.Entities.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
 
                     b.Navigation("Project");
                 });

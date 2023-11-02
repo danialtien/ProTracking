@@ -12,8 +12,8 @@ using ProTracking.Infrastructures.Data;
 namespace ProTracking.Infrastructures.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231028013133_Initial")]
-    partial class Initial
+    [Migration("20231102120829_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -218,14 +218,14 @@ namespace ProTracking.Infrastructures.Migrations
                         {
                             Id = 1,
                             AccountTypeId = 1,
-                            Birthday = new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1460),
+                            Birthday = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(983),
                             Email = "khoa@gmail.com",
                             FirstName = "Hoang",
                             GoogleEmail = "khoa@gmail.com",
                             LastName = "Khoa",
                             Password = "1234",
                             Phone = "08888888",
-                            RegisteredAt = new DateTime(2023, 10, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            RegisteredAt = new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             Role = 1,
                             Status = "Active",
                             Username = "khoa"
@@ -234,14 +234,14 @@ namespace ProTracking.Infrastructures.Migrations
                         {
                             Id = 2,
                             AccountTypeId = 1,
-                            Birthday = new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1475),
+                            Birthday = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1000),
                             Email = "hai@gmail.com",
                             FirstName = "Hoang",
                             GoogleEmail = "hai@gmail.com",
                             LastName = "Hai",
                             Password = "1234",
                             Phone = "08888888",
-                            RegisteredAt = new DateTime(2023, 10, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            RegisteredAt = new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Local),
                             Role = 1,
                             Status = "Active",
                             Username = "khoa"
@@ -396,10 +396,6 @@ namespace ProTracking.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("ProjectId");
-
                     b.ToTable("ProjectParticipants");
 
                     b.HasData(
@@ -469,13 +465,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 1,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 4, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1524),
+                            EndDate = new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1106),
                             IconPriority = "",
                             LabelId = 1,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1524),
+                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1106),
                             Status = "In Progress",
                             Title = "Design UI/UX for application"
                         },
@@ -484,13 +480,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 2,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 4, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1530),
+                            EndDate = new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1113),
                             IconPriority = "",
                             LabelId = 2,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1529),
+                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1113),
                             Status = "Todo",
                             Title = "Builtd API for application"
                         },
@@ -499,13 +495,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 3,
                             Assignee = 1,
                             CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 4, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1531),
+                            EndDate = new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1115),
                             IconPriority = "",
                             LabelId = 3,
                             Priority = 5,
                             ProjectId = 1,
                             ReportTo = 0,
-                            StartDate = new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(1531),
+                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1115),
                             Status = "In Progress",
                             Title = "Integrated Chatbox to application"
                         });
@@ -537,6 +533,9 @@ namespace ProTracking.Infrastructures.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsBanking")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
 
@@ -565,9 +564,10 @@ namespace ProTracking.Infrastructures.Migrations
                             CustomerId = 1,
                             EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = false,
-                            PaymentDate = new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(4864),
+                            IsBanking = false,
+                            PaymentDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(4308),
                             PaymentId = 1,
-                            StartDate = new DateTime(2023, 10, 28, 8, 31, 32, 990, DateTimeKind.Local).AddTicks(4867)
+                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(4311)
                         });
                 });
 
@@ -617,25 +617,6 @@ namespace ProTracking.Infrastructures.Migrations
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("ProTracking.Domain.Entities.ProjectParticipant", b =>
-                {
-                    b.HasOne("ProTracking.Domain.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProTracking.Domain.Entities.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
 
                     b.Navigation("Project");
                 });

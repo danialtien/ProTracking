@@ -24,7 +24,8 @@ namespace ProTracking.Infrastructures.Mappers
 
             CreateMap<ProjectDTO, Project>()
                 .ForMember(dest => dest.Todo, opt => opt.MapFrom(src => _unitOfWork.TodoRepo.GetAllByProjectId(src.Id)))
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(dest => dest.UserCreatedName, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CreatedBy).Username));
 
             CreateMap<ProjectParticipantDTO, ProjectParticipant>()
                 .ForMember(dest => dest.Project, opt => opt.MapFrom(src => _unitOfWork.ProjectRepo.GetById(src.ProjectId)))

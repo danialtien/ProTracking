@@ -29,10 +29,10 @@ namespace ProTracking.API.Controllers
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(Summary = "Get All Project by OData - Done")]
+        [SwaggerOperation(Summary = "Get All Projects by Created by")]
         public async Task<IActionResult> GetAllOData([Required] int createdBy)
         {
-            var projects = (await service.GetAll()).AsQueryable().Where(c => c.CreatedBy == createdBy);
+            var projects = (await service.GetAllProjectCreatedBy(createdBy));
 
             var content = new
             {
@@ -40,11 +40,18 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thành công!",
                 content = new
                 {
-                    listProjectByCreator = projects,
+                    listAlProjectCreatedBy = projects.ToList(),
                 },
                 dateTime = DateTime.Now
             };
-            return Ok(content);
+
+            var contentError = new
+            {
+                statusCode = 404,
+                message = "Không có",
+                dateTime = DateTime.Now
+            };
+            return projects.ToList().Count > 0 ? Ok(content) : NotFound(contentError);
         }
 
         // GET api/<ProjectsController>/all Admin
@@ -53,11 +60,11 @@ namespace ProTracking.API.Controllers
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(Summary = "Get All Project by OData - Done")]
+        [SwaggerOperation(Summary = "Get All Project by OData")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllODataForAdmin()
         {
-            var projects = (await service.GetAll()).AsQueryable();
+            var projects = await service.GetAll();
 
             var content = new
             {
@@ -65,11 +72,41 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thành công!",
                 content = new
                 {
-                    listProjectForAdmin = projects,
+                    listProjectForAdmin = projects.ToList(),
                 },
                 dateTime = DateTime.Now
             };
             return Ok(content);
+        }
+
+        [HttpGet]
+        //[Authorize(Roles = "Customer")]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Get project by Id")]
+        public async Task<IActionResult> GetProjectById([Required]int id)
+        {
+            var project = await service.GetById(id);
+
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                content = new
+                {
+                    projectById = project,
+                },
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 404,
+                message = "Không tìm thấy!",
+                dateTime = DateTime.Now
+            };
+            return project != null ? Ok(content) : NotFound(contentError);
         }
 
         // POST api/<ProjectsController>

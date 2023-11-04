@@ -169,12 +169,40 @@ namespace ProTracking.API.Controllers
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(Summary = "Update exist Todo - Done")]
+        [SwaggerOperation(Summary = "Update exist Todo ")]
         public async Task<IActionResult> Update(int id, TodoDTO dto)
         {
             var exist = Exist(id);
             if (!exist) return NotFound();
             var result = await service.UpdateAsync(dto);
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : BadRequest(contentError);
+        }
+
+
+        [HttpPut]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Update Todo Status")]
+        public async Task<IActionResult> UpdateTodoStatusByTodoId(int todoId, string status)
+        {
+            var todoDTO = await service.GetById(todoId);
+            if(todoDTO == null) return NotFound();
+            todoDTO.Status = status;
+            var result = await service.UpdateAsync(todoDTO);
             var content = new
             {
                 statusCode = 200,

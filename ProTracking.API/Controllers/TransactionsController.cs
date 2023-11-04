@@ -74,7 +74,23 @@ namespace ProTracking.API.Controllers
         public async Task<IActionResult> Post(TransactionHistoryDTO entity)
         {
             var result = await service.AddAsync(entity);
-            return result ? Ok() : BadRequest();
+
+            if (result)
+            {
+                string pictureUrl = service.GeneratePictureUrl(entity);
+
+                var response = new
+                {
+                    Payment = entity,
+                    PictureUrl = pictureUrl
+                };
+
+                return Created(pictureUrl, response);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         // PUT api/<TransactionsController>/5

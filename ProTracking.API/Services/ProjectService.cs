@@ -46,9 +46,9 @@ namespace ProTracking.API.Services
             return _data;
         }
 
-        public async Task<ICollection<ProjectDTO>> GetAllProjectCreatedBy(int id)
+        public async Task<ICollection<ProjectDTO>> GetAllProjectCreatedBy(int createdBy)
         {
-            var listProject = await _unitOfWork.ProjectRepo.GetAllAsync(c => c.CreatedBy == id);
+            var listProject = await _unitOfWork.ProjectRepo.GetAllAsync(c => c.CreatedBy == createdBy);
             ICollection<ProjectDTO> result = null;
             if (listProject == null)
             {
@@ -66,11 +66,51 @@ namespace ProTracking.API.Services
         }
 
 
-        public async Task<ProjectDTO> GetById(int id)
+        public async Task<GetProjectWithTodoAndPaties> GetProjectByIdWithTodoAndParticipant(int id)
         {
             if (id == 0) return null;
             Project obj = await _unitOfWork.ProjectRepo.GetByIdAsync(id);
-            return _mapper.Map<ProjectDTO>(obj);
+            if (obj == null) return null;
+            ICollection<ProjectParticipant> projectParticipants = await _unitOfWork.ProjectParticipantRepo.GetAllByProjectId(obj.Id);
+            ICollection<ProjectParticipantWUsernameDTO> ParticipantsWName = new Collection<ProjectParticipantWUsernameDTO>();
+            ProjectParticipantWUsernameDTO projectParticipantWUsernameDTO = null;
+            if (projectParticipants.Count() == 0)
+            {
+                return null;
+            }
+            else
+            {
+                foreach (var participant in projectParticipants)
+                {
+                    projectParticipantWUsernameDTO = new ProjectParticipantWUsernameDTO();
+                    projectParticipantWUsernameDTO = _mapper.Map<ProjectParticipantWUsernameDTO>(participant);
+                    ParticipantsWName.Add(projectParticipantWUsernameDTO);
+                }
+            }
+            IEnumerable<Todo> Todos = _unitOfWork.TodoRepo.GetAllByProjectId(obj.Id);
+            ICollection<TodoDTO> TodoDTOs = new Collection<TodoDTO>();
+            if (Todos.Count() > 0)
+            {
+                foreach(var todo in Todos)
+                {
+                    var todoDTO = new TodoDTO();
+                    todoDTO = _mapper.Map<TodoDTO>(todo);
+                    TodoDTOs.Add(todoDTO);
+                }
+            }
+            GetProjectWithTodoAndPaties getProjectWithTodoAndPaties = new GetProjectWithTodoAndPaties()
+            {
+                Id = obj.Id,
+                Title = obj.Title,
+                SubTitle = obj.SubTitle,
+                Description = obj.Description,
+                Status = obj.Status,
+                CreatedBy = obj.CreatedBy,
+                UserCreatedName = (await _unitOfWork.CustomerRepo.GetByIdAsync(obj.CreatedBy)).Username,
+                Participants = ParticipantsWName,
+                Todos =TodoDTOs
+            };
+            return getProjectWithTodoAndPaties;
         }
 
         public async Task<bool> SoftRemove(ProjectDTO entity)
@@ -79,15 +119,15 @@ namespace ProTracking.API.Services
             Project obj = _mapper.Map<Project>(entity);
             bool result = await _unitOfWork.ProjectRepo.SoftRemoveAsync(obj);
             return result;
-
         }
 
         public async Task<bool> SoftRemoveByID(int entityId)
         {
-            ProjectDTO? obj = await GetById(entityId);
+            Project? obj = _unitOfWork.ProjectRepo.GetById(entityId);
             if (obj != null)
             {
-                await SoftRemove(obj);
+                var project = _mapper.Map<ProjectDTO>(obj);
+                await SoftRemove(project);
             }
             return false;
         }

@@ -9,5 +9,6 @@ namespace ProTracking.Infrastructures.Repository
 {
     public interface IProjectParticipantRepo : IGenericRepository<ProjectParticipant>
     {
+        Task<ICollection<ProjectParticipant>> GetAllByProjectId(int projectId);
     }
 }

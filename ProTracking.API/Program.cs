@@ -147,7 +147,6 @@ builder.Services.AddTransient<ICommentService, CommentService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<ITransactionService, TransactionService>();
 
-
 // Repository
 builder.Services.AddTransient<ICustomerRepo, CustomerRepo>();
 builder.Services.AddTransient<IProjectRepo, ProjectRepo>();

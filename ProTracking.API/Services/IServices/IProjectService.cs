@@ -8,12 +8,12 @@ namespace ProTracking.API.Services.IServices
     {
         Task<bool> AddAsync(ProjectDTO entity);
         Task<IEnumerable<Project>> GetAll(Expression<Func<Project, bool>>? filter = null, string[]? includeProperties = null);
-        Task<ProjectDTO> GetById(int id);
+        Task<GetProjectWithTodoAndPaties> GetProjectByIdWithTodoAndParticipant(int id);
         Task<bool> SoftRemove(ProjectDTO entity);
         Task<bool> SoftRemoveByID(int entityId);
         Task<bool> UpdateAsync(ProjectDTO entity);
         Task<bool> UpdateRange(List<ProjectDTO> entities);
 
-        Task<ICollection<ProjectDTO>> GetAllProjectCreatedBy(int id);
+        Task<ICollection<ProjectDTO>> GetAllProjectCreatedBy(int createdBy);
     }
 }

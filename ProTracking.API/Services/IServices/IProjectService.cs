@@ -14,6 +14,6 @@ namespace ProTracking.API.Services.IServices
         Task<bool> UpdateAsync(ProjectDTO entity);
         Task<bool> UpdateRange(List<ProjectDTO> entities);
 
-        Task<ICollection<ProjectDTO>> GetAllProjectCreatedBy(int id);
+        Task<ICollection<ProjectDTO>> GetAllProjectCreatedBy(int createdBy);
     }
 }

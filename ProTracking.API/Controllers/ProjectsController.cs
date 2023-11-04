@@ -40,7 +40,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thành công!",
                 content = new
                 {
-                    listAlProjectCreatedBy = projects.ToList(),
+                    listProjectByCreator = projects.ToList(),
                 },
                 dateTime = DateTime.Now
             };

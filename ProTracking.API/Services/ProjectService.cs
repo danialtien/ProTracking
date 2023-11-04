@@ -46,9 +46,9 @@ namespace ProTracking.API.Services
             return _data;
         }
 
-        public async Task<ICollection<ProjectDTO>> GetAllProjectCreatedBy(int id)
+        public async Task<ICollection<ProjectDTO>> GetAllProjectCreatedBy(int createdBy)
         {
-            var listProject = await _unitOfWork.ProjectRepo.GetAllAsync(c => c.CreatedBy == id);
+            var listProject = await _unitOfWork.ProjectRepo.GetAllAsync(c => c.CreatedBy == createdBy);
             ICollection<ProjectDTO> result = null;
             if (listProject == null)
             {

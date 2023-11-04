@@ -43,9 +43,8 @@ namespace ProTracking.Infrastructures.Mappers
                 .ReverseMap();
 
             CreateMap<TransactionHistoryDTO, TransactionHistory>()
-                 .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CustomerId)))
-                 .ForMember(dest => dest.AccountType, opt => opt.MapFrom(src => _unitOfWork.AccountTypeRepo.GetByIdAsync(src.AccountTypeId)))
-                 .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => _unitOfWork.PaymentRepo.GetByIdAsync(src.PaymentId)))
+                 .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => src.PaymentDate))
+                 .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.PaymentDate.AddDays(30)))
                  .ReverseMap();
 
             CreateMap<ProjectParticipant, ProjectParticipantWUsernameDTO>()

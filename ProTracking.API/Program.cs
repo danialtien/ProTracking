@@ -84,7 +84,6 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();

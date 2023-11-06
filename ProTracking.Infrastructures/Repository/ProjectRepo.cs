@@ -37,6 +37,14 @@ namespace ProTracking.Infrastructures.Repository
             return await db.Projects.ToListAsync();
         }
 
+        public async Task<IEnumerable<Project>> GetAllProjectByCreator(int createdBy)
+        {
+            return await db.Projects
+                .Where(c => c.CreatedBy == createdBy)
+                .OrderByDescending(c => c.Id)
+                .ToListAsync();
+        }
+
         public Project GetById(int id)
         {
             return db.Projects.FirstOrDefault(p => p.Id == id);

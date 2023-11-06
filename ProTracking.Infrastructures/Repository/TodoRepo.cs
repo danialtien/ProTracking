@@ -46,7 +46,7 @@ namespace ProTracking.Infrastructures.Repository
 
         public async Task<Todo?> GetByIdAsync(int id)
         {
-            var result = await db.Todos.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            var result = await db.Todos.Where(x => x.Id == id).AsNoTracking().FirstOrDefaultAsync();
             return result;
         }
 

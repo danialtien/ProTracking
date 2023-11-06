@@ -7,6 +7,7 @@ using ProTracking.Domain.Entities;
 using ProTracking.Domain.Entities.DTOs;
 using ProTracking.Domain.Enums;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Collections;
 using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -29,41 +30,49 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Return all transaction histories")]
+        [Authorize(Roles = "Admin")]
         public async Task<IEnumerable<TransactionHistory>> GetAll()
         {
             return await service.GetAll(null, null);
         }
 
         // GET api/<TransactionsController>/5
-        [HttpGet("{id}")]
+        [HttpGet("{userId}")]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(Summary = "Get transaction history by Id")]
-        public async Task<TransactionHistoryDTO> Get(int id)
+        [SwaggerOperation(Summary = "Get transaction history by UserId")]
+        public async Task<IActionResult> Get(int userId)
         {
             var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-
+            IEnumerable<TransactionHistoryDTO> list = new List<TransactionHistoryDTO>();
             if (userRole == RoleEnum.Admin.ToString())
             {
-                // Admins can access all transaction history
-                return await service.GetById(id);
+                list = await service.GetByUserId(userId);
             }
-            else if (userRole == RoleEnum.Customer.ToString())
+            else if (userRole == RoleEnum.Customer.ToString() && currentUserId == userId.ToString())
             {
                 // Customers can only access their own transaction history
-                var transaction = await service.GetById(id);
-
-                if (transaction != null && transaction.CustomerId.ToString() == currentUserId)
-                {
-                    return transaction;
-                }
+                list = await service.GetByUserId(userId);
             }
 
-            return null; // Return 404 for unauthorized access
-        }
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                listTransaction = list,
+                dateTime = DateTime.Now
+            };
 
+            var contentError = new
+            {
+                statusCode = 404,
+                message = "Không tìm thấy!",
+                dateTime = DateTime.Now
+            };
+            return list!.Count() >  0 ? Ok(content) : NotFound(contentError);
+        }
 
         // POST api/<TransactionsController>
         [HttpPost]
@@ -73,24 +82,23 @@ namespace ProTracking.API.Controllers
         [SwaggerOperation(Summary = "Create a new transaction history")]
         public async Task<IActionResult> Post(TransactionHistoryDTO entity)
         {
+            entity.IsBanking = false;
             var result = await service.AddAsync(entity);
 
-            if (result)
+            var content = new
             {
-                string pictureUrl = service.GeneratePictureUrl(entity);
+                statusCode = 200,
+                message = "Thực hiện thành công! Xử lý giao dịch sẽ được thực hiện trong vòng 24h",
+                dateTime = DateTime.Now
+            };
 
-                var response = new
-                {
-                    Payment = entity,
-                    PictureUrl = pictureUrl
-                };
-
-                return Created(pictureUrl, response);
-            }
-            else
+            var contentError = new
             {
-                return BadRequest();
-            }
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : BadRequest(contentError);
         }
 
         // PUT api/<TransactionsController>/5
@@ -99,6 +107,7 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Update exist transaction history")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(int id, TransactionHistoryDTO entity)
         {
             var exist = Exist(id);
@@ -122,19 +131,6 @@ namespace ProTracking.API.Controllers
             return result ? Ok() : BadRequest();
         }
 
-        // DELETE api/<TransactionsController>/5
-        [HttpDelete("{id}")]
-        [Produces("application/json")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(Summary = "Set transaction history status inactive")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var exist = Exist(id);
-            if (!exist) return NotFound();
-            var result = await service.SoftRemoveByID(id);
-            return result ? Ok() : BadRequest();
-        }
 
         private bool Exist(int id)
         {

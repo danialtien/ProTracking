@@ -5,8 +5,10 @@ using ProTracking.API.Services;
 using ProTracking.API.Services.IServices;
 using ProTracking.Application.ViewModels;
 using ProTracking.Domain.Entities;
+using ProTracking.Domain.Enums;
 using Swashbuckle.AspNetCore.Annotations;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,14 +24,16 @@ namespace ProTracking.API.Controllers
             this.service = _service;
         }
 
-       
+
         [HttpGet]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Return all customers")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAll()
         {
+
             var result = (await service.GetAll()).AsQueryable();
 
             var content = new
@@ -59,7 +63,11 @@ namespace ProTracking.API.Controllers
         [SwaggerOperation(Summary = "Get Customer by Id")]
         public async Task<IActionResult> Get(int id)
         {
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+            bool check = false;
             var result = await service.GetById(id);
+
             var content = new
             {
                 statusCode = 200,
@@ -70,11 +78,26 @@ namespace ProTracking.API.Controllers
 
             var contentError = new
             {
-                statusCode = 400,
-                message = "Xử lý thất bại!",
+                statusCode = 404,
+                message = "Not found!",
                 dateTime = DateTime.Now
             };
-            return result != null ? Ok(content) : BadRequest(contentError);
+
+            if (result == null)
+            {
+                return NotFound(contentError);
+            }
+            if (currentUserId == result.Id.ToString() && userRole == RoleEnum.Customer.ToString())
+            {
+                return Ok(content);
+            }
+
+            if (currentUserId == result.Id.ToString() && userRole == RoleEnum.Admin.ToString())
+            {
+                return Ok(content);
+            }
+
+            return NotFound(contentError);
         }
 
         [HttpGet]
@@ -136,7 +159,7 @@ namespace ProTracking.API.Controllers
         public async Task<IActionResult> Update(int id, Customer entity)
         {
             var exist = Exist(id);
-            if(!exist) return NotFound();
+            if (!exist) return NotFound();
             var result = await service.UpdateAsync(entity);
             var content = new
             {
@@ -160,6 +183,7 @@ namespace ProTracking.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Set customer status inactive")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var exist = Exist(id);
@@ -183,16 +207,16 @@ namespace ProTracking.API.Controllers
 
 
 
-/*        // GET api/<CustomersController>/5
-        [HttpGet("{email}")]
-        [Produces("application/json")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [SwaggerOperation(Summary = "Get Customer by Email")]
-        public async Task<Customer> GetByEmail(string email)
-        {
-            return await service.GetByEmail(email);
-        }*/
+        /*        // GET api/<CustomersController>/5
+                [HttpGet("{email}")]
+                [Produces("application/json")]
+                [ProducesResponseType(StatusCodes.Status200OK)]
+                [ProducesResponseType(StatusCodes.Status404NotFound)]
+                [SwaggerOperation(Summary = "Get Customer by Email")]
+                public async Task<Customer> GetByEmail(string email)
+                {
+                    return await service.GetByEmail(email);
+                }*/
         private bool Exist(int id)
         {
             var customer = service.GetById(id);

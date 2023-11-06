@@ -33,11 +33,11 @@ namespace ProTracking.API.Services
             return _data;
         }
 
-        public async Task<TransactionHistoryDTO> GetById(int id)
+        public async Task<IEnumerable<TransactionHistoryDTO>> GetByUserId(int id)
         {
             if (id == 0) return null;
-            TransactionHistory? obj = await _unitOfWork.TransactionHistoryRepo.GetByIdAsync(id);
-            TransactionHistoryDTO TransactionHistoryDTO = _mapper.Map<TransactionHistoryDTO>(obj);
+            IEnumerable<TransactionHistory> obj = await _unitOfWork.TransactionHistoryRepo.GetByUserId(id);
+            IEnumerable<TransactionHistoryDTO> TransactionHistoryDTO = _mapper.Map<IEnumerable<TransactionHistoryDTO>>(obj);
             return TransactionHistoryDTO;
         }
 
@@ -50,15 +50,6 @@ namespace ProTracking.API.Services
 
         }
 
-        public async Task<bool> SoftRemoveByID(int entityId)
-        {
-            TransactionHistoryDTO? obj = await GetById(entityId);
-            if (obj != null)
-            {
-                await SoftRemove(obj);
-            }
-            return false;
-        }
 
         public async Task<bool> UpdateAsync(TransactionHistoryDTO entity)
         {
@@ -113,5 +104,12 @@ namespace ProTracking.API.Services
             return pictureUrl;
         }
 
+        public async Task<TransactionHistoryDTO> GetById(int id)
+        {
+            if (id == 0) return null;
+            TransactionHistory obj = await _unitOfWork.TransactionHistoryRepo.GetById(id);
+            TransactionHistoryDTO TransactionHistoryDTO = _mapper.Map<TransactionHistoryDTO>(obj);
+            return TransactionHistoryDTO;
+        }
     }
 }

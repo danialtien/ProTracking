@@ -51,10 +51,20 @@ namespace ProTracking.Infrastructures.Repository
             return db.TransactionHistory.Where(t => t.CustomerId == CustomerId && isActive).FirstOrDefault();
         }
 
+        public Task<TransactionHistory> GetById(int id)
+        {
+            return db.TransactionHistory.FirstOrDefaultAsync(t => t.Id == id);
+        }
+
         public async Task<TransactionHistory?> GetByIdAsync(int id)
         {
             var result = await db.TransactionHistory.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
             return result;
+        }
+
+        public async Task<IEnumerable<TransactionHistory>> GetByUserId(int id)
+        {
+            return await db.TransactionHistory.Where( c=> c.CustomerId == id).OrderByDescending(c => c.PaymentDate).ToListAsync();
         }
 
         public async Task<bool> SoftRemoveAsync(TransactionHistory entity)

@@ -39,10 +39,20 @@ namespace ProTracking.Infrastructures.Repository
             return await db.Payments.ToListAsync();
         }
 
+        public async Task<IEnumerable<Payment>> GetByAccountTypeAsync(string accountType)
+        {
+            return await db.Payments.Where(c => c.AccessKey.ToLower() == accountType.ToLower()).ToListAsync();
+        }
+
         public async Task<Payment?> GetByIdAsync(int id)
         {
             var result = await db.Payments.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
             return result;
+        }
+
+        public async Task<Payment> GetPaymentByAccountTypeAndPayment(string accountType, string payment)
+        {
+            return await db.Payments.Where(c => c.AccessKey.ToLower() == accountType.ToLower() && c.Title.ToLower() == payment.ToLower()).FirstOrDefaultAsync();
         }
     }
 }

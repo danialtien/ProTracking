@@ -11,7 +11,7 @@ namespace ProTracking.API.Services.IServices
         Task<bool> AddAsync(Payment entity);
         Task<IEnumerable<Payment>> GetAll(Expression<Func<Payment, bool>>? filter = null, string[]? includeProperties = null);
         Task<Payment> GetById(int id);
-        /*Task<bool> UpdateAsync(Payment entity);
-        Task<bool> UpdateRange(List<Payment> entities);*/
+        Task<IEnumerable<Payment>> GetPaymentByAccountType(string accountType);
+        Task<Payment> GetPaymentByAccountTypeAndPayment(string accountType, string payment);
     }
 }

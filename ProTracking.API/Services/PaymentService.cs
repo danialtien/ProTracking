@@ -37,5 +37,15 @@ namespace ProTracking.API.Services
             Payment? payment = await _unitOfWork.PaymentRepo.GetByIdAsync(id);
             return payment;
         }
+
+        public async Task<IEnumerable<Payment>> GetPaymentByAccountType(string accountType)
+        {
+            return await _unitOfWork.PaymentRepo.GetByAccountTypeAsync(accountType);
+        }
+
+        public async Task<Payment> GetPaymentByAccountTypeAndPayment(string accountType, string payment)
+        {
+            return await _unitOfWork.PaymentRepo.GetPaymentByAccountTypeAndPayment(accountType, payment);
+        }
     }
 }

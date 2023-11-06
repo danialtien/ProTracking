@@ -42,7 +42,12 @@ namespace ProTracking.Infrastructures.Data
 
             modelBuilder.Entity<Payment>().HasData(
                  new Payment { Id = 1, Title = "Free", AccessKey = "Free", PrivateKey = "Free", QRCode = "Free" },
-                 new Payment { Id = 2, Title = "ZaloPay", AccessKey = "AceessKey", PrivateKey = "Privatekey", QRCode = "dfsdalfdfa" }
+                 new Payment { Id = 2, Title = "ZaloPay", AccessKey = "Normal", PrivateKey = "Normal", QRCode = "https://drive.google.com/file/d/10qMV7ydU1rCyhMaZdHTmzwQh6_vkFv4n/view?usp=sharing" },
+                 new Payment { Id = 3, Title = "ZaloPay", AccessKey = "Standard", PrivateKey = "Standard", QRCode = "https://drive.google.com/file/d/1KhnoyG2OcJjR5isd44K4mMC6nXZs-VxE/view?usp=sharing" },
+                 new Payment { Id = 4, Title = "ZaloPay", AccessKey = "Premium", PrivateKey = "Premium", QRCode = "https://drive.google.com/file/d/1lyhl-L9asLIx48XAws8F50pGrTvLSocX/view?usp=sharing" },
+                 new Payment { Id = 5, Title = "TPBank", AccessKey = "Normal", PrivateKey = "Normal", QRCode = "https://drive.google.com/file/d/17gfyZEJWp-6ltJQazuAxj86nzxRoRmhM/view?usp=sharing" },
+                 new Payment { Id = 6, Title = "TPBank", AccessKey = "Standard", PrivateKey = "Standard", QRCode = "https://drive.google.com/file/d/1bXRIqAG_qDv5VXlL4_Lr2EDqPa3nhVYI/view?usp=sharing" },
+                 new Payment { Id = 7, Title = "TPBank", AccessKey = "Premium", PrivateKey = "Premium", QRCode = "https://drive.google.com/file/d/1V9ykNI_Rsm4bZWvMZ-rORTG9SPPjBB7l/view?usp=sharing" }
                  );
 
             modelBuilder.Entity<Customer>().HasData(

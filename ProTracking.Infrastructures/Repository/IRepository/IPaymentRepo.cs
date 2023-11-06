@@ -13,5 +13,7 @@ namespace ProTracking.Infrastructures.Repository
         Task<IEnumerable<Payment>> GetAllAsync(Expression<Func<Payment, bool>>? filter = null, string[]? includeProperties = null);
         Task<Payment> GetByIdAsync(int id);
         Task<bool> AddAsync(Payment entity);
+        Task<IEnumerable<Payment>> GetByAccountTypeAsync(string accountType);
+        Task<Payment> GetPaymentByAccountTypeAndPayment(string accountType, string payment);
     }
 }

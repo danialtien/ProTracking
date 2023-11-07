@@ -16,6 +16,12 @@ namespace ProTracking.Infrastructures.Repository
             this._mapper = mapper;
         }
 
+        public async Task<Todo> AddAndResponseAsync(Todo entity)
+        {
+            var result = await AddAsync(entity);
+            return result ? entity : null;
+        }
+
         public async Task<bool> AddAsync(Todo entity)
         {
             Todo todo = entity;

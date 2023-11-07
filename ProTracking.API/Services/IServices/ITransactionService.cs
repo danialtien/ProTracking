@@ -11,11 +11,11 @@ namespace ProTracking.API.Services.IServices
     {
         Task<bool> AddAsync(TransactionHistoryDTO entity);
         Task<IEnumerable<TransactionHistory>> GetAll(Expression<Func<TransactionHistory, bool>>? filter = null, string[]? includeProperties = null);
-        Task<IEnumerable<TransactionHistoryDTO>> GetByUserId(int id);
+        Task<IEnumerable<TransactionHistory>> GetByUserId(int id);
         Task<bool> UpdateAsync(TransactionHistoryDTO entity);
-        Task<bool> UpdateForAdminOnlyAsync(TransactionHistoryDTO entity, bool isBanking);
+        Task<bool> UpdateForAdminOnlyAsync(int transactionId, bool isBanking);
         Task<bool> UpdateRange(List<TransactionHistoryDTO> entities);
         public string GeneratePictureUrl(TransactionHistoryDTO entity);
-        Task<TransactionHistoryDTO> GetById(int id);
+        Task<TransactionHistory> GetById(int id);
     }
 }

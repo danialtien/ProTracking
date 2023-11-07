@@ -136,7 +136,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // POST api/<TodosController>
@@ -152,6 +152,7 @@ namespace ProTracking.API.Controllers
             {
                 statusCode = 201,
                 message = "Xử lý thành công!",
+                newTodo = result,
                 dateTime = DateTime.Now
             };
 
@@ -161,7 +162,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result != null ? Ok(content) : Ok(contentError);
         }
 
         // PUT api/<TodosController>/5
@@ -188,7 +189,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
 
@@ -216,7 +217,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // DELETE api/<TodosController>/5
@@ -243,7 +244,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         private bool Exist(int id)

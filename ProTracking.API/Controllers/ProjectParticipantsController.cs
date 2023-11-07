@@ -55,12 +55,19 @@ namespace ProTracking.API.Controllers
         [SwaggerOperation(Summary = "Create a new ProjectParticipant - Done")]
         public async Task<IActionResult> Post(ProjectParticipantDTO entity)
         {
-            // Get the customer's account type
-            //var customer = await customerService.GetById(entity.CustomerId);
-            //if (customer == null)
-            //{
-            //    return BadRequest("Customer not found.");
-            //}
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
 
             // Get the customer's JWT token
             string customerToken = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Replace("Bearer ", "");
@@ -68,7 +75,8 @@ namespace ProTracking.API.Controllers
             // Check if the customer token is present
             if (string.IsNullOrEmpty(customerToken))
             {
-                return BadRequest("Customer token not provided.");
+                //return BadRequest("Customer token not provided.");
+                return Ok(contentError);
             }
 
             // Parse the JWT token to obtain claims
@@ -80,7 +88,8 @@ namespace ProTracking.API.Controllers
 
             if (string.IsNullOrEmpty(accountType))
             {
-                return BadRequest("AccountType claim not found in the token.");
+                //return BadRequest("AccountType claim not found in the token.");
+                return Ok(contentError);
             }
 
             int maxParticipants = 0;
@@ -98,19 +107,21 @@ namespace ProTracking.API.Controllers
                     maxParticipants = int.MaxValue; // Unlimited for Premium
                     break;
                 default:
-                    return BadRequest("Invalid account type.");
+                    //return BadRequest("Invalid account type.");
+                    return Ok(contentError);
             }
 
             // Check the number of existing participants for the customer
             var existingParticipants = await service.GetParticipantsByCustomerId(entity.CustomerId);
             if (existingParticipants.Count() >= maxParticipants)
             {
-                return BadRequest($"Customers with '{accountType}' accounts can only add up to {maxParticipants} participants.");
+                //return BadRequest($"Customers with '{accountType}' accounts can only add up to {maxParticipants} participants.");
+                return Ok(contentError);
             }
 
             // Customers with other account types can add participants without restrictions
             var result = await service.AddAsync(entity);
-            return result ? Ok() : BadRequest();
+            return result ? Ok(content) : Ok(contentError);
         }
 
 
@@ -125,7 +136,20 @@ namespace ProTracking.API.Controllers
             var exist = Exist(id);
             if (!exist) return NotFound();
             var result = await service.UpdateAsync(dto);
-            return result ? Ok() : BadRequest();
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok() : Ok(contentError);
         }
 
         // DELETE api/<ProjectParticipantsController>/5
@@ -139,7 +163,20 @@ namespace ProTracking.API.Controllers
             var exist = Exist(id);
             if (!exist) return NotFound();
             var result = await service.SoftRemoveByID(id);
-            return result ? Ok() : BadRequest();
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok() : Ok(contentError);
         }
 
         private bool Exist(int id)

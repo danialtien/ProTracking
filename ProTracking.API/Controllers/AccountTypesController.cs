@@ -43,7 +43,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result.Count() > 0 ? Ok(content) : BadRequest(contentError);
+            return result.Count() > 0 ? Ok(content) : Ok(contentError);
         }
 
 
@@ -71,7 +71,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result != null ? Ok(content) : BadRequest(contentError);
+            return result != null ? Ok(content) : Ok(contentError);
         }
 
         // POST api/<AccountTypesController>
@@ -86,7 +86,7 @@ namespace ProTracking.API.Controllers
             var result = await service.AddAsync(entity);
             var content = new
             {
-                statusCode = 201,
+                statusCode = 200,
                 message = "Xử lý thành công!",
                 dateTime = DateTime.Now
             };
@@ -97,7 +97,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // PUT api/<AccountTypesController>/5
@@ -125,7 +125,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // DELETE api/<AccountTypesController>/5
@@ -153,7 +153,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         private bool Exist(int id)

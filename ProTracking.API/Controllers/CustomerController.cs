@@ -50,7 +50,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result.Count() > 0 ? Ok(content) : BadRequest(contentError);
+            return result.Count() > 0 ? Ok(content) : Ok(contentError);
         }
 
 
@@ -78,14 +78,14 @@ namespace ProTracking.API.Controllers
 
             var contentError = new
             {
-                statusCode = 404,
+                statusCode = 400,
                 message = "Not found!",
                 dateTime = DateTime.Now
             };
 
             if (result == null)
             {
-                return NotFound(contentError);
+                return Ok(contentError);
             }
             if (currentUserId == result.Id.ToString() && userRole == RoleEnum.Customer.ToString())
             {
@@ -97,7 +97,7 @@ namespace ProTracking.API.Controllers
                 return Ok(content);
             }
 
-            return NotFound(contentError);
+            return Ok(contentError);
         }
 
         [HttpGet]
@@ -122,7 +122,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result.Result != null ? Ok(content) : BadRequest(contentError);
+            return result.Result != null ? Ok(content) : Ok(contentError);
         }
 
         // POST api/<CustomersController>
@@ -136,7 +136,7 @@ namespace ProTracking.API.Controllers
             var result = await service.AddAsync(entity);
             var content = new
             {
-                statusCode = 201,
+                statusCode = 200,
                 message = "Xử lý thành công!",
                 dateTime = DateTime.Now
             };
@@ -147,7 +147,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // PUT api/<CustomersController>/5
@@ -174,7 +174,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // DELETE api/<CustomersController>/5
@@ -202,7 +202,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
 

@@ -43,9 +43,9 @@ namespace ProTracking.Infrastructures.Mappers
                 .ReverseMap();
 
             CreateMap<TransactionHistoryDTO, TransactionHistory>()
-                /*.ForMember(dest => dest.Customer, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CustomerId)))
-                .ForMember(dest => dest.Payment, opt => opt.Ignore())
-                .ForMember(dest => dest.AccountType, opt => opt.Ignore())
+                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CustomerId)))
+                .ForMember(dest => dest.Payment, opt => opt.MapFrom(src => _unitOfWork.PaymentRepo.GetById(src.PaymentId)))
+                .ForMember(dest => dest.AccountType, opt => opt.MapFrom(src => _unitOfWork.AccountTypeRepo.GetById(src.AccountTypeId)))
                 .AfterMap(async (src, dest, context) =>
                 {
                     var accountType = await _unitOfWork.AccountTypeRepo.GetByIdAsync(src.AccountTypeId);
@@ -53,7 +53,7 @@ namespace ProTracking.Infrastructures.Mappers
 
                     var payment = await _unitOfWork.PaymentRepo.GetByIdAsync(src.PaymentId);
                     dest.Payment = payment;
-                })*/
+                })
                  .ForMember(dest => dest.StartDate, opt => opt.MapFrom(src => src.PaymentDate))
                  .ForMember(dest => dest.EndDate, opt => opt.MapFrom(src => src.PaymentDate.AddDays(30)))
                  .ReverseMap();

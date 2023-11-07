@@ -47,11 +47,11 @@ namespace ProTracking.API.Controllers
 
             var contentError = new
             {
-                statusCode = 404,
+                statusCode = 400,
                 message = "Không có",
                 dateTime = DateTime.Now
             };
-            return projects.ToList().Count > 0 ? Ok(content) : NotFound(contentError);
+            return projects.ToList().Count > 0 ? Ok(content) : Ok(contentError);
         }
 
         // GET api/<ProjectsController>/all Admin
@@ -102,11 +102,11 @@ namespace ProTracking.API.Controllers
 
             var contentError = new
             {
-                statusCode = 404,
+                statusCode = 400,
                 message = "Không tìm thấy!",
                 dateTime = DateTime.Now
             };
-            return project != null ? Ok(content) : NotFound(contentError);
+            return project != null ? Ok(content) : Ok(contentError);
         }
 
         // POST api/<ProjectsController>
@@ -131,7 +131,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thấy bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // PUT api/<ProjectsController>/5
@@ -158,7 +158,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // DELETE api/<ProjectsController>/5
@@ -169,9 +169,6 @@ namespace ProTracking.API.Controllers
         [SwaggerOperation(Summary = "Delete exist project")]
         public async Task<IActionResult> Delete(int id)
         {
-            var exist = Exist(id);
-            if (!exist) return NotFound();
-            var result = await service.SoftRemoveByID(id);
             var content = new
             {
                 statusCode = 200,
@@ -185,7 +182,8 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            var result = await service.SoftRemoveByID(id);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         private bool Exist(int id)

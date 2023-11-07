@@ -33,12 +33,11 @@ namespace ProTracking.API.Services
             return _data;
         }
 
-        public async Task<IEnumerable<TransactionHistoryDTO>> GetByUserId(int id)
+        public async Task<IEnumerable<TransactionHistory>> GetByUserId(int id)
         {
             if (id == 0) return null;
             IEnumerable<TransactionHistory> obj = await _unitOfWork.TransactionHistoryRepo.GetByUserId(id);
-            IEnumerable<TransactionHistoryDTO> TransactionHistoryDTO = _mapper.Map<IEnumerable<TransactionHistoryDTO>>(obj);
-            return TransactionHistoryDTO;
+            return obj;
         }
 
         public async Task<bool> SoftRemove(TransactionHistoryDTO entity)
@@ -62,21 +61,25 @@ namespace ProTracking.API.Services
             return false;
         }
 
-        public async Task<bool> UpdateForAdminOnlyAsync(TransactionHistoryDTO entity, bool isBanking)
+        public async Task<bool> UpdateForAdminOnlyAsync(int transactionId, bool isBanking)
         {
+            var entity = await GetById(transactionId);
             if (entity != null)
             {
-                TransactionHistory TransactionHistory = _mapper.Map<TransactionHistory>(entity);
+                if (entity.IsBanking)
+                {
+                    return true;
+                }
                 if (isBanking)
                 {
-                    TransactionHistory.IsBanking = isBanking;
-                    TransactionHistory.PaymentDate = DateTime.UtcNow;
-                    TransactionHistory.IsActive = true;
-                    TransactionHistory.StartDate = DateTime.UtcNow;
-                    TransactionHistory.EndDate = DateTime.UtcNow.AddDays(30);
+                    entity.IsBanking = isBanking;
+                    entity.PaymentDate = DateTime.Now;
+                    entity.IsActive = true;
+                    entity.StartDate = DateTime.Now;
+                    entity.EndDate = DateTime.Now.AddDays(30);
                     Customer customer = await _unitOfWork.CustomerRepo.GetByIdAsync(entity.CustomerId);
                     customer.AccountTypeId = entity.AccountTypeId;
-                    await _unitOfWork.TransactionHistoryRepo.UpdateAsync(TransactionHistory);
+                    await _unitOfWork.TransactionHistoryRepo.UpdateAsync(entity);
                     await _unitOfWork.CustomerRepo.UpdateAsync(customer);
                 }
             }
@@ -104,12 +107,11 @@ namespace ProTracking.API.Services
             return pictureUrl;
         }
 
-        public async Task<TransactionHistoryDTO> GetById(int id)
+        public async Task<TransactionHistory> GetById(int id)
         {
             if (id == 0) return null;
             TransactionHistory obj = await _unitOfWork.TransactionHistoryRepo.GetById(id);
-            TransactionHistoryDTO TransactionHistoryDTO = _mapper.Map<TransactionHistoryDTO>(obj);
-            return TransactionHistoryDTO;
+            return obj;
         }
     }
 }

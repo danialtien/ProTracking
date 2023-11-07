@@ -6,7 +6,7 @@ namespace ProTracking.API.Services.IServices
 {
     public interface ITodoService 
     {
-        Task<bool> AddAsync(TodoDTO entity);
+        Task<Todo> AddAsync(TodoDTO entity);
         Task<IEnumerable<Todo>> GetAll(Expression<Func<Todo, bool>>? filter = null, string[]? includeProperties = null);
         Task<TodoDTO> GetById(int id);
         Task<bool> SoftRemove(TodoDTO entity);

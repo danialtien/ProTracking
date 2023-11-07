@@ -10,5 +10,6 @@ namespace ProTracking.Infrastructures.Repository
     public interface ITodoRepo : IGenericRepository<Todo>
     {
         IEnumerable<Todo> GetAllByProjectId(int projectId);
+        Task<Todo> AddAndResponseAsync(Todo entity);
     }
 }

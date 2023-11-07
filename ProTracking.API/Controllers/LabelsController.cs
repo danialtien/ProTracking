@@ -44,7 +44,7 @@ namespace ProTracking.API.Controllers
                 message = "Không tồn tại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : NotFound(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // POST api/<LabelsController>
@@ -58,7 +58,7 @@ namespace ProTracking.API.Controllers
             var result = await service.AddAsync(entity);
             var content = new
             {
-                statusCode = 201,
+                statusCode = 200,
                 message = "Xử lý thành công!",
                 dateTime = DateTime.Now
             };
@@ -69,7 +69,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // PUT api/<LabelsController>/5
@@ -96,7 +96,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // DELETE api/<LabelsController>/5
@@ -123,7 +123,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         private bool Exist(int id)

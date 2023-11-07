@@ -44,6 +44,11 @@ namespace ProTracking.Infrastructures.Repository
             return await db.Payments.Where(c => c.AccessKey.ToLower() == accountType.ToLower()).ToListAsync();
         }
 
+        public Payment GetById(int paymentId)
+        {
+            return db.Payments.FirstOrDefault(c => c.Id == paymentId);
+        }
+
         public async Task<Payment?> GetByIdAsync(int id)
         {
             var result = await db.Payments.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);

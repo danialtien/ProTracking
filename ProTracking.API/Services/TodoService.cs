@@ -18,11 +18,11 @@ namespace ProTracking.API.Services
             _unitOfWork = unitOfWork;
             this._mapper = mapper;
         }
-        public async Task<bool> AddAsync(TodoDTO entity)
+        public async Task<Todo> AddAsync(TodoDTO entity)
         {
            // if(!_validation.CreateObjectIsValid(entity)) return false;
             Todo todo = _mapper.Map<Todo>(entity);
-            bool result = await _unitOfWork.TodoRepo.AddAsync(todo);
+            var result = await _unitOfWork.TodoRepo.AddAndResponseAsync(todo);
             return result;
         }
 

@@ -24,16 +24,30 @@ namespace ProTracking.API.Controllers
             this.service = _service;
         }
 
-
         [HttpGet]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Return all transaction histories")]
         [Authorize(Roles = "Admin")]
-        public async Task<IEnumerable<TransactionHistory>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return await service.GetAll(null, null);
+            var result =  await service.GetAll(null, null);
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                getAllTransaction = result,
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Không có giao dịch nào!",
+                dateTime = DateTime.Now
+            };
+            return result.Count() > 0 ? Ok(content) : Ok(contentError);
         }
 
         // GET api/<TransactionsController>/5
@@ -46,7 +60,7 @@ namespace ProTracking.API.Controllers
         {
             var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
-            IEnumerable<TransactionHistoryDTO> list = new List<TransactionHistoryDTO>();
+            IEnumerable<TransactionHistory> list = new List<TransactionHistory>();
             if (userRole == RoleEnum.Admin.ToString())
             {
                 list = await service.GetByUserId(userId);
@@ -67,11 +81,11 @@ namespace ProTracking.API.Controllers
 
             var contentError = new
             {
-                statusCode = 404,
+                statusCode = 400,
                 message = "Không tìm thấy!",
                 dateTime = DateTime.Now
             };
-            return list!.Count() >  0 ? Ok(content) : NotFound(contentError);
+            return list!.Count() >  0 ? Ok(content) : Ok(contentError);
         }
 
         // POST api/<TransactionsController>
@@ -98,7 +112,7 @@ namespace ProTracking.API.Controllers
                 message = "Xử lý thất bại!",
                 dateTime = DateTime.Now
             };
-            return result ? Ok(content) : BadRequest(contentError);
+            return result ? Ok(content) : Ok(contentError);
         }
 
         // PUT api/<TransactionsController>/5
@@ -113,24 +127,46 @@ namespace ProTracking.API.Controllers
             var exist = Exist(id);
             if (!exist) return NotFound();
             var result = await service.UpdateAsync(entity);
-            return result ? Ok() : BadRequest();
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : Ok(contentError);
         }
 
-
-        [HttpPut("{id}")]
+        [HttpPut]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Update exist transaction history for Admin ")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UpdateTransactionForAdminOnly(int id, TransactionHistoryDTO entity, bool isBanking)
+        public async Task<IActionResult> UpdateTransactionForAdminOnly(int transactionId, bool isBanking)
         {
-            var exist = Exist(id);
-            if (!exist) return NotFound();
-            var result = await service.UpdateForAdminOnlyAsync(entity, isBanking);
-            return result ? Ok() : BadRequest();
-        }
+            var result = await service.UpdateForAdminOnlyAsync(transactionId, isBanking);
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                dateTime = DateTime.Now
+            };
 
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Xử lý thất bại!",
+                dateTime = DateTime.Now
+            };
+            return result ? Ok(content) : Ok(contentError);
+        }
 
         private bool Exist(int id)
         {

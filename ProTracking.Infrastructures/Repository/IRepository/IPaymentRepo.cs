@@ -15,5 +15,6 @@ namespace ProTracking.Infrastructures.Repository
         Task<bool> AddAsync(Payment entity);
         Task<IEnumerable<Payment>> GetByAccountTypeAsync(string accountType);
         Task<Payment> GetPaymentByAccountTypeAndPayment(string accountType, string payment);
+        Payment GetById(int paymentId);
     }
 }

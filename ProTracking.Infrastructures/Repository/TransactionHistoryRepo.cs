@@ -21,39 +21,86 @@ namespace ProTracking.Infrastructures.Repository
         public async Task<bool> AddAsync(TransactionHistory entity)
         {
             TransactionHistory TransactionHistory = entity;
-            /*TransactionHistory.Project = await db.Projects.FirstOrDefaultAsync(c => c.Id == TransactionHistory.ProjectId);
-            TransactionHistory.Label = await db.Labels.FirstOrDefaultAsync(c => c.Id == TransactionHistory.LabelId);
-            TransactionHistory.Customer = await db.Customers.FirstOrDefaultAsync(c => c.Id == TransactionHistory.CreatedBy);*/
+            TransactionHistory.Payment = await db.Payments.FirstOrDefaultAsync(c => c.Id == TransactionHistory.PaymentId);
+            TransactionHistory.AccountType = await db.AccountTypes.FirstOrDefaultAsync(c => c.Id == TransactionHistory.AccountTypeId);
+            TransactionHistory.Customer = await db.Customers.FirstOrDefaultAsync(c => c.Id == TransactionHistory.CustomerId);
             await db.TransactionHistory.AddAsync(TransactionHistory);
             return await db.SaveChangesAsync() > 0;
         }
 
         public async Task<IEnumerable<TransactionHistory>> GetAllAsync(Expression<Func<TransactionHistory, bool>>? filter = null, string[]? includeProperties = null)
         {
-            if (includeProperties != null && filter != null)
-            {
-                return await includeProperties!
-                    .Aggregate(db.TransactionHistory.AsQueryable(),
-                    (entity, property) => entity.Include(property))
-                    .Where(filter!)
-                    .ToListAsync();
-            }
-            return await db.TransactionHistory.ToListAsync();
+
+            return await db.TransactionHistory
+                        .Join(db.Payments,
+                              transaction => transaction.PaymentId,
+                              payment => payment.Id,
+                              (transaction, payment) => new { Transaction = transaction, Payment = payment })
+                        .Join(db.AccountTypes,
+                              combined => combined.Transaction.AccountTypeId,
+                              accountType => accountType.Id,
+                              (combined, accountType) => new { combined.Transaction, combined.Payment, AccountType = accountType })
+                        .Join(db.Customers,
+                              combined => combined.Transaction.CustomerId,
+                              customer => customer.Id,
+                              (combined, customer) => new TransactionHistory
+                              {
+                                  Id = combined.Transaction.Id,
+                                  CustomerId = combined.Transaction.CustomerId,
+                                  AccountTypeId = combined.Transaction.AccountTypeId,
+                                  PaymentId = combined.Transaction.PaymentId,
+                                  Content = combined.Transaction.Content,
+                                  PaymentDate = combined.Transaction.PaymentDate,
+                                  StartDate = combined.Transaction.StartDate,
+                                  EndDate = combined.Transaction.EndDate,
+                                  IsActive = combined.Transaction.IsActive,
+                                  Amount = combined.Transaction.Amount,
+                                  IsBanking = combined.Transaction.IsBanking,
+                                  Customer = customer,
+                                  Payment = combined.Payment,
+                                  AccountType = combined.AccountType
+                              })
+                        .OrderByDescending(x => x.IsBanking == false)
+                        .OrderByDescending(x => x.PaymentDate)
+                        .ToListAsync();
         }
 
-        public IEnumerable<TransactionHistory> GetAllByCustomerId(int customerId)
-        {
-            return db.TransactionHistory.Where(t => t.CustomerId == customerId).ToList();
-        }
 
         public TransactionHistory GetByCustomerIdAndActive(int CustomerId, bool isActive)
         {
             return db.TransactionHistory.Where(t => t.CustomerId == CustomerId && isActive).FirstOrDefault();
         }
 
-        public Task<TransactionHistory> GetById(int id)
+        public async Task<TransactionHistory> GetById(int id)
         {
-            return db.TransactionHistory.FirstOrDefaultAsync(t => t.Id == id);
+            return await db.TransactionHistory.Join(db.Payments,
+                              transaction => transaction.PaymentId,
+                              payment => payment.Id,
+                              (transaction, payment) => new { Transaction = transaction, Payment = payment })
+                        .Join(db.AccountTypes,
+                              combined => combined.Transaction.AccountTypeId,
+                              accountType => accountType.Id,
+                              (combined, accountType) => new { combined.Transaction, combined.Payment, AccountType = accountType })
+                        .Join(db.Customers,
+                              combined => combined.Transaction.CustomerId,
+                              customer => customer.Id,
+                              (combined, customer) => new TransactionHistory
+                              {
+                                  Id = combined.Transaction.Id,
+                                  CustomerId = combined.Transaction.CustomerId,
+                                  AccountTypeId = combined.Transaction.AccountTypeId,
+                                  PaymentId = combined.Transaction.PaymentId,
+                                  Content = combined.Transaction.Content,
+                                  PaymentDate = combined.Transaction.PaymentDate,
+                                  StartDate = combined.Transaction.StartDate,
+                                  EndDate = combined.Transaction.EndDate,
+                                  IsActive = combined.Transaction.IsActive,
+                                  Amount = combined.Transaction.Amount,
+                                  IsBanking = combined.Transaction.IsBanking,
+                                  Customer = customer,
+                                  Payment = combined.Payment,
+                                  AccountType = combined.AccountType
+                              }).FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task<TransactionHistory?> GetByIdAsync(int id)
@@ -64,7 +111,36 @@ namespace ProTracking.Infrastructures.Repository
 
         public async Task<IEnumerable<TransactionHistory>> GetByUserId(int id)
         {
-            return await db.TransactionHistory.Where( c=> c.CustomerId == id).OrderByDescending(c => c.PaymentDate).ToListAsync();
+            return await db.TransactionHistory.Join(db.Payments,
+                              transaction => transaction.PaymentId,
+                              payment => payment.Id,
+                              (transaction, payment) => new { Transaction = transaction, Payment = payment })
+                        .Join(db.AccountTypes,
+                              combined => combined.Transaction.AccountTypeId,
+                              accountType => accountType.Id,
+                              (combined, accountType) => new { combined.Transaction, combined.Payment, AccountType = accountType })
+                        .Join(db.Customers,
+                              combined => combined.Transaction.CustomerId,
+                              customer => customer.Id,
+                              (combined, customer) => new TransactionHistory
+                              {
+                                  Id = combined.Transaction.Id,
+                                  CustomerId = combined.Transaction.CustomerId,
+                                  AccountTypeId = combined.Transaction.AccountTypeId,
+                                  PaymentId = combined.Transaction.PaymentId,
+                                  Content = combined.Transaction.Content,
+                                  PaymentDate = combined.Transaction.PaymentDate,
+                                  StartDate = combined.Transaction.StartDate,
+                                  EndDate = combined.Transaction.EndDate,
+                                  IsActive = combined.Transaction.IsActive,
+                                  Amount = combined.Transaction.Amount,
+                                  IsBanking = combined.Transaction.IsBanking,
+                                  Customer = customer,
+                                  Payment = combined.Payment,
+                                  AccountType = combined.AccountType
+                              }).Where(c => c.CustomerId == id)
+                              .OrderByDescending(x => x.IsBanking == false)
+                              .OrderByDescending(x => x.PaymentDate).ToListAsync();
         }
 
         public async Task<bool> SoftRemoveAsync(TransactionHistory entity)

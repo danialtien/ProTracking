@@ -135,15 +135,14 @@ namespace ProTracking.API.Controllers
         }
 
         // PUT api/<ProjectsController>/5
-        [HttpPut("{id}")]
+        [HttpPut]
         [Produces("application/json")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Update exist project")]
-        public async Task<IActionResult> Update(int id, ProjectDTO entity)
+        public async Task<IActionResult> Update(ProjectDTO entity)
         {
-            var exist = Exist(id);
-            if (!exist) return NotFound();
+
             var result = await service.UpdateAsync(entity);
             var content = new
             {

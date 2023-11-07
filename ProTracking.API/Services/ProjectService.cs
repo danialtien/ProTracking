@@ -113,11 +113,9 @@ namespace ProTracking.API.Services
             return getProjectWithTodoAndPaties;
         }
 
-        public async Task<bool> SoftRemove(ProjectDTO entity)
+        public async Task<bool> SoftRemove(Project entity)
         {
-            if (entity == null) return false;
-            Project obj = _mapper.Map<Project>(entity);
-            bool result = await _unitOfWork.ProjectRepo.SoftRemoveAsync(obj);
+            bool result = await _unitOfWork.ProjectRepo.SoftRemoveAsync(entity);
             return result;
         }
 
@@ -126,8 +124,7 @@ namespace ProTracking.API.Services
             Project? obj = _unitOfWork.ProjectRepo.GetById(entityId);
             if (obj != null)
             {
-                var project = _mapper.Map<ProjectDTO>(obj);
-                await SoftRemove(project);
+                return await SoftRemove(obj);
             }
             return false;
         }

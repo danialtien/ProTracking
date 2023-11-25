@@ -14,5 +14,6 @@ namespace ProTracking.API.Services.IServices
         Task<bool> UpdateAsync(ProjectParticipantDTO entity);
         Task<bool> UpdateRange(List<ProjectParticipantDTO> entities);
         Task<IEnumerable<ProjectParticipant>> GetParticipantsByCustomerId(int customerId);
+        Task<IEnumerable<ProjectParticipant>> GetByProjectId(int projectId);
     }
 }

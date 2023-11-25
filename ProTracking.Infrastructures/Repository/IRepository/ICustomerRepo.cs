@@ -16,5 +16,6 @@ namespace ProTracking.Infrastructures.Repository
 
         Customer? GetUserLogin(LoginDTO login);
         Task<Customer> GetCustomerByEmailAsync(string email);
+        Task<bool> UpdateCutomerAndAccountTypeAsync(int customerId, int accountTypeId);
     }
 }

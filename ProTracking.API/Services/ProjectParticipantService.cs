@@ -22,8 +22,8 @@ namespace ProTracking.API.Services
         {
             if (entity == null) return false;
             Customer customer = await _unitOfWork.CustomerRepo.GetByIdAsync(entity.CustomerId);
-            Project project = await  _unitOfWork.ProjectRepo.GetByIdAsync(entity.ProjectId);
-            if(customer == null || project == null) return false;
+            Project project = await _unitOfWork.ProjectRepo.GetByIdAsync(entity.ProjectId);
+            if (customer == null || project == null) return false;
             entity.IsLeader = false;
             ProjectParticipant obj = _mapper.Map<ProjectParticipant>(entity);
             bool result = await _unitOfWork.ProjectParticipantRepo.AddAsync(obj);
@@ -88,6 +88,12 @@ namespace ProTracking.API.Services
             // Implement the logic to retrieve project participants by customer ID
             return await _unitOfWork.ProjectParticipantRepo
                 .GetAllAsync(pp => pp.Customer.Id == customerId);
+        }
+
+        public async Task<IEnumerable<ProjectParticipant>> GetByProjectId(int projectId)
+        {
+            IEnumerable<ProjectParticipant> projectParticipants = await _unitOfWork.ProjectParticipantRepo.GetAllByProjectId(projectId);
+            return _mapper.Map<IEnumerable<ProjectParticipant>>(projectParticipants);
         }
     }
 }

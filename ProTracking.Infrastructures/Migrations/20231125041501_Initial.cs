@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProTracking.Infrastructures.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,6 +74,29 @@ namespace ProTracking.Infrastructures.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Todos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProjectId = table.Column<int>(type: "int", nullable: false),
+                    LabelId = table.Column<int>(type: "int", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReportTo = table.Column<int>(type: "int", nullable: true),
+                    Assignee = table.Column<int>(type: "int", nullable: true),
+                    CreatedBy = table.Column<int>(type: "int", nullable: false),
+                    Priority = table.Column<int>(type: "int", nullable: false),
+                    IconPriority = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Todos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
@@ -82,7 +105,7 @@ namespace ProTracking.Infrastructures.Migrations
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -122,86 +145,6 @@ namespace ProTracking.Infrastructures.Migrations
                     table.PrimaryKey("PK_Labels", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Labels_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TransactionHistory",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    AccountTypeId = table.Column<int>(type: "int", nullable: false),
-                    PaymentId = table.Column<int>(type: "int", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Amount = table.Column<double>(type: "float", nullable: false),
-                    IsBanking = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TransactionHistory", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TransactionHistory_AccountTypes_AccountTypeId",
-                        column: x => x.AccountTypeId,
-                        principalTable: "AccountTypes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TransactionHistory_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_TransactionHistory_Payments_PaymentId",
-                        column: x => x.PaymentId,
-                        principalTable: "Payments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Todos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjectId = table.Column<int>(type: "int", nullable: false),
-                    LabelId = table.Column<int>(type: "int", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ReportTo = table.Column<int>(type: "int", nullable: false),
-                    Assignee = table.Column<int>(type: "int", nullable: true),
-                    CreatedBy = table.Column<int>(type: "int", nullable: false),
-                    Priority = table.Column<int>(type: "int", nullable: false),
-                    IconPriority = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Todos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Todos_Customers_CreatedBy",
-                        column: x => x.CreatedBy,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Todos_Labels_LabelId",
-                        column: x => x.LabelId,
-                        principalTable: "Labels",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Todos_Projects_ProjectId",
                         column: x => x.ProjectId,
                         principalTable: "Projects",
                         principalColumn: "Id",
@@ -260,6 +203,34 @@ namespace ProTracking.Infrastructures.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TransactionHistory",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    AccountTypeId = table.Column<int>(type: "int", nullable: false),
+                    PaymentId = table.Column<int>(type: "int", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    Amount = table.Column<double>(type: "float", nullable: false),
+                    IsBanking = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TransactionHistory", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TransactionHistory_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "AccountTypes",
                 columns: new[] { "Id", "Description", "Index", "Price", "Title" },
@@ -277,26 +248,42 @@ namespace ProTracking.Infrastructures.Migrations
                 values: new object[,]
                 {
                     { 1, "Free", "Free", "Free", "Free" },
-                    { 2, "AceessKey", "Privatekey", "dfsdalfdfa", "ZaloPay" }
+                    { 2, "Normal", "Normal", "https://drive.google.com/file/d/10qMV7ydU1rCyhMaZdHTmzwQh6_vkFv4n/view?usp=sharing", "ZaloPay" },
+                    { 3, "Standard", "Standard", "https://drive.google.com/file/d/1KhnoyG2OcJjR5isd44K4mMC6nXZs-VxE/view?usp=sharing", "ZaloPay" },
+                    { 4, "Premium", "Premium", "https://drive.google.com/file/d/1lyhl-L9asLIx48XAws8F50pGrTvLSocX/view?usp=sharing", "ZaloPay" },
+                    { 5, "Normal", "Normal", "https://drive.google.com/file/d/17gfyZEJWp-6ltJQazuAxj86nzxRoRmhM/view?usp=sharing", "TPBank" },
+                    { 6, "Standard", "Standard", "https://drive.google.com/file/d/1bXRIqAG_qDv5VXlL4_Lr2EDqPa3nhVYI/view?usp=sharing", "TPBank" },
+                    { 7, "Premium", "Premium", "https://drive.google.com/file/d/1V9ykNI_Rsm4bZWvMZ-rORTG9SPPjBB7l/view?usp=sharing", "TPBank" }
                 });
 
             migrationBuilder.InsertData(
                 table: "ProjectParticipants",
                 columns: new[] { "Id", "CustomerId", "IsLeader", "ProjectId" },
-                values: new object[] { 1, 1, true, 1 });
+                values: new object[] { 1, 2, true, 1 });
 
             migrationBuilder.InsertData(
                 table: "Projects",
                 columns: new[] { "Id", "CreatedBy", "Description", "Status", "SubTitle", "Title" },
-                values: new object[] { 1, 1, "A startup project helping user to manage projects", "Active", "ProTracking make your work easier", "ProTracking EXE201" });
+                values: new object[] { 1, 2, "A startup project helping user to manage projects", "Active", "ProTracking make your work easier", "ProTracking EXE201" });
+
+            migrationBuilder.InsertData(
+                table: "Todos",
+                columns: new[] { "Id", "Assignee", "CreatedBy", "EndDate", "IconPriority", "LabelId", "Priority", "ProjectId", "ReportTo", "StartDate", "Status", "Title" },
+                values: new object[,]
+                {
+                    { 1, 2, 2, new DateTime(2023, 12, 2, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2445), "", 1, 5, 1, null, new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2445), "In Progress", "Design UI/UX for application" },
+                    { 2, 2, 2, new DateTime(2023, 12, 2, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2448), "", 2, 5, 1, null, new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2447), "Todo", "Builtd API for application" },
+                    { 3, 2, 2, new DateTime(2023, 12, 2, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2450), "", 3, 5, 1, null, new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2450), "In Progress", "Integrated Chatbox to application" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "Id", "AccountTypeId", "Avatar", "Birthday", "Email", "EndDate", "FirstName", "GoogleEmail", "GoogleId", "LastLoginAt", "LastName", "Password", "Phone", "RegisteredAt", "Role", "StartDate", "Status", "Username" },
                 values: new object[,]
                 {
-                    { 1, 1, null, new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(983), "khoa@gmail.com", null, "Hoang", "khoa@gmail.com", null, null, "Khoa", "1234", "08888888", new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Local), 1, null, "Active", "khoa" },
-                    { 2, 1, null, new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1000), "hai@gmail.com", null, "Hoang", "hai@gmail.com", null, null, "Hai", "1234", "08888888", new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Local), 1, null, "Active", "khoa" }
+                    { 1, 3, null, new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2381), "protracking@gmail.com", null, "ProTracking", "protracking@gmail.com", null, null, "ProTracking", "toilaadmin", "08888888", new DateTime(2023, 11, 25, 0, 0, 0, 0, DateTimeKind.Local), 1, null, "Active", "ProTracking" },
+                    { 2, 3, null, new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2392), "khoa@gmail.com", null, "Hoang", "khoa@gmail.com", null, null, "Khoa", "1234", "08888888", new DateTime(2023, 11, 25, 0, 0, 0, 0, DateTimeKind.Local), 1, null, "Active", "khoa" },
+                    { 3, 1, null, new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2394), "hai@gmail.com", null, "Hoang", "hai@gmail.com", null, null, "Hai", "1234", "08888888", new DateTime(2023, 11, 25, 0, 0, 0, 0, DateTimeKind.Local), 1, null, "Active", "khoa" }
                 });
 
             migrationBuilder.InsertData(
@@ -311,19 +298,9 @@ namespace ProTracking.Infrastructures.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Todos",
-                columns: new[] { "Id", "Assignee", "CreatedBy", "EndDate", "IconPriority", "LabelId", "Priority", "ProjectId", "ReportTo", "StartDate", "Status", "Title" },
-                values: new object[,]
-                {
-                    { 1, 1, 1, new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1106), "", 1, 5, 1, 0, new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1106), "In Progress", "Design UI/UX for application" },
-                    { 2, 1, 1, new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1113), "", 2, 5, 1, 0, new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1113), "Todo", "Builtd API for application" },
-                    { 3, 1, 1, new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1115), "", 3, 5, 1, 0, new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1115), "In Progress", "Integrated Chatbox to application" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "TransactionHistory",
                 columns: new[] { "Id", "AccountTypeId", "Amount", "Content", "CustomerId", "EndDate", "IsActive", "IsBanking", "PaymentDate", "PaymentId", "StartDate" },
-                values: new object[] { 1, 1, 0.0, null, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(4308), 1, new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(4311) });
+                values: new object[] { 1, 1, 0.0, null, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(9356), 1, new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(9360) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ChildTasks_TodoId",
@@ -351,34 +328,9 @@ namespace ProTracking.Infrastructures.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Todos_CreatedBy",
-                table: "Todos",
-                column: "CreatedBy");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Todos_LabelId",
-                table: "Todos",
-                column: "LabelId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Todos_ProjectId",
-                table: "Todos",
-                column: "ProjectId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TransactionHistory_AccountTypeId",
-                table: "TransactionHistory",
-                column: "AccountTypeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_TransactionHistory_CustomerId",
                 table: "TransactionHistory",
                 column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TransactionHistory_PaymentId",
-                table: "TransactionHistory",
-                column: "PaymentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -390,6 +342,12 @@ namespace ProTracking.Infrastructures.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
+                name: "Labels");
+
+            migrationBuilder.DropTable(
+                name: "Payments");
+
+            migrationBuilder.DropTable(
                 name: "ProjectParticipants");
 
             migrationBuilder.DropTable(
@@ -399,19 +357,13 @@ namespace ProTracking.Infrastructures.Migrations
                 name: "Todos");
 
             migrationBuilder.DropTable(
-                name: "Payments");
+                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Labels");
-
-            migrationBuilder.DropTable(
                 name: "AccountTypes");
-
-            migrationBuilder.DropTable(
-                name: "Projects");
         }
     }
 }

@@ -21,7 +21,6 @@ namespace ProTracking.Infrastructures.Mappers
 
             CreateMap<TodoDTO, Todo>()
             .ForMember(dest => dest.Project, opt => opt.MapFrom(src => _unitOfWork.ProjectRepo.GetById(src.ProjectId)))
-            .ForMember(dest => dest.Label, opt => opt.MapFrom(src => src.LabelId != null ? _unitOfWork.LabelRepo.GetById(src.LabelId.Value) : null))
             .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CreatedBy)))
             .ReverseMap();
 
@@ -62,7 +61,11 @@ namespace ProTracking.Infrastructures.Mappers
                  .ForMember(dest => dest.Username, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CustomerId).Username))
                  .ForMember(dest => dest.Email, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CustomerId).Email));
 
+            CreateMap<ProjectParticipant, ProjectParticipant>()
+                .ForMember(dest => dest.Customer, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.CustomerId)));
+
             CreateMap<Customer, CustomerToken>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.Id).Id))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.Id).Email))
                 .ForMember(dest => dest.Username, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.Id).Username))
                 .ForMember(dest => dest.Role, opt => opt.MapFrom(src => _unitOfWork.CustomerRepo.GetById(src.Id).Role))

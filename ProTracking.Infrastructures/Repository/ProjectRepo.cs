@@ -37,12 +37,22 @@ namespace ProTracking.Infrastructures.Repository
             return await db.Projects.ToListAsync();
         }
 
-        public async Task<IEnumerable<Project>> GetAllProjectByCreator(int createdBy)
+        public async Task<IEnumerable<Project>> GetAllProjectByUserId(int userId)
         {
-            return await db.Projects
-                .Where(c => c.CreatedBy == createdBy)
+            IEnumerable<ProjectParticipant> participants = await db.ProjectParticipants
+                .Where(p => p.CustomerId == userId)
                 .OrderByDescending(c => c.Id)
                 .ToListAsync();
+            List<Project> projects = new List<Project>();
+            if (participants.Count() > 0)
+            {
+                foreach (var participant in participants)
+                {
+                    projects.Add(await db.Projects.FirstOrDefaultAsync(c => c.Id == participant.ProjectId));
+                }
+
+            }
+            return projects;
         }
 
         public Project GetById(int id)

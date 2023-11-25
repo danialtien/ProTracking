@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using ProTracking.API.Services;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -44,7 +45,7 @@ namespace ProTracking.API.Controllers
         [SwaggerOperation(Summary = "Get All ProjectParticipant by OData ProjectParticipant - Done")]
         public async Task<IEnumerable<ProjectParticipant>> GetAllOData([Required] int ProjectId)
         {
-            return (await service.GetAll()).AsQueryable().Where(c => c.ProjectId == ProjectId);
+            return await service.GetByProjectId(ProjectId);
         }
 
         // POST api/<ProjectParticipantsController>
@@ -163,6 +164,7 @@ namespace ProTracking.API.Controllers
             var exist = Exist(id);
             if (!exist) return NotFound();
             var result = await service.SoftRemoveByID(id);
+
             var content = new
             {
                 statusCode = 200,

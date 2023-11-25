@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,6 +52,7 @@ namespace ProTracking.Infrastructures.Repository
         public async Task<Customer?> GetByIdAsync(int id)
         {
             var result = await db.Customers.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            db.Entry(result!).State = EntityState.Detached;
             return result;
         }
 
@@ -94,5 +96,15 @@ namespace ProTracking.Infrastructures.Repository
             return await db.Customers.FirstOrDefaultAsync(c => c.Email == email);
         }
 
+        public async Task<bool> UpdateCutomerAndAccountTypeAsync(int customerId, int accountTypeId)
+        {
+            Customer? result = await db.Customers.FirstOrDefaultAsync(x => x.Id == customerId);
+            if(result != null)
+            {
+                result.AccountTypeId = accountTypeId;
+                return await db.SaveChangesAsync() > 0;
+            }
+            return false;
+        }
     }
 }

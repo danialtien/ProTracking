@@ -12,8 +12,8 @@ using ProTracking.Infrastructures.Data;
 namespace ProTracking.Infrastructures.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231102120829_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231125041501_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -166,6 +166,7 @@ namespace ProTracking.Infrastructures.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("EndDate")
@@ -217,31 +218,47 @@ namespace ProTracking.Infrastructures.Migrations
                         new
                         {
                             Id = 1,
-                            AccountTypeId = 1,
-                            Birthday = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(983),
+                            AccountTypeId = 3,
+                            Birthday = new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2381),
+                            Email = "protracking@gmail.com",
+                            FirstName = "ProTracking",
+                            GoogleEmail = "protracking@gmail.com",
+                            LastName = "ProTracking",
+                            Password = "toilaadmin",
+                            Phone = "08888888",
+                            RegisteredAt = new DateTime(2023, 11, 25, 0, 0, 0, 0, DateTimeKind.Local),
+                            Role = 1,
+                            Status = "Active",
+                            Username = "ProTracking"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccountTypeId = 3,
+                            Birthday = new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2392),
                             Email = "khoa@gmail.com",
                             FirstName = "Hoang",
                             GoogleEmail = "khoa@gmail.com",
                             LastName = "Khoa",
                             Password = "1234",
                             Phone = "08888888",
-                            RegisteredAt = new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            RegisteredAt = new DateTime(2023, 11, 25, 0, 0, 0, 0, DateTimeKind.Local),
                             Role = 1,
                             Status = "Active",
                             Username = "khoa"
                         },
                         new
                         {
-                            Id = 2,
+                            Id = 3,
                             AccountTypeId = 1,
-                            Birthday = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1000),
+                            Birthday = new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2394),
                             Email = "hai@gmail.com",
                             FirstName = "Hoang",
                             GoogleEmail = "hai@gmail.com",
                             LastName = "Hai",
                             Password = "1234",
                             Phone = "08888888",
-                            RegisteredAt = new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            RegisteredAt = new DateTime(2023, 11, 25, 0, 0, 0, 0, DateTimeKind.Local),
                             Role = 1,
                             Status = "Active",
                             Username = "khoa"
@@ -331,10 +348,50 @@ namespace ProTracking.Infrastructures.Migrations
                         new
                         {
                             Id = 2,
-                            AccessKey = "AceessKey",
-                            PrivateKey = "Privatekey",
-                            QRCode = "dfsdalfdfa",
+                            AccessKey = "Normal",
+                            PrivateKey = "Normal",
+                            QRCode = "https://drive.google.com/file/d/10qMV7ydU1rCyhMaZdHTmzwQh6_vkFv4n/view?usp=sharing",
                             Title = "ZaloPay"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessKey = "Standard",
+                            PrivateKey = "Standard",
+                            QRCode = "https://drive.google.com/file/d/1KhnoyG2OcJjR5isd44K4mMC6nXZs-VxE/view?usp=sharing",
+                            Title = "ZaloPay"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AccessKey = "Premium",
+                            PrivateKey = "Premium",
+                            QRCode = "https://drive.google.com/file/d/1lyhl-L9asLIx48XAws8F50pGrTvLSocX/view?usp=sharing",
+                            Title = "ZaloPay"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AccessKey = "Normal",
+                            PrivateKey = "Normal",
+                            QRCode = "https://drive.google.com/file/d/17gfyZEJWp-6ltJQazuAxj86nzxRoRmhM/view?usp=sharing",
+                            Title = "TPBank"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AccessKey = "Standard",
+                            PrivateKey = "Standard",
+                            QRCode = "https://drive.google.com/file/d/1bXRIqAG_qDv5VXlL4_Lr2EDqPa3nhVYI/view?usp=sharing",
+                            Title = "TPBank"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AccessKey = "Premium",
+                            PrivateKey = "Premium",
+                            QRCode = "https://drive.google.com/file/d/1V9ykNI_Rsm4bZWvMZ-rORTG9SPPjBB7l/view?usp=sharing",
+                            Title = "TPBank"
                         });
                 });
 
@@ -369,7 +426,7 @@ namespace ProTracking.Infrastructures.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = 1,
+                            CreatedBy = 2,
                             Description = "A startup project helping user to manage projects",
                             Status = "Active",
                             SubTitle = "ProTracking make your work easier",
@@ -402,7 +459,7 @@ namespace ProTracking.Infrastructures.Migrations
                         new
                         {
                             Id = 1,
-                            CustomerId = 1,
+                            CustomerId = 2,
                             IsLeader = true,
                             ProjectId = 1
                         });
@@ -437,7 +494,7 @@ namespace ProTracking.Infrastructures.Migrations
                     b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ReportTo")
+                    b.Property<int?>("ReportTo")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
@@ -451,57 +508,48 @@ namespace ProTracking.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatedBy");
-
-                    b.HasIndex("LabelId");
-
-                    b.HasIndex("ProjectId");
-
                     b.ToTable("Todos");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Assignee = 1,
-                            CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1106),
+                            Assignee = 2,
+                            CreatedBy = 2,
+                            EndDate = new DateTime(2023, 12, 2, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2445),
                             IconPriority = "",
                             LabelId = 1,
                             Priority = 5,
                             ProjectId = 1,
-                            ReportTo = 0,
-                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1106),
+                            StartDate = new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2445),
                             Status = "In Progress",
                             Title = "Design UI/UX for application"
                         },
                         new
                         {
                             Id = 2,
-                            Assignee = 1,
-                            CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1113),
+                            Assignee = 2,
+                            CreatedBy = 2,
+                            EndDate = new DateTime(2023, 12, 2, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2448),
                             IconPriority = "",
                             LabelId = 2,
                             Priority = 5,
                             ProjectId = 1,
-                            ReportTo = 0,
-                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1113),
+                            StartDate = new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2447),
                             Status = "Todo",
                             Title = "Builtd API for application"
                         },
                         new
                         {
                             Id = 3,
-                            Assignee = 1,
-                            CreatedBy = 1,
-                            EndDate = new DateTime(2023, 11, 9, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1115),
+                            Assignee = 2,
+                            CreatedBy = 2,
+                            EndDate = new DateTime(2023, 12, 2, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2450),
                             IconPriority = "",
                             LabelId = 3,
                             Priority = 5,
                             ProjectId = 1,
-                            ReportTo = 0,
-                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(1115),
+                            StartDate = new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(2450),
                             Status = "In Progress",
                             Title = "Integrated Chatbox to application"
                         });
@@ -547,11 +595,7 @@ namespace ProTracking.Infrastructures.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountTypeId");
-
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("PaymentId");
 
                     b.ToTable("TransactionHistory");
 
@@ -561,13 +605,13 @@ namespace ProTracking.Infrastructures.Migrations
                             Id = 1,
                             AccountTypeId = 1,
                             Amount = 0.0,
-                            CustomerId = 1,
+                            CustomerId = 2,
                             EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = false,
                             IsBanking = false,
-                            PaymentDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(4308),
+                            PaymentDate = new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(9356),
                             PaymentId = 1,
-                            StartDate = new DateTime(2023, 11, 2, 19, 8, 29, 267, DateTimeKind.Local).AddTicks(4311)
+                            StartDate = new DateTime(2023, 11, 25, 11, 15, 1, 314, DateTimeKind.Local).AddTicks(9360)
                         });
                 });
 
@@ -621,56 +665,15 @@ namespace ProTracking.Infrastructures.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("ProTracking.Domain.Entities.Todo", b =>
-                {
-                    b.HasOne("ProTracking.Domain.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CreatedBy")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProTracking.Domain.Entities.Label", "Label")
-                        .WithMany()
-                        .HasForeignKey("LabelId");
-
-                    b.HasOne("ProTracking.Domain.Entities.Project", "Project")
-                        .WithMany()
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Label");
-
-                    b.Navigation("Project");
-                });
-
             modelBuilder.Entity("ProTracking.Domain.Entities.TransactionHistory", b =>
                 {
-                    b.HasOne("ProTracking.Domain.Entities.AccountType", "AccountType")
-                        .WithMany()
-                        .HasForeignKey("AccountTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ProTracking.Domain.Entities.Customer", "Customer")
                         .WithMany("TransactionHistories")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("ProTracking.Domain.Entities.Payment", "Payment")
-                        .WithMany()
-                        .HasForeignKey("PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AccountType");
-
                     b.Navigation("Customer");
-
-                    b.Navigation("Payment");
                 });
 
             modelBuilder.Entity("ProTracking.Domain.Entities.Customer", b =>

@@ -30,10 +30,6 @@ namespace ProTracking.Domain.Entities
         public Project Project { get; set; }
 
         [NotMapped]
-        [ForeignKey(nameof(LabelId))]
-        public Label? Label { get; set; }
-
-        [NotMapped]
         [ForeignKey(nameof(CreatedBy))]
         public Customer Customer { get; set; }
     }

@@ -61,7 +61,7 @@ namespace ProTracking.Infrastructures.Repository
                                   AccountType = combined.AccountType
                               })
                         .OrderByDescending(x => x.IsBanking == false)
-                        .OrderByDescending(x => x.PaymentDate)
+                        .ThenByDescending(x => x.PaymentDate)
                         .ToListAsync();
         }
 
@@ -111,7 +111,7 @@ namespace ProTracking.Infrastructures.Repository
 
         public async Task<IEnumerable<TransactionHistory>> GetByUserId(int id)
         {
-            return await db.TransactionHistory.Join(db.Payments,
+            /*return await db.TransactionHistory.Join(db.Payments,
                               transaction => transaction.PaymentId,
                               payment => payment.Id,
                               (transaction, payment) => new { Transaction = transaction, Payment = payment })
@@ -140,7 +140,9 @@ namespace ProTracking.Infrastructures.Repository
                                   AccountType = combined.AccountType
                               }).Where(c => c.CustomerId == id)
                               .OrderByDescending(x => x.IsBanking == false)
-                              .OrderByDescending(x => x.PaymentDate).ToListAsync();
+                              .OrderByDescending(x => x.PaymentDate).ToListAsync();*/
+
+            return await db.TransactionHistory.Where(c => c.CustomerId == id).OrderByDescending(c => c.IsBanking == false).ThenByDescending(x => x.PaymentDate).ToListAsync();
         }
 
         public async Task<bool> SoftRemoveAsync(TransactionHistory entity)

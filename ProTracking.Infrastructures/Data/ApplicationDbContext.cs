@@ -54,10 +54,26 @@ namespace ProTracking.Infrastructures.Data
                 new Customer
                 {
                     Id = 1,
+                    FirstName = "ProTracking",
+                    LastName = "ProTracking",
+                    Email = "protracking@gmail.com",
+                    AccountTypeId = 3,
+                    Birthday = DateTime.Now,
+                    GoogleEmail = "protracking@gmail.com",
+                    Password = "toilaadmin",
+                    Phone = "08888888",
+                    RegisteredAt = DateTime.Today,
+                    Role = RoleEnum.Admin,
+                    Status = "Active",
+                    Username = "ProTracking"
+                },
+                new Customer
+                {
+                    Id = 2,
                     FirstName = "Hoang",
                     LastName = "Khoa",
                     Email = "khoa@gmail.com",
-                    AccountTypeId = 1,
+                    AccountTypeId = 3,
                     Birthday = DateTime.Now,
                     GoogleEmail = "khoa@gmail.com",
                     Password = "1234",
@@ -69,7 +85,7 @@ namespace ProTracking.Infrastructures.Data
                 },
                 new Customer
                 {
-                    Id = 2,
+                    Id = 3,
                     FirstName = "Hoang",
                     LastName = "Hai",
                     Email = "hai@gmail.com",
@@ -91,7 +107,7 @@ namespace ProTracking.Infrastructures.Data
                     {
                         Id = 1,
                         Title = "ProTracking EXE201",
-                        CreatedBy = 1,
+                        CreatedBy = 2,
                         Description = "A startup project helping user to manage projects",
                         Status = "Active",
                         SubTitle = "ProTracking make your work easier"
@@ -101,7 +117,7 @@ namespace ProTracking.Infrastructures.Data
                 new ProjectParticipant
                 {
                     Id = 1,
-                    CustomerId = 1,
+                    CustomerId = 2,
                     ProjectId = 1,
                     IsLeader = true,
                     /*Customer = new()
@@ -168,8 +184,8 @@ namespace ProTracking.Infrastructures.Data
                     Status = StringConstUtil.IN_PROGRESS,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now.AddDays(7),
-                    Assignee = 1,
-                    CreatedBy = 1,
+                    Assignee = 2,
+                    CreatedBy = 2,
                     Priority = PriorityEnum.Highest,
                     IconPriority = ""
                 },
@@ -182,8 +198,8 @@ namespace ProTracking.Infrastructures.Data
                     Status = StringConstUtil.TODO,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now.AddDays(7),
-                    Assignee = 1,
-                    CreatedBy = 1,
+                    Assignee = 2,
+                    CreatedBy = 2,
                     Priority = PriorityEnum.Highest,
                     IconPriority = ""
                 },
@@ -196,8 +212,8 @@ namespace ProTracking.Infrastructures.Data
                     Status = StringConstUtil.IN_PROGRESS,
                     StartDate = DateTime.Now,
                     EndDate = DateTime.Now.AddDays(7),
-                    Assignee = 1,
-                    CreatedBy = 1,
+                    Assignee = 2,
+                    CreatedBy = 2,
                     Priority = PriorityEnum.Highest,
                     IconPriority = ""
                 });
@@ -213,7 +229,7 @@ namespace ProTracking.Infrastructures.Data
                 new TransactionHistory
                 {
                     Id = 1,
-                    CustomerId = 1,
+                    CustomerId = 2,
                     AccountTypeId = 1,
                     PaymentId = 1,
                     PaymentDate = DateTime.Now,

@@ -12,7 +12,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProTracking.API.Controllers
 {
-    [ApiController]
     public class ProjectsController : BaseController
     {
         private readonly IProjectService service;
@@ -23,7 +22,6 @@ namespace ProTracking.API.Controllers
         }
 
         // GET api/<ProjectsController>/all
-        [EnableQuery]
         [HttpGet]
         //[Authorize(Roles = "Customer")]
         [Produces("application/json")]
@@ -32,7 +30,7 @@ namespace ProTracking.API.Controllers
         [SwaggerOperation(Summary = "Get All Projects by Created by")]
         public async Task<IActionResult> GetAllOData([Required] int createdBy)
         {
-            var projects = (await service.GetAllProjectCreatedBy(createdBy));
+            var projects = (await service.GetAllProjectByUserId(createdBy));
 
             var content = new
             {
@@ -54,6 +52,35 @@ namespace ProTracking.API.Controllers
             return projects.ToList().Count > 0 ? Ok(content) : Ok(contentError);
         }
 
+        // GET api/<ProjectsController>/all
+        [HttpGet]
+        [Produces("application/json")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Get All Projects by UserId")]
+        public async Task<IActionResult> GetAllProjectByUserId([Required] int userId)
+        {
+            var projects = (await service.GetAllProjectByUserId(userId));
+
+            var content = new
+            {
+                statusCode = 200,
+                message = "Xử lý thành công!",
+                content = new
+                {
+                    listProjectByCreator = projects.ToList(),
+                },
+                dateTime = DateTime.Now
+            };
+
+            var contentError = new
+            {
+                statusCode = 400,
+                message = "Không có",
+                dateTime = DateTime.Now
+            };
+            return projects.ToList().Count > 0 ? Ok(content) : Ok(contentError);
+        }
         // GET api/<ProjectsController>/all Admin
         [HttpGet]
         [EnableQuery]

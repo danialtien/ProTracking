@@ -11,6 +11,6 @@ namespace ProTracking.Infrastructures.Repository
     {
         Project GetById(int id);
 
-        Task<IEnumerable<Project>> GetAllProjectByCreator(int createdBy);
+        Task<IEnumerable<Project>> GetAllProjectByUserId(int userId);
     }
 }

@@ -1,4 +1,5 @@
-﻿using ProTracking.Domain.Enums;
+﻿using Microsoft.EntityFrameworkCore;
+using ProTracking.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,7 +12,9 @@ namespace ProTracking.Domain.Entities
         public string? Username { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public string? Email { get; set; }
+
+        [EmailAddress]
+        public string Email { get; set; }
         public string? Password { get; set; }
         public string? Phone { get; set; }
         public DateTime? Birthday { get; set; }

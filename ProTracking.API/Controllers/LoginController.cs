@@ -51,7 +51,7 @@ namespace ProTracking.API.Controllers
         // POST api/<CustomersController>
         [HttpPost("Register")]
         [Produces("application/json")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Summary = "Create a new customer")]
         public async Task<IActionResult> Post(RegisterDTO entity)

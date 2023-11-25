@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using ProTracking.API.Services.IServices;
 using ProTracking.Application.ViewModels;
 using ProTracking.Application.ViewModels.FilterModel;
@@ -77,13 +78,17 @@ namespace ProTracking.API.Services
                     entity.IsActive = true;
                     entity.StartDate = DateTime.Now;
                     entity.EndDate = DateTime.Now.AddDays(30);
-                    Customer customer = await _unitOfWork.CustomerRepo.GetByIdAsync(entity.CustomerId);
-                    customer.AccountTypeId = entity.AccountTypeId;
-                    await _unitOfWork.TransactionHistoryRepo.UpdateAsync(entity);
-                    await _unitOfWork.CustomerRepo.UpdateAsync(customer);
+                    /*Customer customer = await _unitOfWork.CustomerRepo.GetByIdAsync(entity.CustomerId);
+                    customer.AccountTypeId = entity.AccountTypeId;*/
+                    var result1 = await _unitOfWork.TransactionHistoryRepo.UpdateAsync(entity);
+                    var result2 = await _unitOfWork.CustomerRepo.UpdateCutomerAndAccountTypeAsync(entity.CustomerId, entity.AccountTypeId);
+                    return result1 && result2;
+                } else
+                {
+                    return false;
                 }
             }
-            return await _unitOfWork.SaveChangeAsync() > 0;
+            return false;
         }
 
         public async Task<bool> UpdateRange(List<TransactionHistoryDTO> entities)
@@ -103,7 +108,6 @@ namespace ProTracking.API.Services
 
             // Construct the URL using the file ID
             string pictureUrl = "https://drive.google.com/uc?id=" + fileID;
-
             return pictureUrl;
         }
 

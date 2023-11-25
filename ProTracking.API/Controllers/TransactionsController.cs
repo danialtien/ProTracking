@@ -65,9 +65,8 @@ namespace ProTracking.API.Controllers
             {
                 list = await service.GetByUserId(userId);
             }
-            else if (userRole == RoleEnum.Customer.ToString() && currentUserId == userId.ToString())
+            else if (currentUserId == userId.ToString())
             {
-                // Customers can only access their own transaction history
                 list = await service.GetByUserId(userId);
             }
 
